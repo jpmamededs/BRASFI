@@ -1,4 +1,4 @@
-![40f0d2_b7cb6ea18d494fbd9637bc43cdc0445a_mv2](https://github.com/user-attachments/assets/75e3e1b8-2da0-49b8-816a-cdb0ada52ce7)
+![40f0d2_b7cb6ea18d494fbd9637bc43cdc0445a~mv2](https://github.com/user-attachments/assets/21dd3dcf-63cc-499a-a605-10324fec6fca)
 
 ## Front-end:
 

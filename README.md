@@ -1,5 +1,34 @@
 ![40f0d2_b7cb6ea18d494fbd9637bc43cdc0445a~mv2](https://github.com/user-attachments/assets/21dd3dcf-63cc-499a-a605-10324fec6fca)
 
+
+## BRASFI
+
+
+## Funcionalidades Implementadas
+## 🖇️Links
+## 📦 Entregas
+
+<details>
+<summary>Entrega 1</summary>
+<ul>
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+    <li><a href="#">Link 5</a></li>   
+</ul>
+</details>
+<details>
+<summary>Entrega 2</summary>
+<ul>
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+    <li><a href="#">Link 5</a></li>   
+</ul>
+</details>
+
 ## Front-end:
 
 <div align="center">

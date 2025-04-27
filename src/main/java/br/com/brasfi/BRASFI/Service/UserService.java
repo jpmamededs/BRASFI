@@ -23,16 +23,16 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<MyUser> user = repository.findByUsername(username);
-        if (user.isPresent()) {
-            var userObj = user.get();
-            return User.builder()
-                    .username(userObj.getUsername())
-                    .password(userObj.getPassword())
-                    .build();
-        }else{
-            throw new UsernameNotFoundException(username);
-        }
+    Optional<MyUser> user = repository.findByUsername(username);
+    if (user.isPresent()) {
+        var userObj = user.get();
+        return User.builder()
+                .username(userObj.getUsername())
+                .password(userObj.getPassword())
+                .build();
+    }else{
+        throw new UsernameNotFoundException(username);
+    }
     }
 
 

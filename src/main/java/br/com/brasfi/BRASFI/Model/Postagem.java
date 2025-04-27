@@ -19,6 +19,7 @@ public class Postagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String autor;
 
     @Enumerated(EnumType.ORDINAL)

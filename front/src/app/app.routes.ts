@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { FeedComponent } from './pages/feed/feed.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: HomeComponent,
+        component: LandingPageComponent,
         canActivate: []
     },
     {

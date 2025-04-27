@@ -2,10 +2,9 @@ package br.com.brasfi.BRASFI.Service;
 
 import java.util.Optional;
 import br.com.brasfi.BRASFI.Repository.UserRepository;
-import br.com.brasfi.BRASFI.Model.MyUser;
+import br.com.brasfi.BRASFI.Model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,10 +22,10 @@ public class UserService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-    Optional<MyUser> user = repository.findByUsername(username);
+    Optional<User> user = repository.findByUsername(username);
     if (user.isPresent()) {
         var userObj = user.get();
-        return User.builder()
+        return org.springframework.security.core.userdetails.User.builder()
                 .username(userObj.getUsername())
                 .password(userObj.getPassword())
                 .build();

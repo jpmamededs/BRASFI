@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.brasfi.BRASFI.Model.MyUser;
+import br.com.brasfi.BRASFI.Model.User;
 import br.com.brasfi.BRASFI.Repository.UserRepository;
 
 
@@ -19,7 +19,7 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping(value = "/req/signup", consumes = "application/json")
-    public MyUser createUser(@RequestBody MyUser user){
+    public User createUser(@RequestBody User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return myAppUserRepository.save(user);
     }

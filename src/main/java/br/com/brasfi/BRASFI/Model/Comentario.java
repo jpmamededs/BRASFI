@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Comment {
+public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +22,8 @@ public class Comment {
 
     @Column(name = "Autor")
     private String autor;
+
+    @ManyToOne
+    private Postagem postagem;
 
 }

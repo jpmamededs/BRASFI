@@ -56,4 +56,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany
+    private Postagem postagens;
 }

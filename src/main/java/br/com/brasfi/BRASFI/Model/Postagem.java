@@ -1,6 +1,7 @@
 package br.com.brasfi.BRASFI.Model;
 
 
+import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,7 +34,7 @@ public class Postagem {
 
 
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Comentarios> comentarios;
+    private List<Comentario> comentarios;
 
 
 

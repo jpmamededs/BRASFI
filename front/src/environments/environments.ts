@@ -1,0 +1,1 @@
+const apiURl: string = "localhost:8080/"

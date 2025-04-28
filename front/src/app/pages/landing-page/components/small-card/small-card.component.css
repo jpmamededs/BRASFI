@@ -1,0 +1,21 @@
+.holder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(170, 170, 170);
+    padding: 1rem 2rem;
+    border-style: none;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+.holder:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #616161;
+    color: white;
+}

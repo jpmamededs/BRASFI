@@ -1,19 +1,20 @@
 <app-navbar></app-navbar>
+
 <section class="mainframe"></section>
+
 <section class="quem-somos">
-
     <div class="mini-card-wrapper">
-        <app-landing-card title="Quem somos?"></app-landing-card>
-        <app-landing-card title="Nosso propósito"></app-landing-card>
-        <app-landing-card title="Nossa visão"></app-landing-card>
-        <app-landing-card title="Nossa missão"></app-landing-card>
-        <app-landing-card title="Como atuamos"></app-landing-card>
+        @for (id of cards; track $index) {
+            <app-small-card
+              [id]="id.toString()"
+              [isSelected]="selectedId === id.toString()"
+              (cardClicked)="onCardClick($event)">
+            </app-small-card>
+        }
     </div>
-
     <div class="big-card-wrapper">
-        <app-big-card title="Quem somos?" content="blablablal"></app-big-card>
+        <app-big-card [id]="selectedId"></app-big-card>
     </div>
-
 </section>
 
 <section class="impacto">

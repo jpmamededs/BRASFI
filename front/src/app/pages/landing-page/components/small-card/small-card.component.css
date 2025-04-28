@@ -11,6 +11,11 @@
 }
 
 .holder:hover{
-    background-color: grey;
+    background-color: gray;
     cursor: pointer;
+}
+
+.selected {
+    background-color: #616161;
+    color: white;
 }

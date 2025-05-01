@@ -14,6 +14,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "usuarios")
 @AllArgsConstructor
 public class User {
 
@@ -57,6 +58,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany
-    private Postagem postagens;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Postagem> postagens = new ArrayList<>();
+
 }

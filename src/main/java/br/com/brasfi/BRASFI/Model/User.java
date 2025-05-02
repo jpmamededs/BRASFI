@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @Entity
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     public static final int LIMITE_BIO = 300;
@@ -57,6 +58,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany
-    private Postagem postagens;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Postagem> postagens;
 }

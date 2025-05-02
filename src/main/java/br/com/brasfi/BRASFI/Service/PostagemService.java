@@ -7,10 +7,13 @@ import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import br.com.brasfi.BRASFI.Repository.PostagemRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+@Service
 public class PostagemService {
 
     @Autowired

@@ -25,14 +25,17 @@ public class Postagem {
     @Enumerated(EnumType.ORDINAL)
     private TipoPostagem tag;
 
-    private String Titulo;
+    @Column(name = "titulo")
+    private String titulo;
+
     private String paragrafo;
     private String imagemOuVideo;
     private String link;
     private boolean fixado;
     public static final int LIMITE_PALAVRAS= 300;
 
-    @OneToOne(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
 

@@ -1,6 +1,4 @@
-
 package br.com.brasfi.BRASFI.Controller;
-
 
 import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.User;
@@ -11,73 +9,56 @@ import br.com.brasfi.BRASFI.dto.PostagemResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class PostagemController {
 
     @Autowired
-    PostagemService postagemService;
+    private PostagemService postagemService;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-
-
-
-    @GetMapping("/postagens")
-    public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagens() {
-        List<Postagem> postagens = postagemService.findAll();
-
-        if (postagens.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        List<PostagemResponseDTO> resposta = postagens.stream()
-                .map(PostagemResponseDTO::new)
-                .toList();
-
-        return ResponseEntity.ok(resposta);
+    // Feed com formulário
+    @GetMapping("/feed")
+    public String mostrarFeed(Model model) {
+        model.addAttribute("postagemDTO", new PostagemRequestDTO());
+        model.addAttribute("postagens", postagemService.findAll());
+        return "feed";
     }
 
-
-
-
-
+    // Envio do formulário HTML (form post)
     @PostMapping("/postagens")
-    public ResponseEntity<Postagem> criarPostagem(@RequestBody @Valid PostagemRequestDTO dto) {
+    public String criarPostagem(@ModelAttribute("postagemDTO") @Valid PostagemRequestDTO dto) {
         Postagem postagem = dto.toPostagem();
 
-        // Obtém o usuário autenticado - SUBSTITUA ISSO no futuro com Spring Security
-        User user = userRepository.findById(1L) // <-- mock por enquanto
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName())
                 .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 
         postagem.setUser(user);
+        postagem.setAutor(user.getUsername());
 
         postagemService.criarPostagem(postagem);
-        return ResponseEntity.status(HttpStatus.CREATED).body(postagem);
+        return "redirect:/feed";
     }
 
+    // JSON API endpoint
+    @GetMapping("/postagens")
+    @ResponseBody
+    public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagens() {
+        List<Postagem> postagens = postagemService.findAll();
+        if (postagens.isEmpty()) return ResponseEntity.noContent().build();
 
-
-
-
-
-
-
-
-
-
-
-
-
+        List<PostagemResponseDTO> resposta = postagens.stream().map(PostagemResponseDTO::new).toList();
+        return ResponseEntity.ok(resposta);
+    }
 }

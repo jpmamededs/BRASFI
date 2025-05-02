@@ -2,45 +2,35 @@ package br.com.brasfi.BRASFI.dto;
 
 import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
-public record PostagemRequestDTO(
-        @NotBlank String autor,
-        @NotNull TipoPostagem tag,
-        @NotBlank String titulo,
-        @NotBlank String paragrafo,
-        String imagemOuVideo,
-        String link,
-        boolean fixado
-) {
+@Data
+public class PostagemRequestDTO {
 
+    @NotNull
+    private String titulo;
 
-    public PostagemRequestDTO(Postagem postagem) {
-        this(
-                postagem.getAutor(),
-                postagem.getTag(),
-                postagem.getTitulo(),
-                postagem.getParagrafo(),
-                postagem.getImagemOuVideo(),
-                postagem.getLink(),
-                postagem.isFixado()
-        );
-    }
+    private String paragrafo;
+    private String imagemOuVideo;
+    private String link;
+    private boolean fixado;
 
+    @NotNull
+    private TipoPostagem tag; // <-- aqui deve ser enum, não String
 
     public Postagem toPostagem() {
         return new Postagem(
                 0L,
-                autor(),
-                tag(),
-                titulo(),
-                paragrafo(),
-                imagemOuVideo(),
-                link(),
+                null, // autor será setado no controller
+                tag,
+                titulo,
+                paragrafo,
+                imagemOuVideo,
+                link,
                 fixado,
-                null,
-                null
+                null, // data
+                null  // user
         );
     }
 }

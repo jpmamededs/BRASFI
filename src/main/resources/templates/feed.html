@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feed de Postagens</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Feed</h1>
+
+<!-- Formulário de nova postagem -->
+<form th:action="@{/postagens}" method="post" th:object="${postagemDTO}">
+    <label>Título:</label>
+    <input type="text" th:field="*{titulo}" placeholder="Título" required /><br/>
+
+    <label>Parágrafo:</label>
+    <textarea th:field="*{paragrafo}" placeholder="Escreva sua postagem..." required></textarea><br/>
+
+    <label>Link:</label>
+    <input type="text" th:field="*{link}" placeholder="Link (opcional)" /><br/>
+
+    <label>Tag:</label>
+    <select th:field="*{tag}" required>
+        <option value="" disabled selected>Selecione a tag</option>
+        <option value="NORMAL">Normal</option>
+        <option value="FIXADO">Fixado</option>
+        <option value="AVISO">Aviso</option>
+    </select><br/>
+
+    <label>Imagem ou vídeo:</label>
+    <input type="text" th:field="*{imagemOuVideo}" placeholder="URL da mídia" /><br/>
+
+    <label>Fixado:</label>
+    <input type="checkbox" th:field="*{fixado}" /><br/>
+
+    <button type="submit">Postar</button>
+</form>
+
+<hr/>
+
+<!-- Lista de postagens -->
+<div th:each="post : ${postagens}">
+    <h2 th:text="${post.titulo}"></h2>
+    <p th:text="${post.paragrafo}"></p>
+    <p><strong>Autor:</strong> <span th:text="${post.autor}"></span></p>
+    <p><strong>Tag:</strong> <span th:text="${post.tag}"></span></p>
+    <hr/>
+</div>
+
+</body>
+</html>

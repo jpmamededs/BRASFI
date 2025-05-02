@@ -1,43 +1,33 @@
 package br.com.brasfi.BRASFI.Service;
 
-
-
 import br.com.brasfi.BRASFI.Model.Postagem;
-import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import br.com.brasfi.BRASFI.Repository.PostagemRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 
 import java.util.List;
-
 
 @Service
 public class PostagemService {
 
-    @Autowired
-    PostagemRepository postagemRepository;
+    private final PostagemRepository postagemRepository;
 
-
-
-
-    public List<Postagem> findAll() {
-
-
-        return postagemRepository.findAll();
-
+    public PostagemService(PostagemRepository postagemRepository) {
+        this.postagemRepository = postagemRepository;
     }
 
+    public List<Postagem> findAll() {
+        return postagemRepository.findAll();
+    }
 
-
-    public List<Postagem> listarPostagensPorTag(TipoPostagem tag){
-
+    public List<Postagem> listarPostagensPorTag(TipoPostagem tag) {
         return postagemRepository.findAllByTag(tag);
     }
 
-    public List<Postagem> listarPostagensFixadas(){
-
+    public List<Postagem> listarPostagensFixadas() {
         return postagemRepository.findAllByFixadoTrue();
     }
 
@@ -46,13 +36,8 @@ public class PostagemService {
                 .orElseThrow(() -> new EntityNotFoundException("Postagem não encontrada com o ID: " + id));
     }
 
-    public void  criarPostagem(Postagem postagem){
-
+    public void criarPostagem(Postagem postagem) {
         postagemRepository.save(postagem);
-
-
-
-
     }
 
     @Transactional
@@ -61,43 +46,27 @@ public class PostagemService {
         postagemRepository.atualizarPostagem(id, novaPostagem);
     }
 
-
-    public void deletarPostagem(Long id){
-
+    public void deletarPostagem(Long id) {
         postagemRepository.deleteById(id);
     }
 
-    private boolean validarLimitePalavras(String texto){
-
-        if (texto.length()> Postagem.LIMITE_PALAVRAS){
-
-            return false;
-
-
-        }
-        else{
-            return true;
-        }
+    private boolean validarLimitePalavras(String texto) {
+        return texto.length() <= Postagem.LIMITE_PALAVRAS;
     }
 
     public void fixarPostagem(Long id) {
-        Postagem postagemRecuperada = buscarPorId(id);
-
-        if (!postagemRecuperada.isFixado()) {
-            postagemRecuperada.setFixado(true);
-            postagemRepository.save(postagemRecuperada); // n sei se precisa salvar ja aqui dps tem q rever
+        Postagem postagem = buscarPorId(id);
+        if (!postagem.isFixado()) {
+            postagem.setFixado(true);
+            postagemRepository.save(postagem);
         }
     }
-
 
     public void desfixarPostagem(Long id) {
-        Postagem postagemRecuperada = buscarPorId(id);
-
-        if (postagemRecuperada.isFixado()) {
-            postagemRecuperada.setFixado(false);
-            postagemRepository.save(postagemRecuperada); // n sei se precisa salvar ja aqui dps tem q rever
+        Postagem postagem = buscarPorId(id);
+        if (postagem.isFixado()) {
+            postagem.setFixado(false);
+            postagemRepository.save(postagem);
         }
     }
-
 }
-

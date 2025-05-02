@@ -51,13 +51,13 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/req/login").permitAll();
-                    httpForm.defaultSuccessUrl("/index",true);
+                    httpForm.defaultSuccessUrl("/feed", true); // <- redirecionamento para o feed
                 })
                 .authorizeHttpRequests(registry -> {
                     registry
                             .requestMatchers("/req/signup", "/css/**", "/js/**").permitAll()
                             .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/postagens").permitAll(); // <-- ESSENCIAL
+                            .requestMatchers(HttpMethod.POST, "/postagens").permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .build();

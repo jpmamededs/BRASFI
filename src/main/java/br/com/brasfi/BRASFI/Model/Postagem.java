@@ -5,6 +5,7 @@ import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Postagem {
 
 
@@ -22,8 +24,10 @@ public class Postagem {
 
     private String autor;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TipoPostagem tag;
+
 
     @Column(name = "titulo")
     private String titulo;

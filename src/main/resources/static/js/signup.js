@@ -1,27 +1,51 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const signupForm = document.querySelector('section');
-    signupForm.style.opacity = 0;
+document.getElementById("signup-form").addEventListener("submit", function (event) {
+  event.preventDefault();
 
-    setTimeout(() => {
-      signupForm.style.transition = 'opacity 1s ease-in-out';
-      signupForm.style.opacity = 1;
-    }, 500);
+  const getMultipleSelect = (id) => {
+    return Array.from(document.getElementById(id).selectedOptions).map(opt => opt.value);
+  };
 
-    const signupButton = document.querySelector('button');
-    signupButton.addEventListener('click', function () {
-      const emailInput = document.querySelector('input[type="email"]');
-      const passwordInput = document.querySelector('input[type="password"]');
-      const confirmPasswordInput = document.querySelector('input[type="password"][name="confirm-password"]');
+  const genero = document.getElementById("genero").value;
 
-      // Check for a valid email and password (you can add your validation logic here)
-      const isValid = emailInput.checkValidity() && passwordInput.checkValidity() && confirmPasswordInput.checkValidity();
+  const data = {
+    userName: document.getElementById("username").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+    midleName: document.getElementById("midleName").value,
+    biografia: document.getElementById("biografia").value,
+    localizacao: document.getElementById("localizacao").value,
+    idade: parseInt(document.getElementById("idade").value) || null,
+    photo: document.getElementById("photo").value,
+    linkInstagram: document.getElementById("linkInstagram").value,
+    linkLinkedin: document.getElementById("linkLinkedin").value,
+    linkLattes: document.getElementById("linkLattes").value,
+    linkWhatsapp: document.getElementById("linkWhatsapp").value,
+    role: document.getElementById("role").value,
+    profissao: getMultipleSelect("profissao"),
+    temasDeAtuacao: getMultipleSelect("temasDeAtuacao")
+  };
 
-      if (!isValid) {
-        signupForm.classList.add('shake');
+  // Só adiciona genero se não estiver vazio
+  if (genero !== "") {
+    data.genero = genero;
+  }
 
-        setTimeout(() => {
-          signupForm.classList.remove('shake');
-        }, 1000);
-      }
-    });
+
+  if (data.password !== document.getElementById("passwordcon").value) {
+    alert("As senhas não coincidem!");
+    return;
+  }
+
+  fetch("/req/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  }).then(response => {
+    if (response.ok) {
+      alert("Cadastro realizado com sucesso!");
+      window.location.href = "/req/login";
+    } else {
+      alert("Erro no cadastro.");
+    }
   });
+});

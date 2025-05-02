@@ -1,77 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Signup Form</title>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <meta charset="UTF-8" />
+    <title>Cadastro</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/signup.js" defer></script>
+    <script defer src="/js/signup.js"></script>
 </head>
 <body>
 <section>
-    <form action="/req/signup" method="post">
-        <h1>Sign Up</h1>
+    <form id="signup-form">
+        <h1>Cadastro</h1>
+
+        <!-- Campos obrigatórios -->
         <div class="inputbox">
-            <ion-icon name="person-outline"></ion-icon>
-            <input type="text" id= "username" name="username" required>
-            <label for="">Name</label>
-        </div>
-        <div class="inputbox">
-            <ion-icon name="mail-outline"></ion-icon>
-            <input type="email" id="email" name="email" required>
-            <label for="">Email</label>
+            <input type="text" id="username" name="username" required />
+            <label>Nome</label>
         </div>
 
         <div class="inputbox">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" id="password" name="password" required>
-            <label for="">Password</label>
+            <input type="email" id="email" name="email" required />
+            <label>Email</label>
         </div>
+
         <div class="inputbox">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" id="passwordcon" name="passwordcon" required>
-            <label for="">Confirm Password</label>
+            <input type="password" id="password" name="password" required />
+            <label>Senha</label>
         </div>
-        <button id= "submit" type="submit">Sign Up</button>
-        <div class="register">
-            <p>Already have an account? <a href="">Log In</a></p>
+
+        <div class="inputbox">
+            <input type="password" id="passwordcon" name="passwordcon" required />
+            <label>Confirmar senha</label>
         </div>
+
+        <!-- Campos opcionais -->
+        <div class="inputbox">
+            <input type="text" id="midleName" name="midleName" />
+            <label>Nome do meio</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="text" id="biografia" name="biografia" />
+            <label>Biografia</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="text" id="localizacao" name="localizacao" />
+            <label>Localização</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="number" id="idade" name="idade" min="0" />
+            <label>Idade</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="url" id="photo" name="photo" />
+            <label>Foto (URL)</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="text" id="linkInstagram" name="linkInstagram" />
+            <label>Instagram</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="text" id="linkLinkedin" name="linkLinkedin" />
+            <label>LinkedIn</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="text" id="linkLattes" name="linkLattes" />
+            <label>Lattes</label>
+        </div>
+
+        <div class="inputbox">
+            <input type="text" id="linkWhatsapp" name="linkWhatsapp" />
+            <label>Whatsapp</label>
+        </div>
+
+        <div class="inputbox">
+            <select id="genero" name="genero">
+                <option value="">Selecione o gênero</option>
+                <option value="MASCULINO">Masculino</option>
+                <option value="FEMININO">Feminino</option>
+                <option value="NAO_BINARIO">Não Binário</option>
+                <option value="OUTRO">Outro</option>
+                <option value="PREFIRO_NAO_DIZER">Prefiro não dizer</option>
+            </select>
+        </div>
+
+            <div class="inputbox">
+                <select id="role" name="role">
+                    <option value="USER" selected>Usuário</option>
+                    <option value="ADMIN">Administrador</option>
+                </select>
+            </div>
+
+        <!-- Campos com múltiplos valores -->
+        <div class="inputbox">
+            <select id="profissao" name="profissao" multiple>
+                <option value="ESTAGIARIO">Estagiário</option>
+                <option value="JUNIOR">Júnior</option>
+                <option value="PLENIOR">Plenior</option>
+                <option value="SENIOR">Sênior</option>
+                <option value="AGRICULTOR">Agricultor</option>
+            </select>
+        </div>
+
+            <div class="inputbox">
+                <select id="temasDeAtuacao" name="temasDeAtuacao" multiple>
+                    <option value="DESENVOLVIMENTO_SOFTWARE">Desenvolvimento de Software</option>
+                    <option value="INTELIGENCIA_ARTIFICIAL">Inteligência Artificial</option>
+                    <option value="DESIGN">Design</option>
+                    <option value="MARKETING">Marketing</option>
+                    <option value="SEGURANCA">Segurança</option>
+                    <option value="GESTAO_DE_PROJETOS">Gestão de Projetos</option>
+                </select>
+            </div>
+
+        <button type="submit">Cadastrar</button>
     </form>
 </section>
 </body>
 </html>
-<script>
-    const submitButttom = document.getElementById("submit");
-    submitButttom.addEventListener('click',()=>{
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('passwordcon').value;
-      const email = document.getElementById('email').value;
-      const data ={
-        username,
-        email,
-        password
-      }
-
-      if(password == confirmPassword){
-        const jsonData = JSON.stringify(data);
-        fetch('/req/signup', {
-          method: 'POST',
-          headers:{
-            'Content-Type': 'application/json'
-          },
-          body: jsonData
-        })
-        .then(response =>{
-          //alert('succesfull');
-          //if(response.status == 200){
-            //alert('succesfull');
-          //xs}
-        })
-      }
-
-    })
-
-
-</script>

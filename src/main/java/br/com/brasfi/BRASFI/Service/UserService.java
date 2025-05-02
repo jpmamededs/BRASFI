@@ -14,27 +14,18 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
 
-
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-    Optional<User> user = repository.findByUsername(username);
-    if (user.isPresent()) {
-        var userObj = user.get();
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(userObj.getUsername())
-                .password(userObj.getPassword())
-                .build();
-    }else{
-        throw new UsernameNotFoundException(username);
+        return repository.findByUsername(username)
+                .map(user -> org.springframework.security.core.userdetails.User.builder()
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .roles(user.getRole() != null ? user.getRole().name() : "USER")
+                        .build())
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
     }
-    }
-
-
-
 }

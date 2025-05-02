@@ -31,10 +31,9 @@ public class User {
 
     @Column(nullable = false)
     @NotBlank(message = "Nome é obrigatório")
-    private String userName;
+    private String username;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Sobrenome é obrigatório")
+
     private String midleName;
 
     private String biografia;
@@ -60,5 +59,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Postagem> postagens = new ArrayList<>();
+
+    public User(){
+
+    }
+
+
 
 }

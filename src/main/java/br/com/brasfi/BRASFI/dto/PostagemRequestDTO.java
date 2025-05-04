@@ -1,13 +1,14 @@
 package br.com.brasfi.BRASFI.dto;
 
 import br.com.brasfi.BRASFI.Model.Postagem;
+import br.com.brasfi.BRASFI.Model.User;
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record PostagemRequestDTO(
-        @NotBlank String autor,
-        @NotNull TipoPostagem tag,
+
+        TipoPostagem tag,
         @NotBlank String titulo,
         @NotBlank String paragrafo,
         String imagemOuVideo,
@@ -18,7 +19,7 @@ public record PostagemRequestDTO(
 
     public PostagemRequestDTO(Postagem postagem) {
         this(
-                postagem.getAutor(),
+
                 postagem.getTag(),
                 postagem.getTitulo(),
                 postagem.getParagrafo(),
@@ -29,10 +30,11 @@ public record PostagemRequestDTO(
     }
 
 
-    public Postagem toPostagem() {
+    public Postagem toPostagem(User user) {
         return new Postagem(
                 0L,
-                autor(),
+                user.getUsername(),
+
                 tag(),
                 titulo(),
                 paragrafo(),

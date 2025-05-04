@@ -2,6 +2,7 @@ package br.com.brasfi.BRASFI.Model;
 
 
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class Postagem {
 
     private String autor;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TipoPostagem tag;
 
     @Column(name = "titulo")
@@ -36,12 +37,18 @@ public class Postagem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
 
 
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Comentario> comentarios;
+
+    public Postagem(){
+
+
+    }
 
 
 

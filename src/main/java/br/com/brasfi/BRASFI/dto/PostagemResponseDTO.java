@@ -1,10 +1,11 @@
 package br.com.brasfi.BRASFI.dto;
 
-
-
 import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import lombok.Getter;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class PostagemResponseDTO {
@@ -17,6 +18,7 @@ public class PostagemResponseDTO {
     private String link;
     private boolean fixado;
     private String autor;
+    private List<ComentarioResponseDTO> comentarios;
 
     public PostagemResponseDTO(Postagem postagem) {
         this.id = postagem.getId();
@@ -26,8 +28,11 @@ public class PostagemResponseDTO {
         this.imagemOuVideo = postagem.getImagemOuVideo();
         this.link = postagem.getLink();
         this.fixado = postagem.isFixado();
-        this.autor = postagem.getUser().getUsername(); // ou email, login...
+        this.autor = postagem.getUser().getUsername();
+
+        this.comentarios = postagem.getComentarios()
+                .stream()
+                .map(ComentarioResponseDTO::new)
+                .collect(Collectors.toList());
     }
-
-
 }

@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,16 +57,28 @@ public class PostagemController {
 
     @PostMapping("/postagens")
     public ResponseEntity<Postagem> criarPostagem(@RequestBody @Valid PostagemRequestDTO dto) {
-        Postagem postagem = dto.toPostagem();
 
-        // Obtém o usuário autenticado - SUBSTITUA ISSO no futuro com Spring Security
-        User user = userRepository.findById(1L) // <-- mock por enquanto
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        Postagem postagem = dto.toPostagem(user);
+
 
         postagem.setUser(user);
 
         postagemService.criarPostagem(postagem);
+
+        System.out.println("AUTENTICADO COMO: " + user.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).body(postagem);
+    }
+
+    @GetMapping("/usuarios")
+    public List<User> listarUsuarios() {
+        return userRepository.findAll();
     }
 
 

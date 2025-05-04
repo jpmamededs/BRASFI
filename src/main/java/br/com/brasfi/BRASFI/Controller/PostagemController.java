@@ -74,12 +74,6 @@ public class PostagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(postagem);
     }
 
-    @GetMapping("/usuarios")
-    public List<User> listarUsuarios() {
-        return userRepository.findAll();
-    }
-
-
 
     @GetMapping("/postagens/tag/{tag}")
     public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagensTag(@PathVariable TipoPostagem tag) {

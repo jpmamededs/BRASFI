@@ -80,18 +80,4 @@ public class PostagemController {
     public List<User> listarUsuarios() {
         return userRepository.findAll();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

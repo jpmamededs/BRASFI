@@ -42,7 +42,7 @@ public class Postagem {
 
 
 
-    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Comentario> comentarios;
 
     public Postagem(){

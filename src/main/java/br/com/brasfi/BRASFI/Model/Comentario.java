@@ -1,5 +1,6 @@
 package br.com.brasfi.BRASFI.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +25,12 @@ public class Comentario {
 
     @ManyToOne
     @JoinColumn(name = "postagem_id")
+    @JsonIgnore
     private Postagem postagem;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     public Comentario() {}

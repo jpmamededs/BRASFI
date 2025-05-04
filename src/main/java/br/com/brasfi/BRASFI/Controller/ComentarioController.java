@@ -70,7 +70,7 @@ public class ComentarioController {
         return ResponseEntity.ok(comentarios);
     }
 
-    @PatchMapping("/{comentarioId}/editar")
+    @PutMapping("/{comentarioId}")
     public ResponseEntity<ComentarioResponseDTO> editarComentario(
             @PathVariable Long comentarioId,
             @RequestBody @Valid ComentarioRequestDTO novoDTO

@@ -41,7 +41,7 @@
 <div th:each="post : ${postagens}">
     <h2 th:text="${post.titulo}"></h2>
     <p th:text="${post.paragrafo}"></p>
-    <p><strong>Autor:</strong> <span th:text="${post.autor}"></span></p>
+
     <p><strong>Tag:</strong> <span th:text="${post.tag}"></span></p>
     <hr/>
 </div>

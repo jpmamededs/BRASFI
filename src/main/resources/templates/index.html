@@ -10,7 +10,7 @@
 <form th:action="@{/postagens}" method="post" th:object="${postagemDTO}">
   <input type="text" th:field="*{titulo}" placeholder="Título" required /><br>
   <textarea th:field="*{paragrafo}" placeholder="Parágrafo..." required></textarea><br>
-  <input type="text" th:field="*{autor}" placeholder="Autor" required /><br>
+
 
   <select th:field="*{tag}" required>
     <option value="" disabled selected>Selecione a tag</option>

@@ -4,6 +4,7 @@ package br.com.brasfi.BRASFI.Controller;
 
 import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.User;
+import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import br.com.brasfi.BRASFI.Repository.UserRepository;
 import br.com.brasfi.BRASFI.Service.PostagemService;
 import br.com.brasfi.BRASFI.dto.PostagemRequestDTO;
@@ -17,10 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -79,6 +77,23 @@ public class PostagemController {
     @GetMapping("/usuarios")
     public List<User> listarUsuarios() {
         return userRepository.findAll();
+    }
+
+
+
+    @GetMapping("/postagens/tag/{tag}")
+    public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagensTag(@PathVariable TipoPostagem tag) {
+        List<Postagem> postagens = postagemService.listarPostagensPorTag(tag);
+
+        if (postagens.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        List<PostagemResponseDTO> resposta = postagens.stream()
+                .map(PostagemResponseDTO::new)
+                .toList();
+
+        return ResponseEntity.ok(resposta);
     }
 
 

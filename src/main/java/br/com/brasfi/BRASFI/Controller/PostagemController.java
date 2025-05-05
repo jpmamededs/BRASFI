@@ -143,6 +143,41 @@ public class PostagemController {
     }
 
 
+    @PutMapping("/postagens/{id}")
+    public ResponseEntity<Postagem> editarPostagem(@PathVariable Long id, @RequestBody @Valid PostagemRequestDTO dto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+
+        Postagem postagemExistente = postagemService.buscarPorId(id);
+        if (postagemExistente == null) {
+            throw new EntityNotFoundException("Postagem não encontrada");
+        }
+
+
+        if (!postagemExistente.getUser().getId().equals(user.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+
+        Postagem novaPostagem = dto.toPostagem(user);
+        novaPostagem.setId(id);
+        novaPostagem.setUser(user);
+
+        postagemService.editarPostagem(id, novaPostagem);
+
+        return ResponseEntity.ok(novaPostagem);
+    }
+
+
+
+
+
+
+
 
 
 

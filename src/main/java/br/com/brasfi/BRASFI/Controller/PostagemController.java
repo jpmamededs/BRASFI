@@ -195,6 +195,13 @@ public class PostagemController {
     }
 
 
+    @GetMapping("/postagens/{id}")
+    public ResponseEntity<Postagem> buscarPostagemPorId(@PathVariable Long id) {
+        Postagem postagem = postagemService.buscarPorId(id);
+        return ResponseEntity.ok(postagem);
+    }
+
+
 
 
 

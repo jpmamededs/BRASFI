@@ -125,6 +125,23 @@ public class PostagemController {
         return ResponseEntity.ok("Postagem fixada com sucesso.");
     }
 
+    @PostMapping("/postagens/desfixar/{id}")
+    public ResponseEntity<?> desfixarPostagem(@PathVariable Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        if (user.getRole() != Role.ADMIN) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body("Acesso negado: apenas administradores podem desfixar postagens.");
+        }
+
+        postagemService.desfixarPostagem(id);
+        return ResponseEntity.ok("Postagem desfixada com sucesso.");
+    }
+
 
 
 

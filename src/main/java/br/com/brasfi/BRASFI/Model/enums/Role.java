@@ -1,6 +1,13 @@
 package br.com.brasfi.BRASFI.Model.enums;
 
-public enum Role {
-    USER,
-    ADMIN
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
+    ADMIN,
+    USER;
+
+    @Override
+    public String getAuthority() {
+        return "ROLE_" + name();
+    }
 }

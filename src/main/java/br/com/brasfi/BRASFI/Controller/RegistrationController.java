@@ -1,10 +1,12 @@
 package br.com.brasfi.BRASFI.Controller;
 
-import br.com.brasfi.BRASFI.DTO.UserDTO;
 import br.com.brasfi.BRASFI.Model.User;
-import br.com.brasfi.BRASFI.Model.enums.Role;
 import br.com.brasfi.BRASFI.Repository.UserRepository;
+import br.com.brasfi.BRASFI.dto.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +21,17 @@ public class RegistrationController {
 
 
     @PostMapping(value = "/req/signup", consumes = "application/json")
-    public User createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO) {
+
+        User user = userDTO.toUser();
+
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        return userRepository.save(user);
-        }
 
+        User savedUser = userRepository.save(user);
+
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+}

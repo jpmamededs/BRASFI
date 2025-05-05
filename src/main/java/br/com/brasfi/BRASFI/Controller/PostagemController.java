@@ -4,6 +4,7 @@ package br.com.brasfi.BRASFI.Controller;
 
 import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.User;
+import br.com.brasfi.BRASFI.Model.enums.Role;
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import br.com.brasfi.BRASFI.Repository.UserRepository;
 import br.com.brasfi.BRASFI.Service.PostagemService;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -95,6 +97,40 @@ public class PostagemController {
 
         return ResponseEntity.ok(resposta);
     }
+
+
+    @GetMapping("/postagens/fixadas")
+    public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagensFixadas() {
+        List<Postagem> postagens = postagemService.listarPostagensFixadas();
+
+        if (postagens.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        List<PostagemResponseDTO> resposta = postagens.stream()
+                .map(PostagemResponseDTO::new)
+                .toList();
+
+        return ResponseEntity.ok(resposta);
+    }
+
+    @PostMapping("/postagens/fixar/{id}")
+    public ResponseEntity<?> fixarPostagem(@PathVariable Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        if (user.getRole() != Role.ADMIN) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body("Acesso negado: apenas administradores podem fixar postagens.");
+        }
+
+        postagemService.fixarPostagem(id);
+        return ResponseEntity.ok("Postagem fixada com sucesso.");
+    }
+
 
 
 

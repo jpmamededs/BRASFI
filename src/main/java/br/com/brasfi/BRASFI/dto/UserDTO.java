@@ -1,38 +1,56 @@
-package br.com.brasfi.BRASFI.DTO;
+package br.com.brasfi.BRASFI.dto;
 
+
+
+import br.com.brasfi.BRASFI.Model.User;
 import br.com.brasfi.BRASFI.Model.enums.Genero;
 import br.com.brasfi.BRASFI.Model.enums.Profissao;
 import br.com.brasfi.BRASFI.Model.enums.Role;
 import br.com.brasfi.BRASFI.Model.enums.TemaAtuacao;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
-public class UserDTO {
-
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String password;
-
-    @NotBlank
-    private String userName;
-    private String midleName;
-
-    private String biografia;
-    private String localizacao;
-    private Integer idade;
-    private String photo;
-    private String linkInstagram;
-    private String linkLinkedin;
-    private String linkLattes;
-    private String linkWhatsapp;
-
-    private List<TemaAtuacao> temasDeAtuacao;
-    private List<Profissao> profissao;
-    private Genero genero;
-    private Role role;
+public record UserDTO(
+        @NotBlank String email,
+        @NotBlank String password,
+        @NotBlank String username,
+        String midleName,
+        String biografia,
+        String localizacao,
+        Integer idade,
+        String photo,
+        String linkInstagram,
+        String linkLinkedin,
+        String linkLattes,
+        String linkWhatsapp,
+        List<TemaAtuacao> temasDeAtuacao,
+        List<Profissao> profissao,
+        Genero genero,
+        @NotBlank Role role
+) {
+    public User toUser() {
+        return new User(
+                null,
+                email,
+                password,
+                username,
+                midleName,
+                biografia,
+                localizacao,
+                idade != null ? idade : 0,
+                photo,
+                linkInstagram,
+                linkLinkedin,
+                linkLattes,
+                linkWhatsapp,
+                temasDeAtuacao != null ? temasDeAtuacao : new ArrayList<>(),
+                profissao != null ? profissao : new ArrayList<>(),
+                genero,
+                role != null ? role : Role.USER,
+                new ArrayList<>()
+        );
+    }
 }
+

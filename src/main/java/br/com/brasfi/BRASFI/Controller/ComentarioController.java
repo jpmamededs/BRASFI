@@ -82,7 +82,7 @@ public class ComentarioController {
                 .orElseThrow(() -> new EntityNotFoundException("Comentário não encontrado"));
 
         if (!comentario.getUser().getUsername().equals(username)) {
-            return ResponseEntity.status(403).build(); // Forbidden
+            return ResponseEntity.status(403).build();
         }
 
         comentario.setTitulo(novoDTO.titulo());
@@ -102,10 +102,10 @@ public class ComentarioController {
                 .orElseThrow(() -> new EntityNotFoundException("Comentário não encontrado"));
 
         if (!comentario.getUser().getUsername().equals(username)) {
-            return ResponseEntity.status(403).build(); // Forbidden
+            return ResponseEntity.status(403).build();
         }
 
-        // Desvincula da postagem
+
         Postagem postagem = comentario.getPostagem();
         if (postagem != null) {
             postagem.getComentarios().remove(comentario);

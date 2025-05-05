@@ -52,14 +52,15 @@ public class SecurityConfig {
                     httpForm
                             .loginPage("/req/login")
                             .permitAll()
-                            .defaultSuccessUrl("/index", true); // Redireciona corretamente após login
+                            .defaultSuccessUrl("/index", true);
                 })
-                .httpBasic(httpBasic -> {}) // Permite autenticação via Postman também
+                .httpBasic(httpBasic -> {})
                 .authorizeHttpRequests(registry -> {
                     registry
                             .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
                             .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
                             .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
                             .anyRequest().authenticated();
                 })
                 .build();

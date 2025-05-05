@@ -6,8 +6,6 @@ public enum TemaAtuacao {
     DESIGN,
     MARKETING,
     SEGURANCA,
-    /*
-        Adicionar outras opções YCL
-     */
+
     GESTAO_DE_PROJETOS;
 }

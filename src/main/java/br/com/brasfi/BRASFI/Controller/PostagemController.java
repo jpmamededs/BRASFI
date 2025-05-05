@@ -173,6 +173,32 @@ public class PostagemController {
     }
 
 
+    @DeleteMapping("/postagens/{id}")
+    public ResponseEntity<Void> deletarPostagem(@PathVariable Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        Postagem postagem = postagemService.buscarPorId(id);
+        if (postagem == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        if (!postagem.getUser().getId().equals(user.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        postagemService.deletarPostagem(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
+
+
+
 
 
 

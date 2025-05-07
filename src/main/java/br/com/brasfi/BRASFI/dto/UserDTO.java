@@ -8,6 +8,7 @@ import br.com.brasfi.BRASFI.Model.enums.Profissao;
 import br.com.brasfi.BRASFI.Model.enums.Role;
 import br.com.brasfi.BRASFI.Model.enums.TemaAtuacao;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public record UserDTO(
         List<TemaAtuacao> temasDeAtuacao,
         List<Profissao> profissao,
         Genero genero,
-        @NotBlank Role role
+        @NotNull Role role
 ) {
     public User toUser() {
         return new User(

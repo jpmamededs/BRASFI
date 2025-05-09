@@ -13,10 +13,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.CompositeFilter;
 
 import br.com.brasfi.BRASFI.Service.UserService;
-
 import lombok.AllArgsConstructor;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Configuration
 @AllArgsConstructor
@@ -45,25 +52,42 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(httpForm -> {
-                    httpForm
-                            .loginPage("/req/login")
-                            .permitAll()
-                            .defaultSuccessUrl("/index", true);
-                })
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .httpBasic(httpBasic -> {})
-                .authorizeHttpRequests(registry -> {
-                    registry
-                            .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
-                            .anyRequest().authenticated();
-                })
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/check").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(characterEncodingFilter(), CorsFilter.class)
                 .build();
     }
 
+
+    @Bean
+    public CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding(StandardCharsets.UTF_8.name());
+        filter.setForceEncoding(true);
+        return filter;
+    }
+
+
+    private UrlBasedCorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:4200"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
 }

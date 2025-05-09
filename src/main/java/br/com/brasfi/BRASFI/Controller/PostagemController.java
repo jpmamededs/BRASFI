@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -199,6 +200,11 @@ public class PostagemController {
     public ResponseEntity<Postagem> buscarPostagemPorId(@PathVariable Long id) {
         Postagem postagem = postagemService.buscarPorId(id);
         return ResponseEntity.ok(postagem);
+    }
+
+    @GetMapping(value = "auth/check", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> checkAuth() {
+        return ResponseEntity.ok("{\"message\": \"Usuário autenticado com sucesso!\"}");
     }
 
 

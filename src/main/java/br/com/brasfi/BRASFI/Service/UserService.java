@@ -1,10 +1,13 @@
 package br.com.brasfi.BRASFI.Service;
 
+import java.util.Collections;
 import java.util.Optional;
 import br.com.brasfi.BRASFI.Repository.UserRepository;
 import br.com.brasfi.BRASFI.Model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,12 +23,26 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+
         return repository.findByUsername(username)
-                .map(user -> org.springframework.security.core.userdetails.User.builder()
-                        .username(user.getUsername())
-                        .password(user.getPassword())
-                        .roles(user.getRole() != null ? user.getRole().name() : "USER")
-                        .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
+                .map(user -> {
+
+                    String role = "ROLE_" + (user.getRole() != null ? user.getRole().name() : "USER");
+
+
+
+                    GrantedAuthority authority = new SimpleGrantedAuthority(role);
+
+                    return org.springframework.security.core.userdetails.User.builder()
+                            .username(user.getUsername())
+                            .password(user.getPassword())
+                            .authorities(Collections.singletonList(authority))
+                            .build();
+                })
+                .orElseThrow(() -> {
+
+                    return new UsernameNotFoundException("Usuário não encontrado: " + username);
+                });
     }
 }

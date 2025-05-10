@@ -1,56 +1,107 @@
 <div class="signup-container">
   <h2>Cadastro</h2>
   <form [formGroup]="signupForm" (ngSubmit)="register()">
+
     <div class="form-group">
-      <label for="username">Usuário</label>
-      <input id="username" formControlName="username" placeholder="Digite seu usuário">
+      <label>Usuário</label>
+      <input formControlName="username" placeholder="Digite seu usuário">
       <p *ngIf="signupForm.controls['username'].invalid && signupForm.controls['username'].touched" class="error">
-        Usuário é obrigatório e deve ter pelo menos 3 caracteres.
+        O usuário deve ter pelo menos 3 caracteres.
       </p>
     </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" formControlName="email" placeholder="Digite seu email">
+      <label>Email</label>
+      <input formControlName="email" placeholder="Digite seu email">
       <p *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="error">
         Digite um email válido.
       </p>
     </div>
 
     <div class="form-group">
-      <label for="password">Senha</label>
-      <input id="password" type="password" formControlName="password" placeholder="Digite sua senha">
+      <label>Senha</label>
+      <input type="password" formControlName="password" placeholder="Digite sua senha (mínimo 6 caracteres)">
       <p *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="error">
-        Senha é obrigatória e deve ter pelo menos 6 caracteres.
+        A senha deve ter no mínimo 6 caracteres.
       </p>
     </div>
 
     <div class="form-group">
-      <label for="confirmPassword">Confirme a Senha</label>
-      <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirme sua senha">
+      <label>Confirme a Senha</label>
+      <input type="password" formControlName="confirmPassword" placeholder="Confirme sua senha">
       <p *ngIf="signupForm.controls['confirmPassword'].invalid && signupForm.controls['confirmPassword'].touched" class="error">
-        Confirmação de senha é obrigatória.
+        A confirmação de senha é obrigatória.
+      </p>
+      <p *ngIf="signupForm.controls['password'].value !== signupForm.controls['confirmPassword'].value && signupForm.controls['confirmPassword'].touched" class="error">
+        As senhas não coincidem.
       </p>
     </div>
 
     <div class="form-group">
-      <label for="role">Papel</label>
-      <select id="role" formControlName="role">
+      <label>Nome do Meio</label>
+      <input formControlName="midleName" placeholder="Digite o nome do meio">
+    </div>
+
+    <div class="form-group">
+      <label>Biografia</label>
+      <textarea formControlName="biografia" placeholder="Digite sua biografia"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Localização</label>
+      <input formControlName="localizacao" placeholder="Digite sua localização">
+    </div>
+
+    <div class="form-group">
+      <label>Idade</label>
+      <input type="number" formControlName="idade" placeholder="Digite sua idade">
+    </div>
+
+    <div class="form-group">
+      <label>Foto (URL)</label>
+      <input formControlName="photo" placeholder="Digite a URL da foto">
+    </div>
+
+    <div class="form-group">
+      <label>Instagram</label>
+      <input formControlName="linkInstagram" placeholder="URL do Instagram">
+    </div>
+
+    <div class="form-group">
+      <label>LinkedIn</label>
+      <input formControlName="linkLinkedin" placeholder="URL do LinkedIn">
+    </div>
+
+    <div class="form-group">
+      <label>Lattes</label>
+      <input formControlName="linkLattes" placeholder="URL do Lattes">
+    </div>
+
+    <div class="form-group">
+      <label>WhatsApp</label>
+      <input formControlName="linkWhatsapp" placeholder="Número do WhatsApp">
+    </div>
+
+    <div class="form-group">
+      <label>Gênero</label>
+      <select formControlName="genero">
+        <option value="MASCULINO">Masculino</option>
+        <option value="FEMININO">Feminino</option>
+        <option value="OUTRO">Outro</option>
+        <option value="NAO_BINARIO">Não Binário</option>
+        <option value="PREFIRO_NAO_DIZER">Prefiro não dizer</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Role</label>
+      <select formControlName="role">
         <option value="USER">Usuário</option>
         <option value="ADMIN">Administrador</option>
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="genero">Gênero</label>
-      <select id="genero" formControlName="genero">
-        <option value="MASCULINO">Masculino</option>
-        <option value="FEMININO">Feminino</option>
-        <option value="OUTRO">Outro</option>
-      </select>
-    </div>
-
-    <button type="submit" class="submit-btn">Cadastrar</button>
+    <button type="submit">Cadastrar</button>
   </form>
 
   <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>

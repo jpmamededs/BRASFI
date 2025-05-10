@@ -22,22 +22,31 @@ export class SignupComponent {
   ) {}
 
   ngOnInit(): void {
-    // Inicializando o formulário reativo com validações
+    // Inicializando o formulário com todos os campos do DTO
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
-      role: ['USER', Validators.required],
-      genero: ['MASCULINO', Validators.required]
+      confirmPassword: ['', Validators.required],
+      midleName: [''],
+      biografia: [''],
+      localizacao: [''],
+      idade: [null],
+      photo: [''],
+      linkInstagram: [''],
+      linkLinkedin: [''],
+      linkLattes: [''],
+      linkWhatsapp: [''],
+      temasDeAtuacao: [[]],
+      profissao: [[]],
+      genero: ['MASCULINO'],
+      role: ['USER', Validators.required]
     });
   }
 
   register() {
-    // Verificando se todos os campos estão válidos
     if (this.signupForm.invalid) {
       this.errorMessage = 'Preencha todos os campos corretamente.';
-      console.log('Formulário inválido:', this.signupForm.value);
       return;
     }
 
@@ -49,7 +58,6 @@ export class SignupComponent {
       return;
     }
 
-    // Requisição para o backend
     this.http.post('http://localhost:8080/req/signup', user).subscribe(
       () => {
         alert('Cadastro realizado com sucesso!');

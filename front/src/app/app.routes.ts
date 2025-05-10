@@ -30,6 +30,11 @@ export const routes: Routes = [
         canActivate: []
 
         },
+
+   {
+
+    path:'cadastro',component:SignupComponent
+   }
 ];
 
 

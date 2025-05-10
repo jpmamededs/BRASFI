@@ -1,0 +1,57 @@
+<div class="signup-container">
+  <h2>Cadastro</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input id="username" formControlName="username" placeholder="Digite seu usuário">
+      <p *ngIf="signupForm.controls['username'].invalid && signupForm.controls['username'].touched" class="error">
+        Usuário é obrigatório e deve ter pelo menos 3 caracteres.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" placeholder="Digite seu email">
+      <p *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched" class="error">
+        Digite um email válido.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password" placeholder="Digite sua senha">
+      <p *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched" class="error">
+        Senha é obrigatória e deve ter pelo menos 6 caracteres.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirme a Senha</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirme sua senha">
+      <p *ngIf="signupForm.controls['confirmPassword'].invalid && signupForm.controls['confirmPassword'].touched" class="error">
+        Confirmação de senha é obrigatória.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Papel</label>
+      <select id="role" formControlName="role">
+        <option value="USER">Usuário</option>
+        <option value="ADMIN">Administrador</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="genero">Gênero</label>
+      <select id="genero" formControlName="genero">
+        <option value="MASCULINO">Masculino</option>
+        <option value="FEMININO">Feminino</option>
+        <option value="OUTRO">Outro</option>
+      </select>
+    </div>
+
+    <button type="submit" class="submit-btn">Cadastrar</button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>

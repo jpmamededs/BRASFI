@@ -4,7 +4,7 @@ import { FeedComponent } from './pages/feed/feed.component';
 import { PlataformComponent } from './pages/plataform/plataform.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './services/auth.guard';
-
+import { SignupComponent } from './signup/signup.component';
 export const routes: Routes = [
     {
         path: '',
@@ -16,19 +16,22 @@ export const routes: Routes = [
         component: FeedComponent,
         canActivate: []
     },
-   
+
     { path: 'plataforma', component: PlataformComponent, canActivate: [authGuard] },
 
-    {
+
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  {
 
         path: 'login',
         component: LoginComponent,
         canActivate: []
-    
+
         },
-
-    
-    
-
-
 ];
+
+
+
+

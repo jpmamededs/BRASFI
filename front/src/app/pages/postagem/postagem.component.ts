@@ -16,11 +16,22 @@ export class PostagemComponent {
   link = '';
   fixado = false;
   tag = 'EVENTO';  
+  isAdmin = false;
  
   private postagemService = inject(PostagemService);
-  
+
+  constructor() {
+    this.isAdmin = this.postagemService.isAdmin();
+  }
 
   criarPostagem() {
+    if (!this.isAdmin) {
+      alert('Apenas administradores podem criar postagens!');
+      return;
+    }
+  
+
+ 
     const postagem = {
       titulo: this.titulo,
       paragrafo: this.paragrafo,

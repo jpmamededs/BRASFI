@@ -1,7 +1,11 @@
 <div class="postagem-form">
     <h2>Criar Postagem</h2>
   
-    <form #form="ngForm" (ngSubmit)="criarPostagem()">
+    <div *ngIf="!isAdmin" class="erro">
+        Você não tem permissão para criar postagens. Somente administradores podem realizar esta ação.
+      </div>
+    
+      <form #form="ngForm" *ngIf="isAdmin" (ngSubmit)="criarPostagem()">
      
       <label for="titulo">Título: *</label>
       <input id="titulo" type="text" [(ngModel)]="titulo" name="titulo" placeholder="Digite o título" required>

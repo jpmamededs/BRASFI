@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,15 @@ export class PostagemService {
       'Authorization': `Basic ${credentials}`,
       'Content-Type': 'application/json'
     });
-    return this.http.get(`${this.apiUrl}/auth/check`, { headers });
+  
+    return this.http.get(`${this.apiUrl}/auth/check`, { headers }).pipe(
+      tap((response: any) => {
+        this.saveToken(username, password);
+        // 💾 Salva a role no localStorage
+        localStorage.setItem('userRole', response.role);
+      })
+    );
   }
-
   
   saveToken(username: string, password: string): void {
     const credentials = btoa(`${username}:${password}`);
@@ -38,6 +44,8 @@ export class PostagemService {
       'Authorization': token,
       'Content-Type': 'application/json'
     });
+
+    
   }
 
   
@@ -53,5 +61,10 @@ export class PostagemService {
  
   logout(): void {
     localStorage.removeItem('authToken');
+  }
+
+  isAdmin(): boolean {
+    const role = localStorage.getItem('userRole');
+    return role === 'ADMIN';
   }
 }

@@ -1,0 +1,42 @@
+<div class="postagem-form">
+    <h2>Criar Postagem</h2>
+  
+    <form #form="ngForm" (ngSubmit)="criarPostagem()">
+     
+      <label for="titulo">Título: *</label>
+      <input id="titulo" type="text" [(ngModel)]="titulo" name="titulo" placeholder="Digite o título" required>
+      <div *ngIf="form.submitted && !titulo" class="erro">O campo título é obrigatório.</div>
+  
+    
+      <label for="paragrafo">Parágrafo: *</label>
+      <textarea id="paragrafo" [(ngModel)]="paragrafo" name="paragrafo" rows="4" placeholder="Digite o conteúdo" required></textarea>
+      <div *ngIf="form.submitted && !paragrafo" class="erro">O campo parágrafo é obrigatório.</div>
+  
+    
+      <label for="imagemOuVideo">Imagem ou Vídeo (URL):</label>
+      <input id="imagemOuVideo" type="url" [(ngModel)]="imagemOuVideo" name="imagemOuVideo" placeholder="URL da imagem ou vídeo">
+  
+   
+      <label for="link">Link:</label>
+      <input id="link" type="url" [(ngModel)]="link" name="link" placeholder="URL de referência">
+  
+     
+      <label for="fixado" class="inline-label">Fixado:</label>
+      <input id="fixado" type="checkbox" [(ngModel)]="fixado" name="fixado">
+  
+     
+      <label for="tag">Tipo de Postagem: *</label>
+      <select id="tag" [(ngModel)]="tag" name="tag" required>
+        <option value="" disabled>Selecione o tipo</option>
+        <option value="INFORMATIVO">INFORMATIVO</option>
+        <option value="EVENTO">EVENTO</option>
+        <option value="COMUNICADO">COMUNICADO</option>
+        <option value="AVISO">AVISO</option>
+      </select>
+      <div *ngIf="form.submitted && !tag" class="erro">O campo tipo de postagem é obrigatório.</div>
+  
+     
+      <button type="submit">Criar Postagem</button>
+    </form>
+  </div>
+  

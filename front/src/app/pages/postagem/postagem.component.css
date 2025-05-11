@@ -1,0 +1,51 @@
+.postagem-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-top: 8px;
+    display: block;
+  }
+  
+  input[type="text"],
+  input[type="url"],
+  textarea,
+  select {
+    width: 100%;
+    margin: 5px 0 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+  }
+  
+  input[type="checkbox"] {
+    margin: 0 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .erro {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -8px;
+    margin-bottom: 10px;
+  }
+  

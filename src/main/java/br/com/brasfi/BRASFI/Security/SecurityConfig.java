@@ -52,42 +52,41 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .httpBasic(httpBasic -> {})
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/auth/check").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(characterEncodingFilter(), CorsFilter.class)
-                .build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+            .csrf(AbstractHttpConfigurer::disable)
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            .httpBasic(httpBasic -> {})
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/usuarios/me").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/auth/check").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
+                    .anyRequest().authenticated()
+            )
+            .addFilterBefore(characterEncodingFilter(), CorsFilter.class)
+            .build();
+}
 
+@Bean
+public CharacterEncodingFilter characterEncodingFilter() {
+    CharacterEncodingFilter filter = new CharacterEncodingFilter();
+    filter.setEncoding(StandardCharsets.UTF_8.name());
+    filter.setForceEncoding(true);
+    return filter;
+}
 
-    @Bean
-    public CharacterEncodingFilter characterEncodingFilter() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding(StandardCharsets.UTF_8.name());
-        filter.setForceEncoding(true);
-        return filter;
-    }
+private UrlBasedCorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowedOrigins(List.of("http://localhost:4200"));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+    config.setAllowCredentials(true);
 
-
-    private UrlBasedCorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-        config.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+    return source;
+}
 }

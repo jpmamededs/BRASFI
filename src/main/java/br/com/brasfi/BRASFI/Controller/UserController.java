@@ -32,8 +32,15 @@ public class UserController {
     public List<User> listarUsuarios() {
         return userRepository.findAll();
     }
+@GetMapping("/usuarios/me")
+public ResponseEntity<User> getProfile(Authentication authentication) {
+    String username = authentication.getName();
 
+    User user = userRepository.findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 
+    return ResponseEntity.ok(user);
+}
 
 
 

@@ -1,15 +1,17 @@
-<div>
+<div class="platform-container">
   <h2>Plataforma</h2>
-  <button (click)="logout()">Sair</button>
+  <div class="action-buttons">
+    <button (click)="logout()">Sair</button>
+    <button (click)="goToEditProfile()">Editar Perfil</button>
+  </div>
 
   <ul>
-    <li *ngFor="let post of posts">
+    <li *ngFor="let post of posts" class="post-item">
       <h3>{{ post.titulo }}</h3>
       <p>{{ post.paragrafo }}</p>
       <small>Autor: {{ post.autor }}</small>
     </li>
   </ul>
-
 
   <app-postagem></app-postagem>
 </div>

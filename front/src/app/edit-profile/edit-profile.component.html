@@ -1,0 +1,24 @@
+<div class="profile-container">
+  <h2>Editar Perfil</h2>
+
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <form [formGroup]="editForm" (ngSubmit)="saveProfile()">
+    <div *ngFor="let field of ['username', 'email', 'midleName', 'biografia', 'localizacao', 'idade', 'photo', 'linkInstagram', 'linkLinkedin', 'linkLattes', 'linkWhatsapp', 'genero', 'role']">
+      <div class="form-group">
+        <label>{{ field | titlecase }}</label>
+        <div *ngIf="!isEditing[field]">
+          <span>{{ userProfile[field] }}</span>
+          <button type="button" (click)="toggleEdit(field)">Editar</button>
+        </div>
+        <div *ngIf="isEditing[field]">
+          <input [formControlName]="field" placeholder="{{ field | titlecase }}" />
+          <button type="button" (click)="toggleEdit(field)">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="save-btn">Salvar Alterações</button>
+  </form>
+</div>

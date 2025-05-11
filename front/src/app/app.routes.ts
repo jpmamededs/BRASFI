@@ -19,20 +19,13 @@ export const routes: Routes = [
         canActivate: []
     },
 
-    { path: 'plataforma', component: PlataformComponent, canActivate: [authGuard] },
+    { path: 'plataforma', component: PlataformComponent},
 
-  { path: 'edit-profile', component: EditProfileComponent, canActivate: [authGuard] },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'edit-profile', component: EditProfileComponent  },
+ 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  {
-
-        path: 'login',
-        component: LoginComponent,
-        canActivate: []
-
-        },
-
+ 
    {
 
     path:'cadastro',component:SignupComponent

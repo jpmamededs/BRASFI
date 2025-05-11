@@ -20,12 +20,13 @@ export class LoginComponent {
   login() {
     this.postagemService.login(this.username, this.password).subscribe({
       next: (response) => {
-
         this.postagemService.saveToken(this.username, this.password);
+      
+        const role = localStorage.getItem('userRole');
+        console.log('Usuário logado com role:', role);
         this.router.navigate(['/plataforma']);
       },
       error: (err) => {
-       
         if (err.status === 401) {
           this.errorMessage = 'Usuário ou senha inválidos!';
         } else if (err.status === 500) {

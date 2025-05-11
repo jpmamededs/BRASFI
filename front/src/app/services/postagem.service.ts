@@ -26,15 +26,16 @@ export class PostagemService {
     return this.http.get(`${this.apiUrl}/auth/check`, { headers }).pipe(
       tap((response: any) => {
         this.saveToken(username, password);
-        // 💾 Salva a role no localStorage
+      
         localStorage.setItem('userRole', response.role);
+        localStorage.setItem('username', response.username);
       })
     );
   }
   
   saveToken(username: string, password: string): void {
     const credentials = btoa(`${username}:${password}`);
-    localStorage.setItem('authToken', `Basic ${credentials}`);
+    localStorage.setItem('authToken', `Basic ${credentials}`); 
   }
 
   

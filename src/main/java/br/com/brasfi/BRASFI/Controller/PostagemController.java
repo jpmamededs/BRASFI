@@ -23,7 +23,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PostagemController {
@@ -57,6 +59,7 @@ public class PostagemController {
 
 
     @PostMapping("/postagens")
+
     public ResponseEntity<Postagem> criarPostagem(@RequestBody @Valid PostagemRequestDTO dto) {
 
 
@@ -202,9 +205,16 @@ public class PostagemController {
         return ResponseEntity.ok(postagem);
     }
 
-    @GetMapping(value = "auth/check", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> checkAuth() {
-        return ResponseEntity.ok("{\"message\": \"Usuário autenticado com sucesso!\"}");
+    @GetMapping("/auth/check")
+    public ResponseEntity<Map<String, String>> checkAuth(Authentication authentication) {
+        User user = userRepository.findByUsername(authentication.getName())
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Usuário autenticado com sucesso!");
+        response.put("role", user.getRole().name());
+
+        return ResponseEntity.ok(response);
     }
 
 

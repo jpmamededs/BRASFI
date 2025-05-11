@@ -32,15 +32,17 @@ public class UserController {
     public List<User> listarUsuarios() {
         return userRepository.findAll();
     }
-@GetMapping("/usuarios/me")
-public ResponseEntity<User> getProfile(Authentication authentication) {
-    String username = authentication.getName();
 
-    User user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+    @GetMapping("/usuarios/me")
+    public ResponseEntity<User> getProfile() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
 
-    return ResponseEntity.ok(user);
-}
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+        return ResponseEntity.ok(user);
+    }
 
 
 
@@ -76,7 +78,12 @@ public ResponseEntity<User> getProfile(Authentication authentication) {
 
         user.setUsername(updatedUser.getUsername());
         user.setEmail(updatedUser.getEmail());
-        user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+
+        // 🛑 Verificando se a senha está vindo vazia
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));  // 💡 Criptografando a senha
+        }
+
         user.setBiografia(updatedUser.getBiografia());
         user.setLocalizacao(updatedUser.getLocalizacao());
         user.setIdade(updatedUser.getIdade());

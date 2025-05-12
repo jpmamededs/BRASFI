@@ -32,10 +32,11 @@
       <label for="tag">Tipo de Postagem: *</label>
       <select id="tag" [(ngModel)]="tag" name="tag" required>
         <option value="" disabled>Selecione o tipo</option>
-        <option value="INFORMATIVO">INFORMATIVO</option>
+      
         <option value="EVENTO">EVENTO</option>
-        <option value="COMUNICADO">COMUNICADO</option>
-        <option value="AVISO">AVISO</option>
+       
+        <option value="NOVIDADES">NOVIDADES</option>
+        <option value="NOTICIAS">NOTICIAS</option>
       </select>
       <div *ngIf="form.submitted && !tag" class="erro">O campo tipo de postagem é obrigatório.</div>
   

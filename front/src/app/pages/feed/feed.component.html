@@ -1,2 +1,31 @@
-<h1>Página do feed</h1>
-<p>teste!</p>
+
+<app-navbar></app-navbar>
+<button (click)="logout()">Sair</button>
+
+
+
+<app-navbar></app-navbar>
+<button (click)="logout()">Sair</button>
+
+<div class="noticias">
+  <h3>Eventos</h3>
+  <app-event-card 
+    *ngFor="let evento of eventos" 
+    [titulo]="evento.titulo" 
+    [paragrafo]="evento.paragrafo">
+  </app-event-card>
+
+  <h3>Novidades</h3>
+  <app-event-card 
+    *ngFor="let evento of eventos_novidades" 
+    [titulo]="evento.titulo" 
+    [paragrafo]="evento.paragrafo">
+  </app-event-card>
+
+  <h3>Notícias</h3>
+  <app-event-card 
+    *ngFor="let evento of eventos_noticias" 
+    [titulo]="evento.titulo" 
+    [paragrafo]="evento.paragrafo">
+  </app-event-card>
+</div>

@@ -29,6 +29,10 @@ export const routes: Routes = [
    {
 
     path:'cadastro',component:SignupComponent
+   },
+
+   {
+    path:'feed', component:FeedComponent
    }
 ];
 

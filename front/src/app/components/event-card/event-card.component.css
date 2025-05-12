@@ -1,0 +1,16 @@
+.evento-card {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .evento-card h4 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .evento-card p {
+    margin: 5px 0;
+  }

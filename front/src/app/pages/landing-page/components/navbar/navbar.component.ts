@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { PostagemService } from '../../../../services/postagem.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],  // ✅ Corrigido
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']   // ✅ Corrigido
 })
 export class NavbarComponent {
+  postagemService = inject(PostagemService);  // ✅ Injeção de dependência
+  router = inject(Router);  // ✅ Injeção de dependência
 
+  logout(): void {
+    this.postagemService.logout();
+    this.router.navigate(['/login']);
+  }
 }

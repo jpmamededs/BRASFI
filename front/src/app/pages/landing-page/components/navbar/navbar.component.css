@@ -1,4 +1,23 @@
 
+.navbar {
+  position: fixed;   /* Fixa no topo da tela */
+  top: 0;            /* Gruda no topo */
+  left: 0;
+  width: 100%;       /* Ocupa toda a largura */
+  background-color: #555;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;     /* Garante que fique na frente de outros elementos */
+}
+
+.navbar a, .navbar button {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
 .holder{
     display: flex;
     flex-direction: row;
@@ -22,4 +41,12 @@ ul{
     flex-direction: row;
     gap: 1rem;
     list-style: none;
+}
+button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

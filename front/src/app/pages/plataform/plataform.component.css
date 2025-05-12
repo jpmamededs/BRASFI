@@ -1,5 +1,5 @@
 .platform-container {
-  margin: 20px;
+  margin: 0px;
   padding: 10px;
   background-color: #f4f4f4;
   border-radius: 8px;
@@ -23,7 +23,9 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-
+.action-buttons{
+  margin-top: 30px;
+}
 .post-item {
   margin: 10px 0;
   padding: 8px;

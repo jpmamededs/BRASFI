@@ -1,31 +1,33 @@
-
 <app-navbar></app-navbar>
-<button (click)="logout()">Sair</button>
 
+<div class="feed-container">
+  <div class="feed-column novidades">
+    <h2>Novidades</h2>
+    <div *ngFor="let item of eventos_novidades" class="evento-card">
+      <h4>{{ item.titulo }}</h4>
+      <p>{{ item.paragrafo }}</p>
+      <p>Data: {{ item.data }}</p>
+    </div>
+    <button class="ver-mais">Ver mais</button>
+  </div>
 
+  <div class="feed-column noticias">
+    <h2>Notícias</h2>
+    <div *ngFor="let item of eventos_noticias" class="evento-card">
+      <h4>{{ item.titulo }}</h4>
+      <p>{{ item.paragrafo }}</p>
+      <p>Data: {{ item.data }}</p>
+    </div>
+    <button class="ver-mais">Ver mais</button>
+  </div>
 
-<app-navbar></app-navbar>
-<button (click)="logout()">Sair</button>
-
-<div class="noticias">
-  <h3>Eventos</h3>
-  <app-event-card 
-    *ngFor="let evento of eventos" 
-    [titulo]="evento.titulo" 
-    [paragrafo]="evento.paragrafo">
-  </app-event-card>
-
-  <h3>Novidades</h3>
-  <app-event-card 
-    *ngFor="let evento of eventos_novidades" 
-    [titulo]="evento.titulo" 
-    [paragrafo]="evento.paragrafo">
-  </app-event-card>
-
-  <h3>Notícias</h3>
-  <app-event-card 
-    *ngFor="let evento of eventos_noticias" 
-    [titulo]="evento.titulo" 
-    [paragrafo]="evento.paragrafo">
-  </app-event-card>
+  <div class="feed-column eventos">
+    <h2>Eventos</h2>
+    <div *ngFor="let item of eventos" class="evento-card">
+      <h4>{{ item.titulo }}</h4>
+      <p>{{ item.paragrafo }}</p>
+      <p>Data: {{ item.data }}</p>
+    </div>
+    <button class="ver-mais">Ver mais</button>
+  </div>
 </div>

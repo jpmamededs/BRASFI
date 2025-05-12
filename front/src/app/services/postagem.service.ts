@@ -68,4 +68,21 @@ export class PostagemService {
     const role = localStorage.getItem('userRole');
     return role === 'ADMIN';
   }
+
+  criarComentario(postagemId: number, titulo: string, conteudo: string): Observable<any> {
+    const token = localStorage.getItem('authToken') ?? '';
+    const comentario = {
+      titulo,
+      conteudo,
+      dataCriacao: new Date().toISOString(),
+      postagemId
+    };
+  
+    return this.http.post(`${this.apiUrl}/comentarios`, comentario, {
+      headers: { 'Authorization': token, 'Content-Type': 'application/json' }
+    });
+  }
+  
+
+
 }

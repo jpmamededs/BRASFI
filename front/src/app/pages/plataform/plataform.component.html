@@ -10,8 +10,29 @@
       <h3>{{ post.titulo }}</h3>
       <p>{{ post.paragrafo }}</p>
       <small>Autor: {{ post.autor }}</small>
+
+     
+      <div *ngIf="post.comentarios && post.comentarios.length">
+        <h4>Comentários:</h4>
+        <ul>
+          <li *ngFor="let comentario of post.comentarios">
+            <strong>{{ comentario.titulo }}</strong>: {{ comentario.conteudo }}
+            <span class="comment-author">- {{ comentario.autor }}</span>
+          </li>
+        </ul>
+        <br><br>
+      </div>
+
+      
+      <div class="comment-form">
+        <h4>Adicionar Comentário</h4>
+        <input type="text" placeholder="Título" [(ngModel)]="newComment[post.id].titulo">
+        <textarea placeholder="Escreva seu comentário" [(ngModel)]="newComment[post.id].conteudo"></textarea>
+        <button (click)="criarComentario(post.id)">Comentar</button>
+      </div>
     </li>
   </ul>
 
+  
   <app-postagem></app-postagem>
 </div>

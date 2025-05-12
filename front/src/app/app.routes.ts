@@ -19,7 +19,7 @@ export const routes: Routes = [
         canActivate: []
     },
 
-    { path: 'plataforma', component: PlataformComponent},
+    { path: 'plataforma', component: PlataformComponent, canActivate: [authGuard]},
 
   { path: 'edit-profile', component: EditProfileComponent  },
  

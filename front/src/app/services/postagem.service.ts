@@ -82,6 +82,11 @@ export class PostagemService {
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     });
   }
+
+  getYoutubeEmbedUrl(link: string): string {
+    const videoId = link.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/|.+\?v=))([^&?\/\s]+)/);
+    return videoId ? `https://www.youtube.com/embed/${videoId[1]}` : '';
+  }
   
 
 

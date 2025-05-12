@@ -5,13 +5,14 @@ import { OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { PostagemComponent } from '../postagem/postagem.component';
 import { FormsModule, NgModel } from '@angular/forms';
+import { PostCardComponent } from "./post-card/post-card.component";
 
 
 
 @Component({
   selector: 'app-plataform',
-  standalone: true,
-  imports: [CommonModule, RouterModule, PostagemComponent,FormsModule],
+  
+  imports: [CommonModule, RouterModule, PostagemComponent, FormsModule, PostCardComponent],
   templateUrl: './plataform.component.html',
   styleUrls: ['./plataform.component.css']
 })
@@ -44,24 +45,5 @@ export class PlataformComponent implements OnInit {
   }
 
 
-  criarComentario(postagemId: number) {
-    const { titulo, conteudo } = this.newComment[postagemId] || {};
-    if (!titulo || !conteudo) {
-      alert('Preencha todos os campos do comentário!');
-      return;
-    }
-
-    this.postagemService.criarComentario(postagemId, titulo, conteudo).subscribe({
-      next: () => {
-        alert('Comentário enviado com sucesso!');
-        
-        this.newComment[postagemId] = { titulo: '', conteudo: '' };
-        this.ngOnInit();  
-      },
-      error: (err) => {
-        console.error('Erro ao enviar comentário:', err);
-        alert('Erro ao enviar comentário!');
-      }
-    });
-  }
+  
 }

@@ -88,10 +88,14 @@ export class PostagemService {
     return videoId ? `https://www.youtube.com/embed/${videoId[1]}` : '';
   }
 
-listarPostagensPorCategoria(categoria: string): Observable<any[]> {
-  const headers = this.getAuthHeaders();
-  // Ajuste para usar o endpoint correto
-  return this.http.get<any[]>(`${this.apiUrl}/postagens/tag/${categoria}`, { headers });
-}
+  listarPostagensPorCategoria(categoria: string): Observable<any[]> {
+    const headers = this.getAuthHeaders();
+    // Ajuste para usar o endpoint correto
+    return this.http.get<any[]>(`${this.apiUrl}/postagens/tag/${categoria}`, { headers });
+  }
+
+  buscarPostagemPorId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/postagens/${id}`, { headers: this.getAuthHeaders() });
+  }
 
 }

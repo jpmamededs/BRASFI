@@ -7,6 +7,7 @@ import { authGuard } from './services/auth.guard';
 import { SignupComponent } from './signup/signup.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ListagemComponent } from './pages/listagem/listagem.component';
+import { DetalhesPageComponent } from './pages/listagem/detalhes-page/detalhes-page.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,11 @@ export const routes: Routes = [
     path:'feed', component:FeedComponent
    },
    { path: 'listagem/:categoria', component: ListagemComponent },
+
+   {
+
+    path:'detalhes/:id',component:DetalhesPageComponent
+   }
 ];
 
 

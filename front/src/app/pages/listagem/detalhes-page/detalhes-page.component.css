@@ -1,0 +1,96 @@
+/* Navbar fixa no topo */
+app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  /* Espaçamento para compensar a navbar fixa */
+  .header-spacer {
+    height: 60px;
+  }
+  
+  /* Título centralizado */
+  h2 {
+    text-align: center;
+  }
+  
+  .titulo-listagem {
+    margin-top: 20px;
+  }
+  
+  /* Botão de voltar */
+  .btn-voltar {
+    margin: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Container da listagem */
+  .listagem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  /* Card de postagem */
+  .postagem-card {
+    width: 90%;
+    max-width: 800px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Layout da postagem: imagem e texto */
+  .postagem-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  /* Imagem da postagem */
+  .postagem-imagem {
+    width: 100px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  /* Texto da postagem */
+  .postagem-texto {
+    flex: 1;
+  }
+  
+  /* Título e parágrafo */
+  .postagem-card h4 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .postagem-card p {
+    margin: 4px 0;
+    color: #555;
+  }
+  
+  .autor, .data {
+    font-size: 0.9em;
+    color: #777;
+  }
+  .header-spacer {
+    height: 60px;
+  }
+  

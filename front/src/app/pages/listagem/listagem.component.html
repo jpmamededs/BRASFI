@@ -3,6 +3,8 @@
 <!-- Espaçamento para a navbar fixa -->
 <div class="header-spacer"></div>
 
+<h1>opa</h1>
+
 <div class="titulo-listagem">
   <h2>Todas as {{ categoria | titlecase }}</h2>
   <button (click)="voltar()" class="btn-voltar">⬅️ Voltar</button>
@@ -17,7 +19,8 @@
 
       <!-- Conteúdo da postagem -->
       <div class="postagem-texto">
-        <h4>{{ postagem.titulo }}</h4>
+        <h4 class="titulo-link" (click)="abrirDetalhes(postagem.id)">{{ postagem.titulo }}</h4>
+
         <p>{{ postagem.paragrafo }}</p>
         <p class="autor">Autor: {{ postagem.autor || 'Desconhecido' }}</p>
         <p class="data">Data: {{ postagem.data || 'Não informada' }}</p>

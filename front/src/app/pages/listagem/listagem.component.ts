@@ -6,7 +6,7 @@ import { NavbarComponent } from '../landing-page/components/navbar/navbar.compon
 
 @Component({
   selector: 'app-listagem',
-  standalone: true,
+
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.css'],
   imports: [CommonModule,NavbarComponent]
@@ -39,5 +39,9 @@ carregarPostagens(): void {
 }
   voltar(): void {
     this.router.navigate(['/feed']);
+  }
+
+  abrirDetalhes(postagemId: number): void {
+    this.router.navigate(['/detalhes', postagemId]); // Navega para a página de detalhes
   }
 }

@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<div class="header-spacer"></div>
+
+<div class="detalhes-container">
+  <h2>{{ postagem?.titulo }}</h2>
+  <p>{{ postagem?.paragrafo }}</p>
+  <p><strong>Autor:</strong> {{ postagem?.autor }}</p>
+  <p><strong>Tag:</strong> {{ postagem?.tag }}</p>
+  <p *ngIf="postagem?.imagemOuVideo">
+    <iframe 
+      [src]="postagem?.imagemOuVideo | safeUrl" 
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  </p>
+</div>

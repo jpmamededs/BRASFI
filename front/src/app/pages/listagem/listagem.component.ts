@@ -26,18 +26,17 @@ export class ListagemComponent implements OnInit {
 }
 
 carregarPostagens(): void {
+  // Chama o serviço para buscar as postagens pela categoria correta
   this.postagemService.listarPostagensPorCategoria(this.categoria).subscribe({
     next: (data) => {
-      this.postagens = data;
       console.log(`Postagens da categoria ${this.categoria}:`, data);
+      this.postagens = data;
     },
     error: (err) => {
       console.error('Erro ao carregar postagens:', err);
     }
   });
 }
-
-
   voltar(): void {
     this.router.navigate(['/feed']);
   }

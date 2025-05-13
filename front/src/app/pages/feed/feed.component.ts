@@ -62,8 +62,7 @@ export class FeedComponent implements OnInit {
   this.router.navigate(['/plataforma']);
 }
 verMais(categoria: string): void {
-  // Redireciona para a página da categoria correspondente
-  this.router.navigate(['/listagem', categoria.toUpperCase()]);
+  this.router.navigate(['/listagem', categoria]);
 }
 
 }

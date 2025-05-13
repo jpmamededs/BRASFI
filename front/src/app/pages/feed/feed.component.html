@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="feed-container">
   <!-- Coluna de Novidades -->
   <div class="feed-column novidades">
@@ -8,7 +9,6 @@
       <p>{{ item.paragrafo }}</p>
       <p>Data: {{ item.data }}</p>
     </div>
-    <!-- Botão Ver Mais para Novidades -->
     <button class="ver-mais" (click)="verMais('NOVIDADES')">Ver mais</button>
   </div>
 
@@ -20,7 +20,6 @@
       <p>{{ item.paragrafo }}</p>
       <p>Data: {{ item.data }}</p>
     </div>
-    <!-- Botão Ver Mais para Notícias -->
     <button class="ver-mais" (click)="verMais('NOTICIAS')">Ver mais</button>
   </div>
 
@@ -32,7 +31,6 @@
       <p>{{ item.paragrafo }}</p>
       <p>Data: {{ item.data }}</p>
     </div>
-    <!-- Botão Ver Mais para Eventos -->
     <button class="ver-mais" (click)="verMais('EVENTO')">Ver mais</button>
   </div>
 </div>

@@ -90,8 +90,8 @@ export class PostagemService {
 
 listarPostagensPorCategoria(categoria: string): Observable<any[]> {
   const headers = this.getAuthHeaders();
-  // Certifique-se de que a categoria esteja correta e em caixa alta
-  return this.http.get<any[]>(`${this.apiUrl}/postagens?tag=${categoria}`, { headers });
+  // Ajuste para usar o endpoint correto
+  return this.http.get<any[]>(`${this.apiUrl}/postagens/tag/${categoria}`, { headers });
 }
 
 }

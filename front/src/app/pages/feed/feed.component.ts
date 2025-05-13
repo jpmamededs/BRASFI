@@ -61,4 +61,7 @@ export class FeedComponent implements OnInit {
   voltarParaPlataforma(): void {
   this.router.navigate(['/plataforma']);
 }
+verMais(categoria: string): void {
+    this.router.navigate(['/listagem', categoria]);
+  }
 }

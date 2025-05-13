@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { authGuard } from './services/auth.guard';
 import { SignupComponent } from './signup/signup.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ListagemComponent } from './pages/listagem/listagem.component';
 
 export const routes: Routes = [
     {
@@ -22,10 +23,10 @@ export const routes: Routes = [
     { path: 'plataforma', component: PlataformComponent, canActivate: [authGuard]},
 
   { path: 'edit-profile', component: EditProfileComponent  },
- 
+
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
- 
+
    {
 
     path:'cadastro',component:SignupComponent
@@ -33,7 +34,8 @@ export const routes: Routes = [
 
    {
     path:'feed', component:FeedComponent
-   }
+   },
+   { path: 'listagem/:categoria', component: ListagemComponent },
 ];
 
 

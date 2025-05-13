@@ -1,0 +1,251 @@
+[33mcommit 50719205eb568cc55443ca1d11d9cf21dfff15fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 29b128b 7e8fe35
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 12 21:53:51 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 29b128be0767c8d614eafb562780099eaefad4b4[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 12 21:53:35 2025 -0300
+
+    feat: changes on the enum
+
+[33mcommit 7e8fe35e8f8bde0774334c1e3310f6cc7c7c46c1[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Mon May 12 21:49:33 2025 -0300
+
+    listagem
+
+[33mcommit 69753502267bf0333777971d46641af6a3f22d96[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Mon May 12 20:56:31 2025 -0300
+
+    feed e melhorada no front
+
+[33mcommit 5ed939ba4b150254da4993150d90d8b55808ccaf[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 12 20:17:46 2025 -0300
+
+    feat: Base feed
+
+[33mcommit 732eab1645a3c4dd0ce08ee6dd5a61c6daec424d[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 12 16:37:05 2025 -0300
+
+    feat: changes on the auth routes and embeded videos
+
+[33mcommit 5a3dd68924add069a38bc6d0f282d402fea21dd5[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 12 09:15:59 2025 -0300
+
+    feat: modularizacao do cards de posts
+
+[33mcommit f847ac45be4faf46f6b6aa0b3b45aa0a36795ab9[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 12 08:58:19 2025 -0300
+
+    feat: comentarios logic implemented
+
+[33mcommit 048140d0055551caa3f3f9bd8df347af33ba44e4[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 11 13:06:21 2025 -0300
+
+    fix: changes on the controller for the edit profile
+
+[33mcommit 12e209489ab5c80d754ee864fae142cf9ec9fa24[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 11 13:05:44 2025 -0300
+
+    feat: fix the edit profile function
+
+[33mcommit b503d7b762a8620ef80cc26624a5602fbeef9b9b[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sun May 11 12:06:05 2025 -0300
+
+    edit
+
+[33mcommit 3c646a671c4d1b2f9df0a63e635a79f10fc2b117[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 11 10:18:38 2025 -0300
+
+    feat: frontend is reponding for only the adm can create posts
+
+[33mcommit f90edf2c3b48eec71fea45a98941e6f997651e42[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 11 10:17:20 2025 -0300
+
+    fix: changes on the postagem controller for only the adm can create posts
+
+[33mcommit de5ed07f673b2f44f6630699f2d2c23146c215e5[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 11 09:04:04 2025 -0300
+
+    feat:  login component card created for create a post
+
+[33mcommit 117eba50044fdfe706dcb1b94e243a820cedb81c[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sat May 10 19:34:12 2025 -0300
+
+    feat: add the route for the registration on the login page
+
+[33mcommit 41764f7f9cb3db8649258102669e28f0c706ca74[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sat May 10 13:13:29 2025 -0300
+
+    cadastro completo
+
+[33mcommit ad7ce4f6af65bd001a878f61f495227b5611170b[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sat May 10 13:07:14 2025 -0300
+
+    cadastro funcionando
+
+[33mcommit ed30d42cdd48f68251c450bbb53873a2dc067faa[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Fri May 9 08:34:11 2025 -0300
+
+    feat: change on the login end points and springsecurity
+
+[33mcommit a36bfe6ddcae36360954f770fbfd53d065b6a1e7[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Fri May 9 08:31:52 2025 -0300
+
+    login and plataform base inicialazed
+
+[33mcommit 3e73093dc61b7d317df18d63bc6dd0f8eb74b0ae[m
+Merge: c313e2f 5cac857
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Wed May 7 13:37:08 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit c313e2fac746e2174528181b1ab6211dc9807257[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Wed May 7 13:36:52 2025 -0300
+
+    feat: reconstruct of the user
+
+[33mcommit 5cac8577c8ebbb43f24bc3ef1a8dcc42a15a3244[m
+Author: Guilherme Mourão <gmvc@cesar.school>
+Date:   Tue May 6 21:46:19 2025 -0300
+
+    melhoria da visualização de depoimentos
+
+[33mcommit 45394e57d52222d49671373a657b5cce5d4de2f4[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 5 15:21:14 2025 -0300
+
+    feat: end point of postagem by an id
+
+[33mcommit 9b234b33621624c1f0c557adcfc50bb3c625278d[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 5 15:00:37 2025 -0300
+
+    feat: end point of delete postagem
+
+[33mcommit 9249c9e841cb9f1c5c25657f4a7b8717dbb277c7[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 5 14:19:42 2025 -0300
+
+    feat: end point of edit postagem
+
+[33mcommit 1c5a90e2dfa2eeba5ff3150dfdba6bdef85c755a[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 5 09:07:55 2025 -0300
+
+    feat: changes on the controler and the unfix post
+
+[33mcommit eba43bd82503eda6fecf5f4ea3e9703d8f792224[m
+Merge: 46c39d9 d8bef54
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 5 08:32:07 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/br/com/brasfi/BRASFI/Controller/RegistrationController.java
+
+[33mcommit 46c39d98cc9a096c12c61f75c2e91fbccdcf16b8[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Mon May 5 08:30:56 2025 -0300
+
+    feat: implementation of ADMIN and USER Roles logic and endpoint of fixingPosts
+
+[33mcommit d8bef5457a5c9ae7ab6f7d0b79a4593251270e40[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sun May 4 17:50:59 2025 -0300
+
+    editar excluir usuarios
+
+[33mcommit fe98a34d8a1a35d96dbf1b167edbf0caf270569d[m
+Merge: fefaba3 c24dfaa
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 4 16:50:29 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/br/com/brasfi/BRASFI/Controller/PostagemController.java
+
+[33mcommit fefaba3e46361aa5306a736e5e1c8543531b3d28[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 4 16:49:45 2025 -0300
+
+    requisicao das tags
+
+[33mcommit c24dfaaa2207b1b5406563104442a08603b3f5e3[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sun May 4 16:47:04 2025 -0300
+
+    editar comentario
+
+[33mcommit dabb82783f434885693ffec885f0b8dc11f414bd[m
+Merge: 3f9d81a 09cbe68
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sun May 4 16:37:36 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 3f9d81ab78d64d3a4ff8a9027e033d3d09ff02fb[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Sun May 4 16:37:24 2025 -0300
+
+    deletar comentario
+
+[33mcommit 09cbe68c17cc8ef0d243cf0bbeb471381485df69[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 4 15:55:18 2025 -0300
+
+    fix user and commentary was activating each other
+
+[33mcommit b9592b29627aadc9808251a1d31e6e685da87390[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 4 15:28:24 2025 -0300
+
+    refactor code
+
+[33mcommit 0a650bc563082857d68254ccfab35b2ddfd13a66[m
+Merge: b0addb4 11a2b0b
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 4 12:16:05 2025 -0300
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       src/main/java/br/com/brasfi/BRASFI/Controller/ContentController.java
+    #       src/main/java/br/com/brasfi/BRASFI/Controller/PostagemController.java
+    #       src/main/java/br/com/brasfi/BRASFI/Model/Postagem.java
+    #       src/main/java/br/com/brasfi/BRASFI/Model/enums/TipoPostagem.java
+    #       src/main/java/br/com/brasfi/BRASFI/Security/SecurityConfig.java
+    #       src/main/java/br/com/brasfi/BRASFI/dto/PostagemRequestDTO.java
+
+[33mcommit b0addb4f007ad3aa71517cc0b77ed950d565927f[m
+Author: João Miccuci <joaomicucci3@gmail.com>
+Date:   Sun May 4 12:10:54 2025 -0300
+
+    feat: add comentario end points and integration with posts and ressolved the bug of postagem end-point
+
+[33mcommit 11a2b0b049a99b327bec525d7232ec7928bf24a4[m
+Author: MatheusLustosa <matheusclc@hotmail.com>
+Date:   Fri May 2 17:42:55 2025 -0300

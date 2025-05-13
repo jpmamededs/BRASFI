@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-
 <div class="feed-container">
+  <!-- Coluna de Novidades -->
   <div class="feed-column novidades">
     <h2>Novidades</h2>
     <div *ngFor="let item of eventos_novidades" class="evento-card">
@@ -8,9 +8,11 @@
       <p>{{ item.paragrafo }}</p>
       <p>Data: {{ item.data }}</p>
     </div>
-    <button class="ver-mais">Ver mais</button>
+    <!-- Botão Ver Mais para Novidades -->
+    <button class="ver-mais" (click)="verMais('NOVIDADES')">Ver mais</button>
   </div>
 
+  <!-- Coluna de Notícias -->
   <div class="feed-column noticias">
     <h2>Notícias</h2>
     <div *ngFor="let item of eventos_noticias" class="evento-card">
@@ -18,9 +20,11 @@
       <p>{{ item.paragrafo }}</p>
       <p>Data: {{ item.data }}</p>
     </div>
-    <button class="ver-mais">Ver mais</button>
+    <!-- Botão Ver Mais para Notícias -->
+    <button class="ver-mais" (click)="verMais('NOTICIAS')">Ver mais</button>
   </div>
 
+  <!-- Coluna de Eventos -->
   <div class="feed-column eventos">
     <h2>Eventos</h2>
     <div *ngFor="let item of eventos" class="evento-card">
@@ -28,6 +32,7 @@
       <p>{{ item.paragrafo }}</p>
       <p>Data: {{ item.data }}</p>
     </div>
-    <button class="ver-mais" (click)="verMais('eventos')">Ver mais</button>
+    <!-- Botão Ver Mais para Eventos -->
+    <button class="ver-mais" (click)="verMais('EVENTO')">Ver mais</button>
   </div>
 </div>

@@ -19,24 +19,24 @@ export class ListagemComponent implements OnInit {
   categoria: string = '';
   postagens: any[] = [];
 
-  ngOnInit(): void {
-    // ✅ Obter categoria da rota
-    this.categoria = this.route.snapshot.paramMap.get('categoria') || '';
-    this.carregarPostagens();
-  }
+ ngOnInit(): void {
+  // Obter a categoria da rota e converter para maiúsculas
+  this.categoria = this.route.snapshot.paramMap.get('categoria')?.toUpperCase() || '';
+  this.carregarPostagens();
+}
 
-  carregarPostagens(): void {
-    // ✅ Chamando o serviço com a categoria correta
-    this.postagemService.listarPostagensPorCategoria(this.categoria).subscribe({
-      next: (data) => {
-        console.log(`Postagens da categoria ${this.categoria}:`, data);
-        this.postagens = data;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar postagens:', err);
-      }
-    });
-  }
+carregarPostagens(): void {
+  this.postagemService.listarPostagensPorCategoria(this.categoria).subscribe({
+    next: (data) => {
+      this.postagens = data;
+      console.log(`Postagens da categoria ${this.categoria}:`, data);
+    },
+    error: (err) => {
+      console.error('Erro ao carregar postagens:', err);
+    }
+  });
+}
+
 
   voltar(): void {
     this.router.navigate(['/']);

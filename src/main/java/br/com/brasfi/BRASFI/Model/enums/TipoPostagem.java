@@ -4,5 +4,7 @@ public enum TipoPostagem {
     INFORMATIVO,
     EVENTO,
     COMUNICADO,
-    AVISO
+    AVISO,
+    NOVIDADES,
+    NOTICIAS
 }

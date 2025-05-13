@@ -20,7 +20,7 @@ export class ListagemComponent implements OnInit {
   postagens: any[] = [];
 
  ngOnInit(): void {
-  // Obter a categoria da rota e converter para maiúsculas
+  // Obtém a categoria da rota e converte para maiúsculas
   this.categoria = this.route.snapshot.paramMap.get('categoria')?.toUpperCase() || '';
   this.carregarPostagens();
 }

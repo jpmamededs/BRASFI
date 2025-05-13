@@ -7,11 +7,16 @@
   <p>{{ postagem?.paragrafo }}</p>
   <p><strong>Autor:</strong> {{ postagem?.autor }}</p>
   <p><strong>Tag:</strong> {{ postagem?.tag }}</p>
-  <p *ngIf="postagem?.imagemOuVideo">
-    <iframe 
-      [src]="postagem?.imagemOuVideo | safeUrl" 
-      frameborder="0" 
-      allowfullscreen>
-    </iframe>
-  </p>
+   
+    <div *ngIf="postagem.imagemOuVideo">
+        <iframe 
+          *ngIf="getYoutubeEmbedUrl(postagem.imagemOuVideo)" 
+          [src]="getYoutubeEmbedUrl(postagem.imagemOuVideo)" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
 </div>
+
+ 
+  

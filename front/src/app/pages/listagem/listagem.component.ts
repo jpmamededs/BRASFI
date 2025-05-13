@@ -39,6 +39,6 @@ carregarPostagens(): void {
 
 
   voltar(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/feed']);
   }
 }

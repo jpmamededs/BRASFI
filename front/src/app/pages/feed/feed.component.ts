@@ -1,9 +1,9 @@
+import { NavbarComponent } from './../landing-page/components/navbar/navbar.component';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PostagemService } from '../../services/postagem.service';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from "../landing-page/components/navbar/navbar.component";
 
 @Component({
   selector: 'app-feed',

@@ -3,10 +3,11 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { BigCardComponent } from "./components/big-card/big-card.component";
 import { DepoimentosComponent } from "./components/depoimentos/depoimentos.component";
 import { SmallCardComponent } from "./components/small-card/small-card.component";
+import { FooterComponent } from "./components/footer/footer.component";
 
 @Component({
   selector: 'app-landing-page',
-  imports: [NavbarComponent, SmallCardComponent, BigCardComponent, DepoimentosComponent],
+  imports: [NavbarComponent, SmallCardComponent, BigCardComponent, DepoimentosComponent, FooterComponent,FooterComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })

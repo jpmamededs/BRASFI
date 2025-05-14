@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PostagemService } from '../../services/postagem.service';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../landing-page/components/footer/footer.component";
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css'],
-  imports: [CommonModule, NavbarComponent]
+  imports: [CommonModule, NavbarComponent, FooterComponent,FooterComponent]
 })
 export class FeedComponent implements OnInit {
   postagemService = inject(PostagemService);

@@ -7,13 +7,14 @@ import { PostagemComponent } from '../postagem/postagem.component';
 import { FormsModule, NgModel } from '@angular/forms';
 import { PostCardComponent } from "./post-card/post-card.component";
 import { NavbarComponent } from "../landing-page/components/navbar/navbar.component";
+import { FooterComponent } from "../landing-page/components/footer/footer.component";
 
 
 
 @Component({
   selector: 'app-plataform',
 
-  imports: [CommonModule, RouterModule, PostagemComponent, FormsModule, PostCardComponent,NavbarComponent],
+  imports: [CommonModule, RouterModule, PostagemComponent, FormsModule, PostCardComponent, NavbarComponent, FooterComponent],
   templateUrl: './plataform.component.html',
   styleUrls: ['./plataform.component.css']
 })

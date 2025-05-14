@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PostagemService } from '../../services/postagem.service';
 import { NavbarComponent } from '../landing-page/components/navbar/navbar.component';
+import { FooterComponent } from "../landing-page/components/footer/footer.component";
 
 @Component({
   selector: 'app-listagem',
 
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.css'],
-  imports: [CommonModule,NavbarComponent]
+  imports: [CommonModule, NavbarComponent, FooterComponent]
 })
 export class ListagemComponent implements OnInit {
   postagemService = inject(PostagemService);

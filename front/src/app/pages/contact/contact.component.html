@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="contact-page">
+  <div class="contact-container">
+    <div class="contact-left">
+      <h2>Fale conosco</h2>
+      <p>Para saber mais, entre em contato e conheça mais sobre como nosso sistema funciona.</p>
+      <img src="assets/question-mark.png" alt="Interrogação" class="contact-image">
+    </div>
+    <div class="contact-right">
+      <form [formGroup]="contactForm" (ngSubmit)="sendMessage()" class="contact-form">
+        <label for="subject">Assunto</label>
+        <select id="subject" formControlName="subject">
+          <option value="">Selecione o assunto</option>
+          <option value="duvida">Dúvida</option>
+          <option value="suporte">Suporte</option>
+          <option value="feedback">Feedback</option>
+        </select>
+
+        <label for="name">Nome</label>
+        <input id="name" formControlName="name" placeholder="Insira seu nome aqui">
+
+        <label for="message">Mensagem</label>
+        <textarea id="message" formControlName="message" placeholder="Deixe sua mensagem..."></textarea>
+
+        <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i> Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

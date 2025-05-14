@@ -6,21 +6,21 @@ app-navbar {
     width: 100%;
     z-index: 1000;
   }
-  
+
   /* Espaçamento para compensar a navbar fixa */
   .header-spacer {
     height: 60px;
   }
-  
+
   /* Título centralizado */
   h2 {
     text-align: center;
   }
-  
+
   .titulo-listagem {
     margin-top: 20px;
   }
-  
+
   /* Botão de voltar */
   .btn-voltar {
     margin: 10px;
@@ -31,7 +31,7 @@ app-navbar {
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   /* Container da listagem */
   .listagem-container {
     display: flex;
@@ -40,7 +40,7 @@ app-navbar {
     gap: 15px;
     padding: 20px;
   }
-  
+
   /* Card de postagem */
   .postagem-card {
     width: 90%;
@@ -52,14 +52,14 @@ app-navbar {
     display: flex;
     align-items: center;
   }
-  
+
   /* Layout da postagem: imagem e texto */
   .postagem-content {
     display: flex;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   /* Imagem da postagem */
   .postagem-imagem {
     width: 100px;
@@ -67,12 +67,12 @@ app-navbar {
     background-color: #e0e0e0;
     border-radius: 4px;
   }
-  
+
   /* Texto da postagem */
   .postagem-texto {
     flex: 1;
   }
-  
+
   /* Título e parágrafo */
   .postagem-card h4 {
     margin: 0;
@@ -80,12 +80,12 @@ app-navbar {
     font-weight: bold;
     color: #333;
   }
-  
+
   .postagem-card p {
     margin: 4px 0;
     color: #555;
   }
-  
+
   .autor, .data {
     font-size: 0.9em;
     color: #777;
@@ -94,12 +94,18 @@ app-navbar {
     height: 60px;
   }
 
-  
-  iframe {
-    width: 50%;
-    height: 15rem;
-    margin: 10px 0;
-  }
-  
-  
-  
+
+.video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.video iframe {
+  width: 100%;
+  max-width: 800px;
+  height: calc(800px * 9 / 16);
+  border-radius: 8px;
+  border: none;
+}

@@ -15,7 +15,7 @@
   <div *ngFor="let postagem of postagens" class="postagem-card">
     <div class="postagem-content">
       <!-- Imagem ou Placeholder -->
-      <img src="assets/placeholder.png" alt="Imagem" class="postagem-imagem">
+     <img [src]="postagem.imagemOuVideo || 'assets/placeholder.png'" alt="Imagem" class="postagem-imagem">
 
       <!-- Conteúdo da postagem -->
       <div class="postagem-texto">

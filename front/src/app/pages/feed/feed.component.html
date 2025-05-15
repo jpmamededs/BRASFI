@@ -11,7 +11,7 @@
     <h2 class="novidades-title">Novidades</h2>
     <div *ngFor="let item of eventos_novidades" class="evento-card">
       <div class="evento-image">
-        <img src="assets/images/placeholder.png" alt="Imagem" />
+        <img [src]="item.imagemOuVideo || 'assets/images/placeholder.png'" alt="Imagem" />
       </div>
       <div class="evento-content">
         <h4>{{ item.titulo }}</h4>
@@ -28,7 +28,7 @@
     <h2 class="noticias-title">Notícias</h2>
     <div *ngFor="let item of eventos_noticias" class="evento-card">
       <div class="evento-image">
-        <img src="assets/images/placeholder.png" alt="Imagem" />
+       <img [src]="item.imagemOuVideo || 'assets/images/placeholder.png'" alt="Imagem" />
       </div>
       <div class="evento-content">
         <h4>{{ item.titulo }}</h4>
@@ -45,7 +45,7 @@
     <h2 class="eventos-title">Eventos</h2>
     <div *ngFor="let item of eventos" class="evento-card">
       <div class="evento-image">
-        <img src="assets/images/placeholder.png" alt="Imagem" />
+         <img [src]="item.imagemOuVideo || 'assets/images/placeholder.png'" alt="Imagem" />
       </div>
       <div class="evento-content">
         <h4>{{ item.titulo }}</h4>

@@ -45,4 +45,8 @@ carregarPostagens(): void {
   abrirDetalhes(postagemId: number): void {
     this.router.navigate(['/detalhes', postagemId]); // Navega para a página de detalhes
   }
+
+  isImageUrl(url: string): boolean {
+  return url?.match(/\.(jpeg|jpg|gif|png|webp)$/) != null;
+  }
 }

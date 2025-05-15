@@ -17,7 +17,7 @@ export class FeedComponent implements OnInit {
   router = inject(Router);
   imgSource:string="assets/images/feed.png";
   sanitizer = inject(DomSanitizer);
- isAdmin: boolean = false;
+  isAdmin: boolean = false;
   eventos: any[] = [];
   eventos_noticias: any[] = [];
   eventos_novidades: any[] = [];
@@ -26,7 +26,7 @@ export class FeedComponent implements OnInit {
     this.carregarEventos();
     this.isAdmin = this.checkAdmin();
   }
-checkAdmin(): boolean {
+  checkAdmin(): boolean {
     const role = localStorage.getItem('userRole');
     return role === 'ADMIN';  // ✅ Verifica a role
   }

@@ -208,67 +208,95 @@ p {
     color: #ffd700;
 }
 
+
 .impacto-number {
-    font-size: 4rem;
+    font-size: 6rem !important;
     font-weight: bold;
-    color: #ffd700;
-    margin: 0.5rem 0;
+    color: #ffd700 !important;
+    margin: 0.5rem;
 }
 
 .impacto-item p {
     font-size: 1rem;
     color: #ffffff;
     margin: 0;
+    size: 1rem;
+
+}
+.impacto-texto{
+  width: 50%;
+  padding-left: 6.3rem;
+}
+#impacto-texto3{
+    padding-left: 9.2rem !important;
+    width: 50%;
+}
+.oq-falam {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
 }
 
-
-.oq-falam {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4rem 2rem;
-  background-color: white;
-  width: 100%;
+.oq-falam h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
 }
 
 .depoimentos-holder {
-  background-color: brown;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
 }
 
-app-depoimentos {
-  max-width: 300px;
-  width: 100%;
-  height: 250px;
-  background-color: cadetblue;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition:
-    transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-    box-shadow 0.4s ease,
-    height 0.4s ease,
-    overflow 0.4s ease;
-  cursor: pointer;
+.depoimento-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-app-depoimentos:hover {
-  transform: scale(1.05);
-  height: auto; /* Quando passar o mouse, altura se ajusta */
-  overflow: visible; /* Mostra o texto completo no hover */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.depoimento-card:hover {
+    transform: scale(1.02);
+}
+
+.depoimento-card p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.depoimento-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.depoimento-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-info span {
+    font-weight: bold;
+    color: #333;
+}
+
+.author-info small {
+    color: #777;
+    font-size: 0.9rem;
 }
 
 
@@ -294,7 +322,7 @@ app-depoimentos:hover {
 }
 
 .parceiros-header {
-    background-color: white;
+    background-color: #f4f4f4;
     position: absolute;
     top: -40px;
     left: 50%;

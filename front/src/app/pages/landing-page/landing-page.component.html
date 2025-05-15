@@ -47,40 +47,94 @@
         <div class="impacto-item">
             <h3>Eventos de Impacto</h3>
             <p class="impacto-number">+40</p>
-            <p>Eventos relacionados a finanças sustentáveis e ESG no Brasil</p>
+            <p class="impacto-texto">Eventos relacionados a finanças sustentáveis e ESG no Brasil</p>
         </div>
         <div class="impacto-item">
             <h3>Workshops & Cursos</h3>
             <p class="impacto-number">+50</p>
-            <p>Treinamentos internos realizados</p>
+            <p class="impacto-texto">Treinamentos internos realizados</p>
         </div>
         <div class="impacto-item">
             <h3>Entrevistas concedidas</h3>
             <p class="impacto-number">+20</p>
-            <p>Participações em entrevistas nacionais para meios de comunicação</p>
+            <p id="impacto-texto3">Participações em entrevistas nacionais para meios de comunicação</p>
         </div>
     </div>
 </section>
 
 
 <section class="oq-falam">
-
     <h1>O que falam de nós</h1>
 
     <div class="depoimentos-holder">
-        <app-depoimentos
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in quam ut neque vehicula ornare sed luctus felis. Morbi felis augue, interdum sit amet iaculis eu, pharetra vel metus. Quisque feugiat sapien nisi, et sagittis odio dictum luctus. In sodales auctor mauris vel placerat. Aliquam aliquam eu dolor nec accumsan. Phasellus orci justo, congue in convallis non, imperdiet vitae velit. Sed nec malesuada turpis, sed egestas eros. Suspendisse non lorem fringilla, aliquam ante in, varius mauris. Donec sollicitudin ipsum in dui tincidunt lacinia. Cras sem ex, dignissim ut diam sed, consectetur tincidunt elit."></app-depoimentos>
-        <app-depoimentos
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in quam ut neque vehicula ornare sed luctus felis. Morbi felis augue, interdum sit amet iaculis eu, pharetra vel metus. Quisque feugiat sapien nisi, et sagittis odio dictum luctus. In sodales auctor mauris vel placerat. Aliquam aliquam eu dolor nec accumsan. Phasellus orci justo, congue in convallis non, imperdiet vitae velit. Sed nec malesuada turpis, sed egestas eros. Suspendisse non lorem fringilla, aliquam ante in, varius mauris. Donec sollicitudin ipsum in dui tincidunt lacinia. Cras sem ex, dignissim ut diam sed, consectetur tincidunt elit. Proin suscipit leo vel nisl pharetra pretium. Sed tempus vitae ipsum non mattis. Sed vel sapien diam. Etiam lacinia massa vitae egestas auctor. Curabitur pellentesque, mauris sit amet malesuada eleifend, dui orci imperdiet mauris, a interdum lacus ante eu tellus."></app-depoimentos>
-        <app-depoimentos
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in quam ut neque vehicula ornare sed luctus felis. Morbi felis augue, interdum sit amet iaculis eu, pharetra vel metus. Quisque feugiat sapien nisi, et sagittis odio dictum luctus. In sodales auctor mauris vel placerat. Aliquam aliquam eu dolor nec accumsan. Phasellus orci justo, congue in convallis non, imperdiet vitae velit. Sed nec malesuada turpis, sed egestas eros. Suspendisse non lorem fringilla, aliquam ante in, varius mauris. Donec sollicitudin ipsum in dui tincidunt lacinia. Cras sem ex, dignissim ut diam sed, consectetur tincidunt elit."></app-depoimentos>
-        <app-depoimentos
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in quam ut neque vehicula ornare sed luctus felis. Morbi felis augue, interdum sit amet iaculis eu, pharetra vel metus. Quisque feugiat sapien nisi, et sagittis odio dictum luctus. In sodales auctor mauris vel placerat. Aliquam aliquam eu dolor nec accumsan. Phasellus orci justo, congue in convallis non, imperdiet vitae velit. Sed nec malesuada turpis, sed egestas eros. Suspendisse non lorem fringilla, aliquam ante in, varius mauris. Donec sollicitudin ipsum in dui tincidunt lacinia. Cras sem ex, dignissim ut diam sed, consectetur tincidunt elit."></app-depoimentos>
-        <app-depoimentos
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in quam ut neque vehicula ornare sed luctus felis. Morbi felis augue, interdum sit amet iaculis eu, pharetra vel metus. Quisque feugiat sapien nisi, et sagittis odio dictum luctus. In sodales auctor mauris vel placerat. Aliquam aliquam eu dolor nec accumsan. Phasellus orci justo, congue in convallis non, imperdiet vitae velit. Sed nec malesuada turpis, sed egestas eros. Suspendisse non lorem fringilla, aliquam ante in, varius mauris. Donec sollicitudin ipsum in dui tincidunt lacinia. Cras sem ex, dignissim ut diam sed, consectetur tincidunt elit."></app-depoimentos>
-    </div>
+        <div class="depoimento-card">
+            <p>"Aprendi mais em um mês com a BRASFI do que em anos de mercado!"</p>
+            <div class="depoimento-author">
+              <img [src]="imgCara7" alt="Imagem Lateral" class="image-background">
+                <div class="author-info">
+                    <span>Eduardo Lima</span>
+                    <small>Gestor de Riscos Socioambientais</small>
+                </div>
+            </div>
+        </div>
 
+        <div class="depoimento-card">
+            <p>"Participar da formação em liderança da BRASFI foi um divisor de águas. Além de desenvolver habilidades técnicas e humanas, me conectei com profissionais engajados em transformar o mundo das finanças com ética, impacto e responsabilidade."</p>
+            <div class="depoimento-author">
+              <img [src]="imgCara1" alt="Imagem Lateral" class="image-background">
+                <div class="author-info">
+                    <span>Renata Almeida</span>
+                    <small>Consultora em Investimentos Sustentáveis</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="depoimento-card">
+            <p>"A formação em liderança da BRASFI abriu portas que eu nem imaginava!"</p>
+            <div class="depoimento-author">
+              <img [src]="imgCara2" alt="Imagem Lateral" class="image-background">
+                <div class="author-info">
+                    <span>Gabriel Torres</span>
+                    <small>Diretor de Inovação em Finanças</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="depoimento-card">
+            <p>"A BRASFI me ajudou a unir propósito e carreira. Hoje atuo com liderança estratégica e consciência ambiental no setor financeiro, graças à formação que recebi."</p>
+            <div class="depoimento-author">
+              <img [src]="imgCara6" alt="Imagem Lateral" class="image-background">
+                <div class="author-info">
+                    <span>Luciana Castro</span>
+                    <small>Coord. de Projetos de Finanças</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="depoimento-card">
+            <p>"Nunca imaginei que poderia conciliar finanças e sustentabilidade de forma tão prática. A formação em liderança da BRASFI me deu visão, vou a uma rede de apoio essencial para minha jornada profissional."</p>
+            <div class="depoimento-author">
+              <img [src]="imgCara5" alt="Imagem Lateral" class="image-background">
+                <div class="author-info">
+                    <span>Thiago Monteiro</span>
+                    <small>Analista ESG em Instituição Financeira Verde</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="depoimento-card">
+            <p>"Os cursos me deram clareza, confiança e ferramentas práticas para liderar com propósito e foco em impacto sustentável."</p>
+            <div class="depoimento-author">
+               <img [src]="imgCara4" alt="Imagem Lateral" class="image-background">
+                <div class="author-info">
+                    <span>Carla Menezes</span>
+                    <small>Especialista em Finanças Regenerativas</small>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 
 <section class="parceiros">
     <div class="parceiros-header">

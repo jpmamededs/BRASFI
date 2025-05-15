@@ -28,6 +28,15 @@ export class LandingPageComponent {
   img6:string="assets/images/6.svg";
   img7:string="assets/images/7.svg";
   img8:string="assets/images/8.svg";
+// depoimentos
+  imgCara1:string="assets/images/cara1.svg";
+  imgCara2:string="assets/images/cara2.svg";
+  imgCara3:string="assets/images/cara3.svg";
+  imgCara4:string="assets/images/cara4.svg";
+  imgCara5:string="assets/images/cara5.svg";
+  imgCara6:string="assets/images/cara6.svg";
+  imgCara7:string="assets/images/cara7.svg";
+
 
   onCardClick(id: string | null) {
     this.selectedId = id;

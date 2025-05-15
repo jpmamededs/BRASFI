@@ -1,23 +1,25 @@
 <div class="footer">
   <div class="footer-content">
     <div class="footer-left">
-      <img [src]=imgSource alt="Feed Icon" class="feed-icon">
+      <img [src]="imgSource" alt="Feed Icon" class="feed-icon">
       <p>Copyright © 2025 BRASFI. Todos os direitos reservados.</p>
     </div>
     <div class="footer-right">
-      <a href="https://www.linkedin.com/company/brasfi/" target="_blank">
-      <img [src]=imglinkedin alt="Feed Icon" class="feed-icon">
-      </a>
-      <a href="https://www.instagram.com/brasfi_/" target="_blank">
-      <img [src]=imginsta alt="Feed Icon" class="feed-icon">
-      </a>
-      <a href="https://www.youtube.com/@brasfi1976" target="_blank">
-      <img [src]=imgyoutube alt="Feed Icon" class="feed-icon">
-      </a>
-      <a href="mailto:gpbrasfi@gmail.com">
-      <img [src]=imglattes alt="Feed Icon" class="feed-icon">
-      </a>
-      <p>Rua BRASFI, BA<br>CNPJ XXXXXXXX.XXXX<br>emailbrasfi&#64;brasfi.com<br>(xx) xxxx-xxxx</p>
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com/company/brasfi/" target="_blank">
+          <img [src]="imglinkedin" alt="LinkedIn" class="icon">
+        </a>
+        <a href="https://www.instagram.com/brasfi_/" target="_blank">
+          <img [src]="imginsta" alt="Instagram" class="icon">
+        </a>
+        <a href="https://www.youtube.com/@brasfi1976" target="_blank">
+          <img [src]="imgyoutube" alt="YouTube" class="icon">
+        </a>
+        <a href="mailto:gpbrasfi@gmail.com">
+          <img [src]="imglattes" alt="Lattes" class="icon">
+        </a>
+      </div>
+      <p class="footer-info">Rua BRASFI, BA<br>CNPJ XXXXXXXX.XXXX<br>emailbrasfi&#64;brasfi.com<br>(xx) xxxx-xxxx</p>
     </div>
   </div>
 </div>

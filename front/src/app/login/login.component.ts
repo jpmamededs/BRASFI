@@ -14,6 +14,7 @@ export class LoginComponent {
   username = '';
   password = '';
   errorMessage = '';
+  imgMulher:string="assets/images/mulher.svg";
   private postagemService = inject(PostagemService);
   private router = inject(Router);
 

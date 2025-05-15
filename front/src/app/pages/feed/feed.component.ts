@@ -15,6 +15,7 @@ import { FooterComponent } from "../landing-page/components/footer/footer.compon
 export class FeedComponent implements OnInit {
   postagemService = inject(PostagemService);
   router = inject(Router);
+  imgSource:string="assets/images/feed.png";
   sanitizer = inject(DomSanitizer);
  isAdmin: boolean = false;
   eventos: any[] = [];

@@ -8,9 +8,9 @@ import { infoBrasfi } from '../../../../data/dataBRASFI'
   styleUrl: './big-card.component.css'
 })
 export class BigCardComponent implements OnChanges{
-  @Input() 
+  @Input()
   id: string | null = "0";
-  
+
   title: String = "";
   content: String = "";
 

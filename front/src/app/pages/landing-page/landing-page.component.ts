@@ -14,6 +14,8 @@ import { FooterComponent } from "./components/footer/footer.component";
 export class LandingPageComponent {
   cards = [0, 1, 2, 3, 4];
   selectedId: string | null = "0";
+  imgSource:string="assets/images/Group.png";
+  imgMulher2:string="assets/images/mulher2.svg";
 
   onCardClick(id: string | null) {
     this.selectedId = id;

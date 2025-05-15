@@ -5,7 +5,7 @@
     <div class="contact-left">
       <h2>Fale conosco</h2>
       <p>Para saber mais, entre em contato e conheça mais sobre como nosso sistema funciona.</p>
-      <img src="assets/question-mark.png" alt="Interrogação" class="contact-image">
+    <img [src]=imgLombriga alt="Feed Icon" class="feed-icon">
     </div>
     <div class="contact-right">
       <form [formGroup]="contactForm" (ngSubmit)="sendMessage()" class="contact-form">
@@ -27,5 +27,6 @@
       </form>
     </div>
   </div>
+
 </div>
-<app-footer></app-footer>
+<app-footer class="footer"></app-footer>

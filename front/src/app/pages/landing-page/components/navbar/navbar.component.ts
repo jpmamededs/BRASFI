@@ -14,6 +14,7 @@ export class NavbarComponent {
   postagemService = inject(PostagemService);
   router = inject(Router);
   isLoggedIn = signal(false);
+  imgSource:string="assets/images/Group.png";
   menuOpen = false;
   userName = 'Usuário';
   userImage = 'assets/images/default-profile.png';

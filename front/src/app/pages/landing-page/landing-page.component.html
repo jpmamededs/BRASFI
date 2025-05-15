@@ -1,17 +1,30 @@
 <nav>
   <div class="holder">
-    <img src="assets/images/logo.png" alt="Logo da Brasfi">
-    <ul>
-      <li><a href="">Quem somos</a></li>
-      <li><a href="">Impacto</a></li>
-      <li><a href="">O que falam de nós</a></li>
-      <li><a href="">Parceiros</a></li>
-      <button><a href="/login">Faça Parte</a></button>
+      <img [src]=imgSource alt="Feed Icon" class="feed-icon">
+    <ul class="nav-links">
+      <li><a href="#">Quem somos</a></li>
+      <li><a href="#">Impacto</a></li>
+      <li><a href="#">O que falam de nós</a></li>
+      <li><a href="#">Parceiros</a></li>
+      <li><a href="#">Contato</a></li>
     </ul>
+    <button class="login-button"><a href="/login">Entrar</a></button>
   </div>
 </nav>
 
-<section class="mainframe"></section>
+<section class="mainframe">
+    <div class="image-container">
+        <img [src]="imgMulher2" alt="Imagem Lateral" class="image-background">
+        <div class="text-overlay">
+            <img src="assets/images/logo-lider.png" alt="Líder Icon" class="logo-icon">
+            <h1>Formando líderes<br>e viabilizando<br>soluções</h1>
+            <p>Promovendo a transformação no desenvolvimento<br>de lideranças e soluções em finanças e investimentos<br>sustentáveis.</p>
+            <button class="cta-button">Quero me tornar um líder</button>
+        </div>
+    </div>
+</section>
+
+
 
 <section class="quem-somos">
     <div class="mini-card-wrapper">

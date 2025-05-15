@@ -3,13 +3,15 @@
   color: white;
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+
 }
 
 .holder {
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
   gap: 20px;
 }
 
@@ -17,7 +19,7 @@
   display: flex;
   gap: 27px;
   list-style: none;
-  margin-left: 25rem;
+  /* margin-left: 25rem; */
 }
 
 .nav-links li a {
@@ -29,7 +31,7 @@
 .user-menu {
   position: relative;
   display: flex;
-  margin-left: 20rem;
+  /* margin-left: 20rem; */
   align-items: center;
   cursor: pointer;
 }

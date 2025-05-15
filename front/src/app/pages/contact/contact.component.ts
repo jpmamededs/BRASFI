@@ -15,7 +15,10 @@ export class ContactComponent {
     subject: new FormControl(''),
     name: new FormControl(''),
     message: new FormControl('')
-  });
+  }
+)
+  imgLombriga:string="assets/images/lombriga.svg";
+;
 
   sendMessage() {
     const subject = this.contactForm.value.subject;

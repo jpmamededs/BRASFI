@@ -1,7 +1,145 @@
-.mainframe{
-    width: 100%;
+.mainframe {
+    width: 100vw;   /* Garante que ocupe toda a largura da viewport */
+    height: 100vh;  /* Garante que ocupe toda a altura da viewport */
+    overflow: hidden; /* Evita barras de rolagem */
+}
+
+.mainframe img {
+    width: 100%;    /* Largura completa */
+    height: 100%;   /* Altura completa */
+    object-fit: cover; /* Cobre toda a área sem distorcer */
+    object-position: center; /* Centraliza a imagem */
+}
+/* Estilo da Navbar */
+
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #28a745;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+/* Links da Navbar */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ddd;
+}
+
+.mainframe {
+    position: relative;
+    width: 100vw;
     height: 100vh;
-    background-color: red;
+    overflow: hidden;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Garante que fique na frente da imagem */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
+    color: white;
+}
+
+.logo-icon {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0;
+}
+
+p {
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+
+.cta-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+
+
+/* Botão Entrar */
+.login-button {
+  background-color: #000;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #333;
+}
+
+.login-button a {
+  text-decoration: none;
+  color: white;
 }
 
 .quem-somos{
@@ -11,7 +149,7 @@
     gap: 1rem;
     max-width: 100%;
     height: fit-content;
-    background-color: blue;
+    background-color: white;;
 }
 
 .mini-card-wrapper{
@@ -99,54 +237,17 @@ app-depoimentos:hover {
 }
 
 
-.navbar {
-  position: fixed;   /* Fixa no topo da tela */
-  top: 0;            /* Gruda no topo */
-  left: 0;
-  width: 100%;       /* Ocupa toda a largura */
-  background-color: #555;
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;     /* Garante que fique na frente de outros elementos */
-}
 
-.navbar a, .navbar button {
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
-}
+
 .holder{
     display: flex;
     flex-direction: row;
-    background-color: grey;
+    background-color: #28a745;
+  color: white;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
 }
 
-nav{
-    position: fixed;
-    min-width: 100%;
-}
 
-a{
-    text-decoration: none;
-}
 
-ul{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    list-style: none;
-}
-button {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}

@@ -1,9 +1,12 @@
 .contact-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 50px;
   background-color: #f8f9fa;
+  padding-bottom: 9rem;
+  padding-top: 8rem;
 }
 
 .contact-container {
@@ -70,4 +73,11 @@ button.send-button:hover {
 
 button.send-button i {
   margin-right: 8px;
+}
+.footer {
+  background-color: #28a745;
+  color: white;
+
+
+
 }

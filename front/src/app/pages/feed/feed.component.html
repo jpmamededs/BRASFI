@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="feed-title">
-  <img src="assets/images/feed.png" alt="Feed Icon" class="feed-icon">
+  <img [src]=imgSource alt="Feed Icon" class="feed-icon">
   <span>Feed de atualizações</span>
 </div>
 <button *ngIf="isAdmin" class="plataforma-btn" (click)="goToPlataforma()">Criar Postagem</button>

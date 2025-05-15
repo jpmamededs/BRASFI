@@ -16,6 +16,7 @@ export class LandingPageComponent {
   selectedId: string | null = "0";
   imgSource:string="assets/images/Group.png";
   imgMulher2:string="assets/images/mulher2.svg";
+  imgVector:string="assets/images/Vector.svg";
 
   onCardClick(id: string | null) {
     this.selectedId = id;

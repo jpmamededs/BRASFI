@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(170, 170, 170);
+    background-color: #EFEFEF;
     padding: 1rem 2rem;
     border-style: none;
     border-radius: 1rem;
@@ -16,6 +16,6 @@
 }
 
 .selected {
-    background-color: #616161;
+    background-color: green;
     color: white;
 }

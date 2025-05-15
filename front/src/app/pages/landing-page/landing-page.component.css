@@ -163,27 +163,65 @@ p {
     background-color: red;
 }
 
-.impacto{
+.impacto {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    padding: 3rem;
-    justify-content: center;
     align-items: center;
+    padding: 3rem 0;
+    background-color: #28a745;
+    color: white;
+    position: relative;
 }
 
-.impacto > ul {
+.impacto-header {
+    background-color: #eaeaea;
+    width: 100%;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: 0 0 50% 50%;
+    margin-bottom: -30px;
+}
+
+.impacto-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.impacto-container {
     display: flex;
-    flex-direction: row;
-    gap: 6rem;
-    list-style: none;
+    justify-content: center;
+    gap: 5rem;
+    padding: 2rem 0;
 }
 
-.impacto-item{
-    background-color: red;
-    height: 12rem;
-    width: 12rem;
+.impacto-item {
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 20px;
 }
+
+.impacto-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+}
+
+.impacto-number {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin: 0.5rem 0;
+}
+
+.impacto-item p {
+    font-size: 1rem;
+    color: #ffffff;
+    margin: 0;
+}
+
 
 .oq-falam {
   display: flex;

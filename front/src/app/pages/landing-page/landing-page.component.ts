@@ -20,14 +20,14 @@ export class LandingPageComponent {
   imgVector:string="assets/images/Vector.svg";
   imgVoluntario:string="assets/images/voluntario.svg";
   // parceiros
-  // imgSource:string="assets/images/feed.png";
-  // imgSource:string="assets/images/feed.png";
-  // imgSource:string="assets/images/feed.png";
-  // imgSource:string="assets/images/feed.png";
-  // imgSource:string="assets/images/feed.png";
-  // imgSource:string="assets/images/feed.png";
-  // imgSource:string="assets/images/feed.png";
-
+  img1:string="assets/images/1.svg";
+  img2:string="assets/images/2.svg";
+  img3:string="assets/images/3.svg";
+  img4:string="assets/images/4.svg";
+  img5:string="assets/images/5.svg";
+  img6:string="assets/images/6.svg";
+  img7:string="assets/images/7.svg";
+  img8:string="assets/images/8.svg";
 
   onCardClick(id: string | null) {
     this.selectedId = id;

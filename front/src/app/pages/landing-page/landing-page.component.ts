@@ -7,7 +7,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 
 @Component({
   selector: 'app-landing-page',
-  imports: [NavbarComponent, SmallCardComponent, BigCardComponent, DepoimentosComponent, FooterComponent,FooterComponent],
+  imports: [ SmallCardComponent, BigCardComponent, DepoimentosComponent, FooterComponent,FooterComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })

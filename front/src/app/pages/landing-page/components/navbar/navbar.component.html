@@ -1,16 +1,23 @@
-<nav>
-    <div class="holder">
-        <img src="" alt="Logo da Brasfi">
-        <ul>
-            <li><a href="">Quem somos</a></li>
-            <li><a href="">Impacto</a></li>
-            <li><a href="">O que falam de nós</a></li>
-            <li><a href="">Parceiros</a></li>
-            <li><a href="/contato">Contato</a></li>
-            <li><a href="/plataforma">Plataforma</a></li>
-            <li><a href="/feed">feed</a></li>
-            <button (click)="logout()">Sair</button>
-        </ul>
-        <button><a href="">Faça Parte</a></button>
+<nav class="navbar">
+  <div class="holder">
+    <img src="assets/images/logo.png" alt="Logo da Brasfi" class="logo">
+    <ul class="nav-links">
+      <li><a href="/feed">Feed de atualizações</a></li>
+      <li><a href="/centro-formacao">Centro de formação</a></li>
+      <li><a href="/contato">Contato</a></li>
+    </ul>
+    <div class="user-menu" *ngIf="isLoggedIn()">
+      <div class="user-info" (click)="toggleMenu()">
+        <span>{{ userName }}</span>
+        <div class="profile-icon">
+          <img [src]="userImage" alt="Foto do Usuário">
+        </div>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="action-buttons" *ngIf="menuOpen">
+        <button (click)="goToEditProfile()">Editar Perfil</button>
+        <button (click)="logout()">Sair</button>
+      </div>
     </div>
+  </div>
 </nav>

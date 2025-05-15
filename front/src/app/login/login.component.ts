@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   username = '';
@@ -18,23 +18,23 @@ export class LoginComponent {
   private router = inject(Router);
 
   login() {
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Preencha todos os campos!';
+      return;
+    }
+
     this.postagemService.login(this.username, this.password).subscribe({
-      next: (response) => {
-        this.postagemService.saveToken(this.username, this.password);
-      
-        const role = localStorage.getItem('userRole');
-        console.log('Usuário logado com role:', role);
-        this.router.navigate(['/plataforma']);
+      next: () => {
+        alert('Login realizado com sucesso!');
+        this.router.navigate(['/feed']);
       },
       error: (err) => {
         if (err.status === 401) {
           this.errorMessage = 'Usuário ou senha inválidos!';
-        } else if (err.status === 500) {
-          this.errorMessage = 'Erro no servidor. Tente novamente.';
         } else {
           this.errorMessage = `Erro inesperado: ${err.message}`;
         }
       }
-    });
+       });
   }
 }

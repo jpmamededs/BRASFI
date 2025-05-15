@@ -27,8 +27,9 @@ export class PostagemService {
       tap((response: any) => {
         this.saveToken(username, password);
 
-        localStorage.setItem('userRole', response.role);
-        localStorage.setItem('username', response.username);
+        localStorage.setItem('userName', response.username);
+        localStorage.setItem('userImage', response.photo || 'assets/images/default-profile.png');
+        localStorage.setItem('userRole', response.role || 'USER');
       })
     );
   }

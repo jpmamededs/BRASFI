@@ -1,39 +1,60 @@
 <app-navbar></app-navbar>
+<div class="feed-title">
+  <img src="assets/images/feed.png" alt="Feed Icon" class="feed-icon">
+  <span>Feed de atualizações</span>
+</div>
+<button *ngIf="isAdmin" class="plataforma-btn" (click)="goToPlataforma()">Criar Postagem</button>
 
 <div class="feed-container">
   <!-- Coluna de Novidades -->
   <div class="feed-column novidades">
-    <h2>Novidades</h2>
+    <h2 class="novidades-title">Novidades</h2>
     <div *ngFor="let item of eventos_novidades" class="evento-card">
-      <h4>{{ item.titulo }}</h4>
-      <p>{{ item.paragrafo }}</p>
-      <p>Data: {{ item.data }}</p>
+      <div class="evento-image">
+        <img src="assets/images/placeholder.png" alt="Imagem" />
+      </div>
+      <div class="evento-content">
+        <h4>{{ item.titulo }}</h4>
+        <p>{{ item.paragrafo }}</p>
+        <p>Data: {{ item.data }}</p>
+      </div>
     </div>
+    <hr class="divider">
     <button class="ver-mais" (click)="verMais('NOVIDADES')">Ver mais</button>
   </div>
 
   <!-- Coluna de Notícias -->
   <div class="feed-column noticias">
-    <h2>Notícias</h2>
+    <h2 class="noticias-title">Notícias</h2>
     <div *ngFor="let item of eventos_noticias" class="evento-card">
-      <h4>{{ item.titulo }}</h4>
-      <p>{{ item.paragrafo }}</p>
-      <p>Data: {{ item.data }}</p>
+      <div class="evento-image">
+        <img src="assets/images/placeholder.png" alt="Imagem" />
+      </div>
+      <div class="evento-content">
+        <h4>{{ item.titulo }}</h4>
+        <p>{{ item.paragrafo }}</p>
+        <p>Data: {{ item.data }}</p>
+      </div>
     </div>
+    <hr class="divider">
     <button class="ver-mais" (click)="verMais('NOTICIAS')">Ver mais</button>
   </div>
 
   <!-- Coluna de Eventos -->
   <div class="feed-column eventos">
-    <h2>Eventos</h2>
+    <h2 class="eventos-title">Eventos</h2>
     <div *ngFor="let item of eventos" class="evento-card">
-      <h4>{{ item.titulo }}</h4>
-      <p>{{ item.paragrafo }}</p>
-      <p>Data: {{ item.data }}</p>
+      <div class="evento-image">
+        <img src="assets/images/placeholder.png" alt="Imagem" />
+      </div>
+      <div class="evento-content">
+        <h4>{{ item.titulo }}</h4>
+        <p>{{ item.paragrafo }}</p>
+        <p>Data: {{ item.data }}</p>
+      </div>
     </div>
+    <hr class="divider">
     <button class="ver-mais" (click)="verMais('EVENTO')">Ver mais</button>
   </div>
-
-
 </div>
 <app-footer></app-footer>

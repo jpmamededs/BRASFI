@@ -16,15 +16,19 @@ export class FeedComponent implements OnInit {
   postagemService = inject(PostagemService);
   router = inject(Router);
   sanitizer = inject(DomSanitizer);
-
+ isAdmin: boolean = false;
   eventos: any[] = [];
   eventos_noticias: any[] = [];
   eventos_novidades: any[] = [];
 
   ngOnInit(): void {
     this.carregarEventos();
+    this.isAdmin = this.checkAdmin();
   }
-
+checkAdmin(): boolean {
+    const role = localStorage.getItem('userRole');
+    return role === 'ADMIN';  // ✅ Verifica a role
+  }
   carregarEventos(): void {
     this.postagemService.listarPostagens().subscribe({
       next: (data) => {
@@ -65,5 +69,8 @@ export class FeedComponent implements OnInit {
 verMais(categoria: string): void {
   this.router.navigate(['/listagem', categoria]);
 }
+goToPlataforma(): void {
+    this.router.navigate(['/plataforma']);
+  }
 
 }

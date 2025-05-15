@@ -22,7 +22,6 @@ export class SignupComponent {
   ) {}
 
   ngOnInit(): void {
-  
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -32,7 +31,7 @@ export class SignupComponent {
       biografia: [''],
       localizacao: [''],
       idade: [null],
-      photo: [''],
+      photo: ['assets/images/default-profile.png'],  // Caminho padrão da foto
       linkInstagram: [''],
       linkLinkedin: [''],
       linkLattes: [''],
@@ -52,15 +51,19 @@ export class SignupComponent {
 
     const user = this.signupForm.value;
 
-   
     if (user.password !== user.confirmPassword) {
       this.errorMessage = 'As senhas não coincidem.';
       return;
     }
 
     this.http.post('http://localhost:8080/req/signup', user).subscribe({
-      next: () => {
+      next: (response: any) => {
         alert('Cadastro realizado com sucesso!');
+        // Armazenando o usuário no localStorage
+        localStorage.setItem('user', JSON.stringify({
+          username: user.username,
+          photo: user.photo
+        }));
         this.router.navigate(['/login']);
       },
       error: (error) => {

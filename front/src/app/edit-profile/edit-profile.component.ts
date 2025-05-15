@@ -3,13 +3,15 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from "../pages/landing-page/components/navbar/navbar.component";
+import { FooterComponent } from "../pages/landing-page/components/footer/footer.component";
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent, FooterComponent]
 })
 export class EditProfileComponent {
   editForm!: FormGroup;
@@ -60,14 +62,14 @@ export class EditProfileComponent {
       this.router.navigate(['/login']);
       return;
     }
-  
+
     this.http.get<any>('http://localhost:8080/usuarios/me', {
       headers: { 'Authorization': token }
     }).subscribe({
       next: (user) => {
         this.userProfile = user;
         this.editForm.patchValue(user);
-        console.log('Perfil carregado:', user);  
+        console.log('Perfil carregado:', user);
       },
       error: (error) => {
         console.error('Erro ao carregar perfil:', error);
@@ -90,7 +92,7 @@ export class EditProfileComponent {
 
 
   toggleEdit(field: string) {
-    
+
     this.isEditing[field] = !this.isEditing[field];
   }
 
@@ -99,37 +101,40 @@ export class EditProfileComponent {
       this.errorMessage = 'Preencha todos os campos corretamente.';
       return;
     }
-  
+
     const user = this.editForm.value;
     const token = localStorage.getItem('authToken') ?? '';
     const userId = this.userProfile.id;
-  
-    
+
+
     if (!user.password) {
       delete user.password;
     }
-  
+
     this.http.put(`http://localhost:8080/usuarios/${userId}`, user, {
       headers: { 'Authorization': `${token}` }
     }).subscribe({
       next: () => {
         this.successMessage = 'Perfil atualizado com sucesso!';
-  
-       
+
+       localStorage.setItem('userName', user.username);
+      if (user.photo) {
+        localStorage.setItem('userImage', user.photo);
+      }
         if (this.userProfile.username !== user.username) {
           console.log('Atualizando o token com o novo username');
           const password = atob(token.split(' ')[1]).split(':')[1];
           const newToken = `Basic ${btoa(`${user.username}:${password}`)}`;
-          
-         
+
+
           localStorage.setItem('authToken', newToken);
           localStorage.setItem('username', user.username);
-  
+
           alert('Nome de usuário atualizado com sucesso!');
         }
-  
+
         this.loadUserProfile();
-        this.router.navigate(['/plataforma']);  
+        this.router.navigate(['/plataforma']);
       },
       error: (error) => {
         console.error('Erro ao atualizar perfil:', error);
@@ -146,5 +151,5 @@ export class EditProfileComponent {
     });
   }
 
-  
+
 }

@@ -6,27 +6,53 @@
   <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
-
   <form [formGroup]="editForm" (ngSubmit)="saveProfile()">
-    <div *ngFor="let field of ['username', 'email', 'midleName', 'biografia', 'localizacao', 'idade', 'photo', 'linkInstagram', 'linkLinkedin', 'linkLattes', 'linkWhatsapp', 'genero', 'role']">
-      <div class="form-group">
-        <label>{{ field | titlecase }}</label>
+    <div class="profile-header">
+      <div class="profile-image-section">
+        <img [src]="editForm.get('photo')?.value || userProfile['photo'] || 'assets/default-profile.png'" alt="Foto do perfil" class="profile-image">
+        <button type="button" class="edit-image-btn" (click)="toggleEdit('photo')">Editar Imagem</button>
+        <div *ngIf="isEditing['photo']" class="image-edit-field">
+          <input [formControlName]="'photo'" placeholder="URL da imagem" />
+          <button type="button" (click)="toggleEdit('photo')">Concluir</button>
+        </div>
+      </div>
 
-
-        <div *ngIf="!isEditing[field]">
-
-          <span>{{ editForm.get(field)?.value || userProfile[field] }}</span>
-          <button type="button" (click)="toggleEdit(field)">Editar</button>
+      <div class="profile-fields">
+        <h3 class="section-title">Informações pessoais</h3>
+        <div class="info-group">
+          <div *ngFor="let field of ['username', 'email', 'midleName', 'biografia', 'localizacao', 'idade']">
+            <div class="form-group">
+              <label>{{ field | titlecase }}:</label>
+              <div class="field-content"*ngIf="!isEditing[field]">
+                <span>{{ editForm.get(field)?.value || userProfile[field] }}</span>
+                <button class="but" (click)="toggleEdit(field)">Editar</button>
+              </div>
+              <div *ngIf="isEditing[field]">
+                <input [formControlName]="field" placeholder="{{ field | titlecase }}" />
+                <button type="button" (click)="toggleEdit(field)">Concluir</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-
-        <div *ngIf="isEditing[field]">
-          <input [formControlName]="field" placeholder="{{ field | titlecase }}" />
-          <button type="button" (click)="toggleEdit(field)">Concluir</button>
+        <h3 class="section-title">Redes sociais</h3>
+        <div class="social-group">
+          <div *ngFor="let field of ['linkInstagram', 'linkLinkedin', 'linkLattes', 'linkWhatsapp']">
+            <div class="form-group">
+              <label>{{ field | titlecase }}:</label>
+              <div class="field-content"*ngIf="!isEditing[field]">
+                <span>{{ editForm.get(field)?.value || userProfile[field] }}</span>
+                <button type="button" (click)="toggleEdit(field)">Editar</button>
+              </div>
+              <div *ngIf="isEditing[field]">
+                <input [formControlName]="field" placeholder="{{ field | titlecase }}" />
+                <button type="button" (click)="toggleEdit(field)">Concluir</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
 
     <button type="submit" class="save-btn">Salvar Alterações</button>
   </form>

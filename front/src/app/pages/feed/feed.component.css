@@ -21,7 +21,26 @@
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.feed-title{
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+.plataforma-btn{
+  display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 /* Títulos coloridos das colunas */
 .novidades-title {
   color: red;
@@ -98,7 +117,7 @@
 /* Botão "Ver mais" */
 .ver-mais {
   display: block;
-  width: 100%;
+  width:40%;
   padding: 8px;
   background-color: #000;
   color: white;

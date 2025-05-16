@@ -1,9 +1,11 @@
 <app-navbar></app-navbar>
 <div class="feed-title">
-  <img [src]=imgSource alt="Feed Icon" class="feed-icon">
-  <span>Feed de atualizações</span>
+  <div style="display: flex;flex-direction:row;align-items:center;justify-content:center">
+      <img [src]=imgSource alt="Feed Icon" class="feed-icon">
+      <span>Feed de atualizações</span>
+  </div>
+  <button *ngIf="isAdmin" class="plataforma-btn" (click)="goToPlataforma()">Criar Postagem</button>
 </div>
-<button *ngIf="isAdmin" class="plataforma-btn" (click)="goToPlataforma()">Criar Postagem</button>
 
 <div class="feed-container">
   <!-- Coluna de Novidades -->

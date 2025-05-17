@@ -1,0 +1,61 @@
+<div class="curso-detalhe-container">
+  <!-- Cabeçalho do curso -->
+  <div class="curso-header">
+    <h1>{{ curso?.titulo }}</h1>
+    <div class="curso-meta">
+      <span class="badge area">{{ curso?.areaConhecimento }}</span>
+      <span class="badge duracao">{{ curso?.duracao }}</span>
+    </div>
+  </div>
+
+  <!-- Módulos do curso -->
+  <div class="modulos-container" *ngFor="let modulo of curso?.modulos; let i = index">
+    <div class="modulo-header">
+      <h2>Módulo {{ i + 1 }}: {{ modulo.nome }}</h2>
+    </div>
+
+    <!-- Aulas do módulo -->
+    <div class="aulas-container" *ngFor="let aula of modulo.aulas; let j = index">
+      <div class="aula-card">
+        <div class="aula-header">
+          <h3>Aula {{ j + 1 }}: {{ aula.titulo }}</h3>
+          <div class="aula-meta">
+            <span class="badge nivel">{{ aula.nivel }}</span>
+            <span class="badge tema">{{ aula.tema }}</span>
+          </div>
+        </div>
+        
+        <div class="aula-content">
+          <p *ngIf="aula.descricao">{{ aula.descricao }}</p>
+          
+          <!-- Conteúdo da aula -->
+          <div *ngIf="aula.isVideo && aula.urlVideo" class="video-container">
+            <iframe [src]="aula.urlVideo | safeUrl" frameborder="0" allowfullscreen></iframe>
+          </div>
+          
+          <div *ngIf="!aula.isVideo && aula.conteudoTexto" class="texto-container">
+            <p>{{ aula.conteudoTexto }}</p>
+          </div>
+          
+          <!-- Materiais da aula -->
+          <div *ngIf="aula.materiais && aula.materiais.length > 0" class="materiais-container">
+            <h4>Materiais de apoio:</h4>
+            <ul>
+              <li *ngFor="let material of aula.materiais">
+                <a [href]="material.caminhoArquivo" target="_blank">
+                  {{ material.nomeArquivo }} ({{ material.tipo | uppercase }})
+                </a>
+                <span class="tamanho">({{ material.tamanho | fileSize }})</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão de voltar -->
+  <div class="actions">
+    <button class="btn-voltar" (click)="voltar()">Voltar para lista de cursos</button>
+  </div>
+</div>

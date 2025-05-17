@@ -1,0 +1,117 @@
+.curso-detalhe-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.curso-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.curso-meta {
+  margin-top: 1rem;
+}
+
+.modulos-container {
+  margin-bottom: 3rem;
+}
+
+.modulo-header {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.aula-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.aula-header {
+  margin-bottom: 1rem;
+}
+
+.aula-meta {
+  margin-top: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.badge.area {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.badge.duracao {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.badge.nivel {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.badge.tema {
+  background-color: #f3e5f5;
+  color: #8e24aa;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.materiais-container {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #ddd;
+}
+
+.materiais-container ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.materiais-container li {
+  margin-bottom: 0.5rem;
+}
+
+.actions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn-voltar {
+  padding: 0.5rem 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-voltar:hover {
+  background-color: #e0e0e0;
+}

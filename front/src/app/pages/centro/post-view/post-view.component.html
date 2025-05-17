@@ -18,7 +18,7 @@
       <h4>{{ curso.titulo }}</h4>
       <p>Duração: {{ curso.duracao }}</p>
       <p>Autor: {{ curso.autor }}</p>
-      <button class="btn btn-outline-primary detalhes-btn">
+      <button  (click)="carregarCursoPorId(curso.id)" class="btn btn-outline-primary detalhes-btn">
         <i class="material-icons">arrow_forward</i>
       </button>
     </div>

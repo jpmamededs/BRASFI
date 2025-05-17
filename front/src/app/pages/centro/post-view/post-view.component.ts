@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FooterComponent } from "../../landing-page/components/footer/footer.component";
 import { NavbarComponent } from "../../landing-page/components/navbar/navbar.component";
@@ -16,6 +16,8 @@ export class PostViewComponent implements OnInit {
   cursos: any[] = [];
   area: string = '';
   searchQuery: string = '';
+
+  router = inject(Router)
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -53,7 +55,29 @@ export class PostViewComponent implements OnInit {
   }
 
   toggleFilter(filterType: string): void {
-    // Placeholder para lógica de filtro
+  
     console.log(`Filtro aplicado: ${filterType}`);
   }
+
+
+  carregarCursoPorId(id: number): void {
+    const token = localStorage.getItem('authToken') || '';
+    const headers = new HttpHeaders({
+        'Authorization': token
+    });
+
+    this.http.get<any>(`http://localhost:8080/api/cursos/${id}`, { headers })
+        .subscribe({
+            next: (response) => {
+               
+                console.log('Curso detalhado:', response);
+               
+                this.router.navigate(['/curso-detalhe', id]);
+            },
+            error: (err) => {
+                console.error('Erro ao carregar curso:', err);
+                alert('Erro ao carregar curso: ' + (err.error?.message || err.message));
+            }
+        });
+}
 }

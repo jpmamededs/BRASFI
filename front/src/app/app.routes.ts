@@ -12,6 +12,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { CentroComponent } from './pages/centro/centro.component';
 import { CursoFormComponent } from './pages/centro/curso-form/curso-form.component';
 import { PostViewComponent } from './pages/centro/post-view/post-view.component';
+import { CursoDetalheComponent } from './pages/centro/curso-detalhe/curso-detalhe.component';
 
 export const routes: Routes = [
     {
@@ -59,7 +60,9 @@ export const routes: Routes = [
   {
     path: 'cursos/:area',
     component: PostViewComponent
-  }
+  },
+
+  { path: 'curso-detalhe/:id', component: CursoDetalheComponent }
 ];
 
 

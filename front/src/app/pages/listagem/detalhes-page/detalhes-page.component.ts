@@ -18,6 +18,8 @@ export class DetalhesPageComponent implements OnInit {
   route = inject(ActivatedRoute);
   sanitizer: DomSanitizer = inject(DomSanitizer);
 
+  isAdminOrAuthor: boolean = false;
+
   postagem: any;
   comentarios: any[] = [];
   novoComentarioTitulo: string = '';
@@ -30,6 +32,31 @@ export class DetalhesPageComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.carregarPostagem(id);
     this.carregarComentarios(id);
+
+    this.verificarPermissoes()
+  }
+
+   verificarPermissoes(): void {
+    const currentUser = localStorage.getItem('userName');
+    const isAdmin = localStorage.getItem('userRole') === 'ADMIN';
+    this.isAdminOrAuthor = isAdmin || this.postagem?.autor === currentUser;
+  }
+
+  
+  deletarPostagem(): void {
+    if (confirm('Tem certeza que deseja excluir esta postagem?')) {
+      this.postagemService.deletarPostagem(this.postagem.id)
+        .subscribe({
+          next: () => {
+            alert('Postagem excluída com sucesso!');
+            this.router.navigate(['/feed']);
+          },
+          error: (err) => {
+            console.error('Erro ao excluir postagem:', err);
+            alert('Erro ao excluir postagem. Você tem permissão?');
+          }
+        });
+    }
   }
 
   toggleComments(): void {

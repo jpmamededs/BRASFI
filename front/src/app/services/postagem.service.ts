@@ -55,6 +55,11 @@ export class PostagemService {
     return this.http.get<any[]>(`${this.apiUrl}/postagens`, { headers: this.getAuthHeaders() });
   }
 
+  deletarPostagem(id: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete(`${this.apiUrl}/postagens/${id}`, { headers });
+  }
+
 
   checkAuth(): Observable<any> {
     return this.http.get(`${this.apiUrl}/auth/check`, { headers: this.getAuthHeaders() });
@@ -83,11 +88,11 @@ export class PostagemService {
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     });
   }
-listarComentarios(postagemId: number): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/comentarios/postagem/${postagemId}`, {
-    headers: this.getAuthHeaders()
-  });
-}
+  listarComentarios(postagemId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/comentarios/postagem/${postagemId}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
   getYoutubeEmbedUrl(link: string): string {
     const videoId = link.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/|.+\?v=))([^&?\/\s]+)/);
     return videoId ? `https://www.youtube.com/embed/${videoId[1]}` : '';
@@ -95,7 +100,7 @@ listarComentarios(postagemId: number): Observable<any[]> {
 
   listarPostagensPorCategoria(categoria: string): Observable<any[]> {
     const headers = this.getAuthHeaders();
-    // Ajuste para usar o endpoint correto
+   
     return this.http.get<any[]>(`${this.apiUrl}/postagens/tag/${categoria}`, { headers });
   }
 

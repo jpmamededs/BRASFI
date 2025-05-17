@@ -3,7 +3,18 @@
 <div class="header-spacer"></div>
 
 <div class="detalhes-container">
+
+  <div class="post-header">
+
+
   <h2>{{ postagem?.titulo }}</h2>
+
+    <button *ngIf="isAdminOrAuthor" (click)="deletarPostagem()" class="delete-button">
+      <i class="fas fa-trash"></i> Apagar Postagem
+    </button>
+  
+  </div>  
+
   <p>{{ postagem?.paragrafo }}</p>
   <p><strong>Autor:</strong> {{ postagem?.autor }}</p>
   <p><strong>Tag:</strong> {{ postagem?.tag }}</p>

@@ -1,51 +1,49 @@
+<app-navbar></app-navbar>
+
 <div class="container">
   <h1 class="text-center my-4">Gestão de Cursos</h1>
 
   <div class="d-flex justify-content-between mb-4">
-    <button class="btn btn-primary" (click)="mostrarCriarCurso()" *ngIf="!mostrarFormulario">
-      Criar Novo Curso
-    </button>
-    <button class="btn btn-secondary" (click)="voltarParaLista()" *ngIf="cursoSelecionado || mostrarFormulario">
-      Voltar para Lista
-    </button>
-  </div>
+  <button class="btn btn-primary" (click)="criarNovoCurso()">
+    Criar Novo Curso
+  </button>
+</div>
 
-  <!-- Formulário de criação -->
-  <app-curso-form 
-    *ngIf="mostrarFormulario"
-    (formSubmit)="onFormSubmit($event)"
-  ></app-curso-form>
-
-  <!-- Visualização de um curso específico -->
-  <app-post-view 
-    *ngIf="cursoSelecionado && !mostrarFormulario" 
-    [curso]="cursoSelecionado"
-  ></app-post-view>
-
-  <!-- Lista de todos os cursos -->
-  <div *ngIf="!cursoSelecionado && !mostrarFormulario">
-    <h2 class="mb-3">Todos os Cursos</h2>
-    
-    <div *ngIf="cursos.length === 0" class="alert alert-info">
-      Nenhum curso encontrado.
+  <!-- Lista de Cursos por Área de Conhecimento -->
+  <div *ngFor="let area of getAreasConhecimento()" class="area-container">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h2 class="area-title">{{ area }}</h2>
     </div>
 
-    <div class="list-group">
-      <button 
-        *ngFor="let curso of cursos"
-        type="button"
-        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-        (click)="visualizarCurso(curso)"
-      >
-        <span>
-          <strong>{{ curso.titulo }}</strong> - 
-          {{ curso.areaConhecimento }}
-          <span *ngIf="curso.areaCustomizada">({{ curso.areaCustomizada }})</span>
-        </span>
-        <span class="badge bg-primary rounded-pill">
-          {{ curso.modulos?.length || 0 }} módulos
-        </span>
-      </button>
+    <div class="curso-grid">
+      <div *ngFor="let curso of getCursosPorArea(area)" class="curso-card">
+        <!-- Cabeçalho do Curso -->
+        <div class="curso-header" (click)="toggleCurso(curso)">
+          <h4>{{ curso.titulo }}</h4>
+          <span class="material-icons" *ngIf="curso.expandido">expand_less</span>
+          <span class="material-icons" *ngIf="!curso.expandido">expand_more</span>
+        </div>
+
+        <!-- Detalhes do Curso (Expansível) -->
+        <div *ngIf="curso.expandido" class="curso-detalhes">
+          <p><strong>Duração:</strong> {{ curso.duracao }}</p>
+          <p><strong>Autor:</strong> {{ curso.autor }}</p>
+          <p><strong>Área:</strong> {{ curso.areaConhecimento }}</p>
+
+          <h5>Módulos:</h5>
+          <ul>
+            <li *ngFor="let modulo of curso.modulos">
+              {{ modulo.nome }} ({{ modulo.aulas?.length || 0 }} aulas)
+            </li>
+          </ul>
+
+          <button class="btn btn-info" (click)="visualizarCurso(curso)">
+            Ver detalhes
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>

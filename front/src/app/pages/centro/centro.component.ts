@@ -1,27 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { PostViewComponent } from './post-view/post-view.component';
+import { NavbarComponent } from "../landing-page/components/navbar/navbar.component";
+import { FooterComponent } from "../landing-page/components/footer/footer.component";
 import { CursoFormComponent } from './curso-form/curso-form.component';
 
 @Component({
   selector: 'app-centro',
   templateUrl: './centro.component.html',
   styleUrls: ['./centro.component.css'],
- 
-  imports: [ReactiveFormsModule, CommonModule,PostViewComponent,CursoFormComponent]
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    FooterComponent,
+  ]
 })
-export class CentroComponent  {
-
+export class CentroComponent implements OnInit {
   @ViewChild(CursoFormComponent) cursoFormComponent!: CursoFormComponent;
 
-  cursos: any[] = []; 
-  cursoSelecionado: any = null; 
-  mostrarFormulario = true; 
+  cursos: any[] = [];
+  cursoSelecionado: any = null;
+  mostrarFormulario = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.carregarCursos();
@@ -36,7 +38,8 @@ export class CentroComponent  {
     this.http.get<any[]>('http://localhost:8080/api/cursos', { headers })
       .subscribe({
         next: (response) => {
-          this.cursos = response;
+          // Inicializando a propriedade expandido como false para cada curso
+          this.cursos = response.map(curso => ({ ...curso, expandido: false }));
         },
         error: (err) => {
           console.error('Erro ao carregar cursos:', err);
@@ -56,14 +59,27 @@ export class CentroComponent  {
       .subscribe({
         next: (response) => {
           alert('Curso criado com sucesso!');
-          this.cursoFormComponent.resetarFormulario(); 
-          this.carregarCursos(); 
+          this.cursoFormComponent.resetarFormulario();
+          this.carregarCursos();
         },
         error: (err) => {
           console.error('Erro ao criar curso:', err);
           alert('Erro ao criar curso: ' + (err.error?.message || err.message));
         }
       });
+  }
+
+  getAreasConhecimento(): string[] {
+    const areas = this.cursos.map(curso => curso.areaConhecimento);
+    return [...new Set(areas)];
+  }
+
+  getCursosPorArea(area: string): any[] {
+    return this.cursos.filter(curso => curso.areaConhecimento === area);
+  }
+
+  toggleCurso(curso: any): void {
+    curso.expandido = !curso.expandido;
   }
 
   visualizarCurso(curso: any): void {
@@ -79,5 +95,9 @@ export class CentroComponent  {
   mostrarCriarCurso(): void {
     this.cursoSelecionado = null;
     this.mostrarFormulario = true;
+  }
+
+  criarNovoCurso(): void {
+    this.router.navigate(['/cursos/novo']);
   }
 }

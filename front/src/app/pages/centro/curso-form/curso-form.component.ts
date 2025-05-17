@@ -1,24 +1,30 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from "../../landing-page/components/navbar/navbar.component";
+import { FooterComponent } from "../../landing-page/components/footer/footer.component";
 
 @Component({
   selector: 'app-curso-form',
-  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './curso-form.component.html',
-  styleUrl: './curso-form.component.css'
+  styleUrls: ['./curso-form.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent, FooterComponent]
 })
 export class CursoFormComponent {
-
-   @Output() formSubmit = new EventEmitter<any>();
-  
   cursoForm: FormGroup;
   niveisDificuldade = ['INICIANTE', 'INTERMEDIARIO', 'AVANCADO'];
   temasAula = ['GESTAO', 'CLIMA', 'REGULAMENTO', 'OUTRO'];
-  areasConhecimento = ['GOVERNANCA', 'ADMINISTRACAO', 'TECNOLOGIA', 'OUTRA'];
+  areasConhecimento = ['GOVERNANCA', 'SUSTENTABILIDADE', 'FINANCAS', 'OUTRA'];
   isSubmitting = false;
-
-  constructor(private fb: FormBuilder) {
+  successMessage: string = '';
+  errorMessage: string = '';
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.cursoForm = this.fb.group({
       areaConhecimento: ['GOVERNANCA', Validators.required],
       areaCustomizada: [''],
@@ -27,8 +33,6 @@ export class CursoFormComponent {
       modulos: this.fb.array([this.criarModulo()])
     });
   }
-
-  ngOnInit(): void {}
 
   get modulos(): FormArray {
     return this.cursoForm.get('modulos') as FormArray;
@@ -103,7 +107,6 @@ export class CursoFormComponent {
     this.materiaisDaAula(moduloIndex, aulaIndex).removeAt(materialIndex);
   }
 
-
   onSubmit(): void {
     if (this.cursoForm.invalid || this.isSubmitting) {
       this.cursoForm.markAllAsTouched();
@@ -112,28 +115,35 @@ export class CursoFormComponent {
 
     this.isSubmitting = true;
     const formValue = this.prepareFormData();
-    this.formSubmit.emit(formValue);
-    this.isSubmitting = false;
+    const token = localStorage.getItem('authToken') || '';
+    const headers = new HttpHeaders({
+      'Authorization': token,
+      'Content-Type': 'application/json'
+    });
+
+    this.http.post<any>('http://localhost:8080/api/cursos', formValue, { headers })
+      .subscribe({
+        next: (response) => {
+          alert('Curso criado com sucesso!');
+          this.resetarFormulario();
+          this.router.navigate(['/centro-formacao']);
+        },
+        error: (err) => {
+          console.error('Erro ao criar curso:', err);
+          alert('Erro ao criar curso: ' + (err.error?.message || err.message));
+          this.isSubmitting = false;
+        }
+      });
   }
-
-  
-
-
-
-
-
-
 
   private prepareFormData(): any {
     const formValue = JSON.parse(JSON.stringify(this.cursoForm.value));
-    
-    
+
     formValue.modulos.forEach((modulo: any) => {
       modulo.aulas.forEach((aula: any) => {
         if (aula.tema !== 'OUTRO') {
           aula.temaCustomizado = null;
         }
-       
         aula.isVideo = Boolean(aula.isVideo);
       });
     });
@@ -149,8 +159,7 @@ export class CursoFormComponent {
     return this.cursoForm.get('areaConhecimento')?.value === 'OUTRA';
   }
 
-   resetarFormulario(): void {
-   
+  resetarFormulario(): void {
     this.cursoForm.reset({
       areaConhecimento: 'GOVERNANCA',
       areaCustomizada: '',
@@ -158,10 +167,5 @@ export class CursoFormComponent {
       duracao: '',
       modulos: this.fb.array([this.criarModulo()])
     });
-    
-   
   }
-  
-
-
 }

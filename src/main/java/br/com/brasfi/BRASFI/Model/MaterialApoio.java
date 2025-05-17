@@ -1,5 +1,6 @@
 package br.com.brasfi.BRASFI.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class MaterialApoio {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aula_id", nullable = false)
+    @JsonIgnore
     private Aula aula;
 
     public MaterialApoio(){};

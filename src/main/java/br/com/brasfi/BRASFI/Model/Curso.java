@@ -1,6 +1,7 @@
 package br.com.brasfi.BRASFI.Model;
 
 import br.com.brasfi.BRASFI.Model.enums.AreaDoConhecimento;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class Curso {
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     @OrderBy("ordem ASC")
+    @JsonManagedReference
     private List<Modulo> modulos = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

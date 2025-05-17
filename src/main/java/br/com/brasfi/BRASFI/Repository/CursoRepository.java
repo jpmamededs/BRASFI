@@ -22,4 +22,6 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
     @EntityGraph(attributePaths = {"modulos.aulas.materiais"})
     Optional<Curso> findCompleteById(Long id);
 
+
+
 }

@@ -2,6 +2,7 @@ package br.com.brasfi.BRASFI.Model;
 
 import br.com.brasfi.BRASFI.Model.enums.NivelDificuldade;
 import br.com.brasfi.BRASFI.Model.enums.TemaAula;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -50,6 +51,7 @@ public class Aula {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modulo_id", nullable = false)
+    @JsonBackReference
     private Modulo modulo;
 
     @Column(nullable = false)

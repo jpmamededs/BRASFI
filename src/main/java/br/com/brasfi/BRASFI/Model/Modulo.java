@@ -1,5 +1,7 @@
 package br.com.brasfi.BRASFI.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,10 +27,12 @@ public class Modulo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curso_id", nullable = false)
+    @JsonBackReference
     private Curso curso;
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true,fetch= FetchType.LAZY)
     @OrderBy("ordem ASC")
+    @JsonManagedReference
     private List<Aula> aulas = new ArrayList<>();
 
     public Modulo(){};

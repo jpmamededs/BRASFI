@@ -83,7 +83,11 @@ export class PostagemService {
       headers: { 'Authorization': token, 'Content-Type': 'application/json' }
     });
   }
-
+listarComentarios(postagemId: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/comentarios/postagem/${postagemId}`, {
+    headers: this.getAuthHeaders()
+  });
+}
   getYoutubeEmbedUrl(link: string): string {
     const videoId = link.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/|.+\?v=))([^&?\/\s]+)/);
     return videoId ? `https://www.youtube.com/embed/${videoId[1]}` : '';

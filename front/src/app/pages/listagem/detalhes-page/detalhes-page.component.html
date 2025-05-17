@@ -8,14 +8,36 @@
   <p><strong>Autor:</strong> {{ postagem?.autor }}</p>
   <p><strong>Tag:</strong> {{ postagem?.tag }}</p>
 
-    <div *ngIf="postagem.imagemOuVideo" class="video">
-        <iframe
-          *ngIf="getYoutubeEmbedUrl(postagem.imagemOuVideo)"
-          [src]="getYoutubeEmbedUrl(postagem.imagemOuVideo)"
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-      </div>
+  <div *ngIf="postagem.imagemOuVideo" class="video">
+    <iframe
+      *ngIf="getYoutubeEmbedUrl(postagem.imagemOuVideo)"
+      [src]="getYoutubeEmbedUrl(postagem.imagemOuVideo)"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Botão para abrir a aba de comentários -->
+  <button class="comment-toggle" (click)="toggleComments()">Comentários</button>
+
+  <!-- Seção de comentários -->
+  <div *ngIf="showComments" class="comments-section">
+    <h3>Comentários</h3>
+
+    <!-- Formulário para criar comentário -->
+    <div class="comment-form">
+      <input type="text" [(ngModel)]="novoComentarioTitulo" placeholder="Título do comentário" class="comment-input">
+      <textarea [(ngModel)]="novoComentarioConteudo" placeholder="Escreva seu comentário" class="comment-textarea"></textarea>
+      <button (click)="adicionarComentario()">Enviar</button>
+    </div>
+
+    <!-- Lista de comentários -->
+    <div *ngFor="let comentario of comentarios" class="comment-item">
+      <h4>{{ comentario.titulo }}</h4>
+      <p>{{ comentario.conteudo }}</p>
+      <p class="comment-date">{{ comentario.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</p>
+    </div>
+  </div>
+
+  <button (click)="voltar()" class="back-button">Voltar</button>
 </div>
-
-

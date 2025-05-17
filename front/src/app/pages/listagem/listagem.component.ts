@@ -49,4 +49,11 @@ carregarPostagens(): void {
   isImageUrl(url: string): boolean {
   return url?.match(/\.(jpeg|jpg|gif|png|webp)$/) != null;
   }
+
+  formatarData(dataISO: string): string {
+      if (!dataISO) return '';
+      
+      const data = new Date(dataISO);
+      return data.toLocaleDateString('pt-BR'); 
+  }
 }

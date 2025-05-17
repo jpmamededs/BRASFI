@@ -22,7 +22,7 @@
 
         <p>{{ postagem.paragrafo }}</p>
         <p class="autor">Autor: {{ postagem.autor || 'Desconhecido' }}</p>
-        <p class="data">Data: {{ postagem.data || 'Não informada' }}</p>
+        <p class="data"> {{ formatarData(postagem.dataCriacao) }}</p>
       </div>
     </div>
   </div>

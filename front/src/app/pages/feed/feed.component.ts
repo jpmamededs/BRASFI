@@ -35,7 +35,6 @@ export class FeedComponent implements OnInit {
       next: (data) => {
         console.log('Todas as postagens:', data);
 
-        // ✅ Melhoria: Função para filtrar postagens, reduz repetição
         this.eventos = this.filtrarPostagens(data, 'EVENTO');
         this.eventos_novidades = this.filtrarPostagens(data, 'NOVIDADES');
         this.eventos_noticias = this.filtrarPostagens(data, 'NOTICIAS');
@@ -52,7 +51,9 @@ export class FeedComponent implements OnInit {
       .filter((post: any) => post.tag?.toUpperCase() === tag)
       .map((post: any) => ({
         ...post,
-        imagemOuVideo: this.getSafeUrl(post.imagemOuVideo)
+        imagemOuVideo: this.getSafeUrl(post.imagemOuVideo),
+        
+        dataCriacao: post.dataCriacao ? new Date(post.dataCriacao) : new Date()
       }));
   }
 
@@ -60,17 +61,23 @@ export class FeedComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
+  formatarData(dataISO: string): string {
+      if (!dataISO) return '';
+      
+      const data = new Date(dataISO);
+      return data.toLocaleDateString('pt-BR'); 
+  }
   logout(): void {
     this.postagemService.logout();
     this.router.navigate(['/login']);
   }
   voltarParaPlataforma(): void {
   this.router.navigate(['/plataforma']);
-}
-verMais(categoria: string): void {
+  }
+  verMais(categoria: string): void {
   this.router.navigate(['/listagem', categoria]);
-}
-goToPlataforma(): void {
+  }
+  goToPlataforma(): void {
     this.router.navigate(['/plataforma']);
   }
 

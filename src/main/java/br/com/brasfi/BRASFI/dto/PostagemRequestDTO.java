@@ -6,6 +6,8 @@ import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
+
 public record PostagemRequestDTO(
 
         TipoPostagem tag,
@@ -42,7 +44,8 @@ public record PostagemRequestDTO(
                 link(),
                 fixado,
                 null,
-                null
+                null,
+                LocalDateTime.now()
         );
     }
 }

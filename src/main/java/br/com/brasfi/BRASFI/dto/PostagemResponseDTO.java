@@ -4,6 +4,7 @@ import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ public class PostagemResponseDTO {
     private boolean fixado;
     private String autor;
     private List<ComentarioResponseDTO> comentarios;
+    private LocalDateTime dataCriacao;
 
     public PostagemResponseDTO(Postagem postagem) {
         this.id = postagem.getId();
@@ -29,6 +31,7 @@ public class PostagemResponseDTO {
         this.link = postagem.getLink();
         this.fixado = postagem.isFixado();
         this.autor = postagem.getUser().getUsername();
+        this.dataCriacao = postagem.getDataCriacao();
 
         this.comentarios = postagem.getComentarios()
                 .stream()

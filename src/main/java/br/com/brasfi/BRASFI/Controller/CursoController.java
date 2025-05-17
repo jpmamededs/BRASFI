@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -63,5 +64,17 @@ public class CursoController {
                 .map(CursoResponseDTO::fromEntity)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(cursosDTO);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CursoResponseDTO> getCursoById(@PathVariable Long id) {
+        Optional<Curso> cursoOptional = cursoRepository.findById(id);
+
+        if (cursoOptional.isPresent()) {
+            CursoResponseDTO cursoDTO = CursoResponseDTO.fromEntity(cursoOptional.get());
+            return ResponseEntity.ok(cursoDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -212,7 +212,9 @@ public class PostagemController {
 
         Map<String, String> response = new HashMap<>();
         response.put("message", "Usuário autenticado com sucesso!");
+
         response.put("username", user.getUsername());
+        response.put("photo", user.getPhoto());
         response.put("role", user.getRole().name());
 
         return ResponseEntity.ok(response);

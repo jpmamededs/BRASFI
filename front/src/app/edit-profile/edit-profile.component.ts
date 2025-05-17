@@ -106,7 +106,7 @@ export class EditProfileComponent {
     const token = localStorage.getItem('authToken') ?? '';
     const userId = this.userProfile.id;
 
-
+    
     if (!user.password) {
       delete user.password;
     }
@@ -114,39 +114,30 @@ export class EditProfileComponent {
     this.http.put(`http://localhost:8080/usuarios/${userId}`, user, {
       headers: { 'Authorization': `${token}` }
     }).subscribe({
-      next: () => {
+      next: (updatedUser: any) => {
         this.successMessage = 'Perfil atualizado com sucesso!';
-
-       localStorage.setItem('userName', user.username);
-      if (user.photo) {
-        localStorage.setItem('userImage', user.photo);
-      }
-        if (this.userProfile.username !== user.username) {
-          console.log('Atualizando o token com o novo username');
+        
+       
+        localStorage.setItem('userName', updatedUser.username);
+        localStorage.setItem('userImage', updatedUser.photo || 'assets/default-profile.png');
+        
+       
+        if (this.userProfile.username !== updatedUser.username) {
           const password = atob(token.split(' ')[1]).split(':')[1];
-          const newToken = `Basic ${btoa(`${user.username}:${password}`)}`;
-
-
+          const newToken = `Basic ${btoa(`${updatedUser.username}:${password}`)}`;
           localStorage.setItem('authToken', newToken);
-          localStorage.setItem('username', user.username);
-
-          alert('Nome de usuário atualizado com sucesso!');
         }
 
-        this.loadUserProfile();
-        this.router.navigate(['/plataforma']);
+       
+        this.userProfile = updatedUser;
+        this.editForm.patchValue(updatedUser);
+        
+        
+        setTimeout(() => this.router.navigate(['/plataforma']), 2000);
       },
       error: (error) => {
         console.error('Erro ao atualizar perfil:', error);
-        if (error.status === 403) {
-          this.errorMessage = 'Acesso negado. Verifique suas permissões.';
-        } else if (error.status === 401) {
-          this.errorMessage = 'Sessão expirada. Faça login novamente.';
-          localStorage.removeItem('authToken');
-          this.router.navigate(['/login']);
-        } else {
-          this.errorMessage = 'Erro ao atualizar perfil. Tente novamente.';
-        }
+       
       }
     });
   }

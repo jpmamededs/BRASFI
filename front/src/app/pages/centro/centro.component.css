@@ -1,0 +1,42 @@
+.container {
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.curso-form .form-section {
+  margin-bottom: 2rem;
+}
+
+.modulo-section, .aula-section, .material-section {
+  transition: all 0.3s ease;
+}
+
+.modulo-section {
+  background-color: #f8f9fa;
+  border-left: 4px solid #0d6efd;
+}
+
+.aula-section {
+  background-color: #e9ecef;
+  border-left: 4px solid #6c757d;
+}
+
+.material-section {
+  background-color: #ffffff;
+  border-left: 4px solid #20c997;
+}
+
+.invalid-feedback {
+  font-size: 0.85rem;
+}
+
+.btn-sm i {
+  margin-right: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .row > div {
+    margin-bottom: 1rem;
+  }
+}

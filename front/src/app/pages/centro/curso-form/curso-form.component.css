@@ -34,18 +34,6 @@
   margin-right: 5px;
 }
 
-.list-group-item {
-  transition: all 0.3s ease;
-}
-
-.list-group-item:hover {
-  background-color: #f8f9fa;
-  transform: translateX(5px);
-}
-
-.badge {
-  font-size: 0.9em;
-}
 /* Responsividade */
 @media (max-width: 768px) {
   .row > div {

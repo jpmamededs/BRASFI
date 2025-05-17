@@ -1,0 +1,212 @@
+<div class="container">
+  <h1 class="text-center my-4">Criar Novo Curso</h1>
+
+  <form [formGroup]="cursoForm" (ngSubmit)="onSubmit()" class="curso-form">
+    <!-- Seção do Curso -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Informações do Curso</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Área de Conhecimento</label>
+            <select class="form-select" formControlName="areaConhecimento">
+              <option *ngFor="let area of areasConhecimento" [value]="area">
+                {{ area }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3" *ngIf="showCustomAreaField()">
+            <label class="form-label">Especifique a Área</label>
+            <input type="text" class="form-control" formControlName="areaCustomizada">
+          </div>
+
+          <div class="col-md-8 mb-3">
+            <label class="form-label">Título do Curso</label>
+            <input type="text" class="form-control" formControlName="titulo">
+            <div *ngIf="cursoForm.get('titulo')?.invalid && cursoForm.get('titulo')?.touched" class="invalid-feedback d-block">
+              Título é obrigatório (máx. 100 caracteres)
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Duração</label>
+            <input type="text" class="form-control" formControlName="duracao" placeholder="Ex: 40 horas">
+            <div *ngIf="cursoForm.get('duracao')?.invalid && cursoForm.get('duracao')?.touched" class="invalid-feedback d-block">
+              Informe a duração (ex: "40 horas")
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Módulos -->
+    <div class="card mb-4" formArrayName="modulos">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">Módulos do Curso</h3>
+        <button type="button" class="btn btn-sm btn-light" (click)="adicionarModulo()">
+          <i class="bi bi-plus"></i> Adicionar Módulo
+        </button>
+      </div>
+
+      <div class="card-body">
+        <div *ngFor="let modulo of modulos.controls; let i = index" [formGroupName]="i" class="modulo-section mb-4 p-3 border rounded">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Módulo {{i + 1}}</h4>
+            <button type="button" class="btn btn-sm btn-danger" (click)="removerModulo(i)" [disabled]="modulos.length <= 1">
+              <i class="bi bi-trash"></i> Remover
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label class="form-label">Nome do Módulo</label>
+              <input type="text" class="form-control" formControlName="nome">
+              <div *ngIf="modulos.at(i).get('nome')?.invalid && modulos.at(i).get('nome')?.touched" class="invalid-feedback d-block">
+                Nome do módulo é obrigatório
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Ordem</label>
+              <input type="number" class="form-control" formControlName="ordem" min="0">
+            </div>
+          </div>
+
+          <!-- Seção de Aulas -->
+          <div class="aulas-section mt-4" formArrayName="aulas">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0">Aulas</h5>
+              <button type="button" class="btn btn-sm btn-primary" (click)="adicionarAula(i)">
+                <i class="bi bi-plus"></i> Adicionar Aula
+              </button>
+            </div>
+
+            <div *ngFor="let aula of aulasDoModulo(i).controls; let j = index" [formGroupName]="j" class="aula-section mb-4 p-3 bg-light rounded">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="mb-0">Aula {{j + 1}}</h6>
+                <button type="button" class="btn btn-sm btn-danger" (click)="removerAula(i, j)" [disabled]="aulasDoModulo(i).length <= 1">
+                  <i class="bi bi-trash"></i> Remover
+                </button>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Título da Aula</label>
+                  <input type="text" class="form-control" formControlName="titulo">
+                  <div *ngIf="aulasDoModulo(i).at(j).get('titulo')?.invalid && aulasDoModulo(i).at(j).get('titulo')?.touched" class="invalid-feedback d-block">
+                    Título é obrigatório
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Autor</label>
+                  <input type="text" class="form-control" formControlName="autor">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Nível de Dificuldade</label>
+                  <select class="form-select" formControlName="nivel">
+                    <option *ngFor="let nivel of niveisDificuldade" [value]="nivel">{{ nivel }}</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Tema</label>
+                  <select class="form-select" formControlName="tema">
+                    <option *ngFor="let tema of temasAula" [value]="tema">{{ tema }}</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3" *ngIf="showCustomThemeField(i, j)">
+                  <label class="form-label">Tema Customizado</label>
+                  <input type="text" class="form-control" formControlName="temaCustomizado">
+                </div>
+
+                <div class="col-12 mb-3">
+                  <label class="form-label">Descrição</label>
+                  <textarea class="form-control" formControlName="descricao" rows="2"></textarea>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="isVideo{{i}}{{j}}" formControlName="isVideo">
+                    <label class="form-check-label" for="isVideo{{i}}{{j}}">É vídeo?</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3" *ngIf="aulasDoModulo(i).at(j).get('isVideo')?.value">
+                  <label class="form-label">URL do Vídeo</label>
+                  <input type="url" class="form-control" formControlName="urlVideo" placeholder="https://youtube.com/embed/...">
+                </div>
+
+                <div class="col-12 mb-3" *ngIf="!aulasDoModulo(i).at(j).get('isVideo')?.value">
+                  <label class="form-label">Conteúdo em Texto</label>
+                  <textarea class="form-control" formControlName="conteudoTexto" rows="4"></textarea>
+                </div>
+
+                <!-- Seção de Materiais -->
+                <div class="materiais-section mt-3" formArrayName="materiais">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="mb-0">Materiais de Apoio</h6>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="adicionarMaterial(i, j)">
+                      <i class="bi bi-plus"></i> Adicionar Material
+                    </button>
+                  </div>
+
+                  <div *ngFor="let material of materiaisDaAula(i, j).controls; let k = index" [formGroupName]="k" class="material-section mb-3 p-3 bg-white rounded">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <h6 class="mb-0">Material {{k + 1}}</h6>
+                      <button type="button" class="btn btn-sm btn-danger" (click)="removerMaterial(i, j, k)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-5 mb-2">
+                        <label class="form-label">Nome do Arquivo</label>
+                        <input type="text" class="form-control" formControlName="nomeArquivo">
+                      </div>
+
+                      <div class="col-md-3 mb-2">
+                        <label class="form-label">Tipo</label>
+                        <select class="form-select" formControlName="tipo">
+                          <option value="pdf">PDF</option>
+                          <option value="docx">Word</option>
+                          <option value="xlsx">Excel</option>
+                          <option value="pptx">PowerPoint</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-2 mb-2">
+                        <label class="form-label">Tamanho (KB)</label>
+                        <input type="number" class="form-control" formControlName="tamanho" min="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="button" class="btn btn-secondary me-md-2" (click)="cursoForm.reset()">
+        <i class="bi bi-x-circle"></i> Limpar
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="cursoForm.invalid || isSubmitting">
+        <span *ngIf="!isSubmitting">
+          <i class="bi bi-check-circle"></i> Criar Curso
+        </span>
+        <span *ngIf="isSubmitting">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Enviando...
+        </span>
+      </button>
+    </div>
+  </form>
+</div>

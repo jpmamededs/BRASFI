@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { NavbarComponent } from "../../landing-page/components/navbar/navbar.component";
 import { FooterComponent } from "../../landing-page/components/footer/footer.component";
+import { NavbarComponent } from "../../landing-page/components/navbar/navbar.component";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-post-view',
   templateUrl: './post-view.component.html',
   styleUrls: ['./post-view.component.css'],
-  imports: [CommonModule, NavbarComponent, FooterComponent]
+  imports: [FooterComponent, NavbarComponent,CommonModule,FormsModule]
 })
 export class PostViewComponent implements OnInit {
   cursos: any[] = [];
   area: string = '';
+  searchQuery: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -38,5 +40,20 @@ export class PostViewComponent implements OnInit {
           alert('Erro ao carregar cursos: ' + (err.error?.message || err.message));
         }
       });
+  }
+
+  buscarCursos(): void {
+    if (this.searchQuery) {
+      this.cursos = this.cursos.filter(curso =>
+        curso.titulo.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      this.carregarCursos();
+    }
+  }
+
+  toggleFilter(filterType: string): void {
+    // Placeholder para lógica de filtro
+    console.log(`Filtro aplicado: ${filterType}`);
   }
 }

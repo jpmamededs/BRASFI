@@ -1,13 +1,28 @@
 <app-navbar></app-navbar>
+
 <div class="container">
-  <h2>Cursos na área: {{ area }}</h2>
-  <div *ngIf="cursos.length === 0">
-    Nenhum curso encontrado na área "{{ area }}".
+  <!-- Cabeçalho da Página -->
+  <div class="header d-flex justify-content-between align-items-center">
+    <h1 class="titulo">Centro de Formação</h1>
   </div>
-  <div class="curso-list" *ngFor="let curso of cursos">
-    <h4>{{ curso.titulo }}</h4>
-    <p>Duração: {{ curso.duracao }}</p>
-    <p>Autor: {{ curso.autor }}</p>
+
+
+  <!-- Título da Área -->
+  <h2 class="area-titulo">{{ area }}</h2>
+
+  <!-- Lista de Cursos -->
+  <div *ngIf="cursos.length === 0" class="alert alert-info">Nenhum curso encontrado na área "{{ area }}".</div>
+
+  <div class="curso-grid">
+    <div *ngFor="let curso of cursos" class="curso-card">
+      <h4>{{ curso.titulo }}</h4>
+      <p>Duração: {{ curso.duracao }}</p>
+      <p>Autor: {{ curso.autor }}</p>
+      <button class="btn btn-outline-primary detalhes-btn">
+        <i class="material-icons">arrow_forward</i>
+      </button>
+    </div>
   </div>
 </div>
+
 <app-footer></app-footer>

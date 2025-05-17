@@ -1,107 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from "../../landing-page/components/navbar/navbar.component";
+import { FooterComponent } from "../../landing-page/components/footer/footer.component";
 
 @Component({
   selector: 'app-post-view',
   templateUrl: './post-view.component.html',
-  imports:[CommonModule]
+  styleUrls: ['./post-view.component.css'],
+  imports: [CommonModule, NavbarComponent, FooterComponent]
 })
 export class PostViewComponent implements OnInit {
-  @Input() curso?: CursoResponseDTO;
-  cursos: CursoResponseDTO[] = [];
-  loading = true;
-  error: string | null = null;
+  cursos: any[] = [];
+  area: string = '';
 
-  
-
-  constructor(private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    if (this.curso) {
-      this.cursos = [this.curso];
-      this.loading = false;
-    } else {
-      this.loadCursos();
-    }
+    this.area = this.route.snapshot.paramMap.get('area') || '';
+    this.carregarCursos();
   }
 
-  getTotalAulas(curso: CursoResponseDTO): number {
-  if (!curso.modulos) return 0;
-  return curso.modulos.reduce((total, modulo) => total + (modulo.aulas?.length || 0), 0);
-  }
-
-  loadCursos(): void {
-   
+  carregarCursos(): void {
     const token = localStorage.getItem('authToken') || '';
-    
-    
     const headers = new HttpHeaders({
-      'Authorization': token,
-      'Content-Type': 'application/json'
+      'Authorization': token
     });
 
-    this.http.get<CursoResponseDTO[]>('http://localhost:8080/api/cursos', { headers })
+    this.http.get<any[]>('http://localhost:8080/api/cursos', { headers })
       .subscribe({
-        next: (cursos) => {
-          this.cursos = cursos;
-          this.loading = false;
+        next: (response) => {
+          this.cursos = response.filter(curso => curso.areaConhecimento === this.area);
         },
         error: (err) => {
           console.error('Erro ao carregar cursos:', err);
-          
-         
-          if (err.status === 401) {
-            this.error = 'Acesso não autorizado. Faça login novamente.';
-          } else {
-            this.error = 'Erro ao carregar cursos. Tente novamente.';
-          }
-          
-          this.loading = false;
-          
-          
-          if (err.status === 401) {
-           
-          }
+          alert('Erro ao carregar cursos: ' + (err.error?.message || err.message));
         }
       });
   }
 }
-
-
-interface CursoResponseDTO {
-  id: number;
-  titulo: string;
-  duracao: string;
-  areaConhecimento: string;
-  autor: string;
-  modulos: ModuloResponseDTO[];
-}
-
-interface ModuloResponseDTO {
-  id: number;
-  nome: string;  
-  ordem: number;
-  aulas: AulaResponseDTO[];
-}
-
-interface AulaResponseDTO {
-  id: number;
-  titulo: string;
-  descricao: string;
-  nivel: string;
-  tema: string;
-  autor: string;
-  tipoConteudo: string;  
-  conteudo: string;      
-  ordem: number;
-  materiais: MaterialResponseDTO[];
-}
-
-interface MaterialResponseDTO {
-  id: number;
-  nomeArquivo: string;
-  tipo: string;
-  downloadUrl: string;
-}
-

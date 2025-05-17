@@ -11,6 +11,7 @@ import { DetalhesPageComponent } from './pages/listagem/detalhes-page/detalhes-p
 import { ContactComponent } from './pages/contact/contact.component';
 import { CentroComponent } from './pages/centro/centro.component';
 import { CursoFormComponent } from './pages/centro/curso-form/curso-form.component';
+import { PostViewComponent } from './pages/centro/post-view/post-view.component';
 
 export const routes: Routes = [
     {
@@ -54,7 +55,11 @@ export const routes: Routes = [
 
    },
    { path: 'cursos/novo', component: CursoFormComponent },
-  { path: 'cursos/editar/:id', component: CursoFormComponent }
+  { path: 'cursos/editar/:id', component: CursoFormComponent },
+  {
+    path: 'cursos/:area',
+    component: PostViewComponent
+  }
 ];
 
 

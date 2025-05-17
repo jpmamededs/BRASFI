@@ -100,4 +100,7 @@ export class CentroComponent implements OnInit {
   criarNovoCurso(): void {
     this.router.navigate(['/cursos/novo']);
   }
+mostrarCursosDaArea(area: string): void {
+    this.router.navigate(['/cursos', area]);
+  }
 }

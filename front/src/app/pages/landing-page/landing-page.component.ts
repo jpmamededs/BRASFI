@@ -37,6 +37,8 @@ export class LandingPageComponent {
   imgCara6:string="assets/images/cara6.svg";
   imgCara7:string="assets/images/cara7.svg";
 
+  imgLogo:string = "assets/images/logo-lider.svg";
+
 
   onCardClick(id: string | null) {
     this.selectedId = id;

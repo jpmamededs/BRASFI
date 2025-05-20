@@ -62,26 +62,27 @@ nav {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 10; /* Garante que fique na frente da imagem */
-    width: 100%;
-    height: 100%;
+    z-index: 10;
+    width: fit-content;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 5%;
     color: white;
+    margin-left: 5rem;
+    margin-top: 10%;
 }
 
 .logo-icon {
-    width: 50px;
+    width: 6rem !important;
     margin-bottom: 10px;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
-    line-height: 1.2;
     margin: 0;
+    line-height: 2.8rem;
 }
 
 p {
@@ -99,6 +100,7 @@ p {
     cursor: pointer;
     font-size: 1.1rem;
     transition: background-color 0.3s ease;
+    width: 75%;
 }
 
 .cta-button:hover {
@@ -147,7 +149,6 @@ p {
 .big-card-wrapper{
     width: 50%;
     max-height: 100%;
-    background-color: red;
 }
 
 .impacto {
@@ -205,14 +206,14 @@ p {
 .impacto-item h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #ffd700;
+    color: rgba(255, 227, 69, 1);
 }
 
 
 .impacto-number {
     font-size: 6rem !important;
     font-weight: bold;
-    color: #ffd700 !important;
+    color: rgba(255, 227, 69, 1) !important;
     margin: 0.5rem;
 }
 
@@ -306,7 +307,7 @@ p {
     display: flex;
     flex-direction: row;
     background-color: #28a745;
-  color: white;
+    color: white;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
@@ -367,7 +368,7 @@ p {
     justify-content: space-between;
     align-items: center;
     /* padding: 3rem 0; */
-    background-color: #FFD600;
+    background-color: rgba(255, 227, 69, 1);
 }
 
 .voluntariado-content {
@@ -375,8 +376,10 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     padding: 2rem;
+    max-width: fit-content;
+    margin-left: 13%;
 }
 
 .voluntariado h2 {

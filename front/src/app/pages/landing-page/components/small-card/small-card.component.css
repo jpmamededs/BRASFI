@@ -11,11 +11,15 @@
 }
 
 .holder:hover{
-    background-color: gray;
+    background-color: rgb(223, 223, 223);
     cursor: pointer;
 }
 
 .selected {
-    background-color: green;
+    background-color: rgba(41, 170, 65, 1);
     color: white;
+}
+
+.selected:hover{
+    background-color: rgb(34, 146, 55);
 }

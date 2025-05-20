@@ -1,30 +1,36 @@
 <div class="login-container">
-  <!-- Imagem do lado esquerdo -->
   <div class="login-image">
-      <img [src]=imgMulher alt="Feed Icon" class="feed-icon">
+    <img [src]=imgMulher alt="Feed Icon" class="feed-icon">
   </div>
 
-  <!-- Formulário do lado direito -->
-  <div class="login-form">
-  <button class="back-button" (click)="goBack()">← Voltar</button>
-    <h2>BRASFI</h2>
-    <h3>Entre na sua conta</h3>
-    <p>Acesse nosso portal BRASFI</p>
+  <div class="right-side">
+    <div class="login-form">
+      <button class="back-button" (click)="goBack()">← Voltar</button>
+      <div class="text-holder">
+        <img [src]=imgLogo alt="BRASFI Logo" style="width: 5rem;">
+        <h3>Entre na sua conta</h3>
+        <p>Acesse nosso portal BRASFI</p>
+      </div>
+      <div class="inputs-holder">
+        <div class="input-group">
+          <i class="bi bi-person"></i>
+          <input [(ngModel)]="username" placeholder="Digite seu usuário">
+        </div>
 
-    <div class="input-group">
-      <i class="fas fa-user"></i>
-      <input [(ngModel)]="username" placeholder="Digite seu usuário">
+        <div class="input-group">
+          <i class="bi bi-lock"></i>
+          <input [(ngModel)]="password" type="password" placeholder="Digite sua senha">
+        </div>
+
+        <button class="login-button" (click)="login()">Entrar</button>
+
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+        <a href="/cadastro" class="signup-link">Cadastre-se</a>
+      </div>
+
     </div>
 
-    <div class="input-group">
-      <i class="fas fa-lock"></i>
-      <input [(ngModel)]="password" type="password" placeholder="Digite sua senha">
-    </div>
-
-    <button class="login-button" (click)="login()">Entrar</button>
-
-    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-
-    <a href="/cadastro" class="signup-link">Cadastre-se</a>
   </div>
+
 </div>

@@ -15,6 +15,7 @@ export class LoginComponent {
   password = '';
   errorMessage = '';
   imgMulher:string="assets/images/mulher.svg";
+  imgLogo:string="assets/images/brasfi-logo.svg"
   private postagemService = inject(PostagemService);
   private router = inject(Router);
 

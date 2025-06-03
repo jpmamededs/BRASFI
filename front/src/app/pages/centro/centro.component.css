@@ -1,59 +1,223 @@
+/* Importa uma fonte moderna para o projeto */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Estilos globais */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Cor de fundo suave */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container principal */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 1200px;
+    margin: 40px auto; /* Centraliza e adiciona margem superior/inferior */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px; /* Cantos arredondados */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
 }
 
+/* Título da página */
+.text-center {
+    text-align: center;
+}
+
+.my-4 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Seção do botão "Criar Novo Curso" */
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* Estilo para botões */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px; /* Cantos arredondados para botões */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Container de cada área de conhecimento */
+.area-container {
+    background-color: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px; /* Espaçamento entre as áreas */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Título da área de conhecimento */
 .area-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #2c3e50;
-  margin: 10px 0;
+    font-size: 2rem;
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ececec;
+    text-align: center;
 }
 
-.ver-todos {
-  font-size: 14px;
-  color: #007bff;
-  text-decoration: none;
-}
-
+/* Grid de cursos dentro de cada área */
 .curso-grid {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Layout responsivo de colunas */
+    gap: 25px; /* Espaçamento entre os cards de curso */
+    margin-top: 20px;
 }
 
+/* Card individual do curso */
 .curso-card {
-  width: 250px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-  cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .curso-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Cabeçalho do card do curso */
+.curso-header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
 }
 
 .curso-header h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+    margin: 0;
+    font-size: 1.4rem;
+    color: #2c3e50;
 }
 
-.curso-body p {
-  font-size: 14px;
-  margin: 2px 0;
+/* Detalhes do curso */
+.curso-detalhes {
+    padding: 20px;
+    flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para baixo */
 }
 
-.curso-footer {
-  margin-top: 10px;
-  text-align: right;
+.curso-detalhes p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #555;
 }
 
-.material-icons {
-  font-size: 20px;
-  color: #007bff;
+.curso-detalhes p strong {
+    color: #333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .my-4 {
+        font-size: 2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .area-container {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .area-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .curso-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: 20px;
+    }
+
+    .curso-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .curso-detalhes {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .my-4 {
+        font-size: 1.8rem;
+    }
+
+    .d-flex {
+        flex-direction: column; /* Empilha o botão em telas muito pequenas */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%; /* Botão ocupa a largura total */
+        max-width: 250px;
+    }
+
+    .curso-detalhes p {
+        font-size: 0.9rem;
+    }
 }

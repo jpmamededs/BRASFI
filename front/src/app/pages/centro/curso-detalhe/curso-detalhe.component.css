@@ -1,117 +1,277 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Layout de duas colunas */
+    gap: 30px;
+}
+
+/* Esconde o navbar e footer para focar no conteúdo principal (remova se necessário) */
+app-navbar, app-footer {
+    display: none;
+}
+
+/* --- Coluna da Esquerda (Detalhes do Curso) --- */
 .curso-detalhe-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+    padding: 0; /* Já tem padding no .container */
 }
 
 .curso-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+    text-align: left;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.curso-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .curso-meta {
-  margin-top: 1rem;
-}
-
-.modulos-container {
-  margin-bottom: 3rem;
-}
-
-.modulo-header {
-  background-color: #f5f5f5;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1.5rem;
-}
-
-.aula-card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.aula-header {
-  margin-bottom: 1rem;
-}
-
-.aula-meta {
-  margin-top: 0.5rem;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 .badge {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  margin-right: 0.5rem;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
 }
 
 .badge.area {
-  background-color: #e3f2fd;
-  color: #1976d2;
+    background-color: #5cb85c; /* Verde */
 }
 
 .badge.duracao {
-  background-color: #e8f5e9;
-  color: #388e3c;
+    background-color: #d9534f; /* Vermelho */
+}
+
+.modulos-container {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.modulo-header {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modulo-header h2 {
+    font-size: 1.3rem;
+    color: #333;
+    margin: 0;
+    font-weight: 500;
+}
+
+.aulas-container {
+    padding: 15px;
+}
+
+.aula-card {
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.aula-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.aula-header h3 {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 0;
+    font-weight: 400;
+}
+
+.aula-meta {
+    display: flex;
+    gap: 8px;
 }
 
 .badge.nivel {
-  background-color: #fff3e0;
-  color: #ef6c00;
+    background-color: #f0ad4e; /* Laranja */
+    color: white;
 }
 
 .badge.tema {
-  background-color: #f3e5f5;
-  color: #8e24aa;
+    background-color: #5bc0de; /* Ciano */
+    color: white;
+}
+
+.aula-content {
+    margin-top: 15px;
 }
 
 .video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
-  margin: 1rem 0;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.texto-container {
+    padding: 15px;
+    background-color: #fefefe;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
 }
 
 .materiais-container {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px dashed #ddd;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ddd;
+}
+
+.materiais-container h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .materiais-container ul {
-  list-style-type: none;
-  padding-left: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .materiais-container li {
-  margin-bottom: 0.5rem;
+    margin-bottom: 8px;
+}
+
+.materiais-container li a {
+    color: #007bff;
+    text-decoration: none;
 }
 
 .actions {
-  margin-top: 2rem;
-  text-align: center;
+    margin-top: 30px;
 }
 
 .btn-voltar {
-  padding: 0.5rem 1rem;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn-voltar:hover {
-  background-color: #e0e0e0;
+    background-color: #e9ecef;
+}
+
+/* --- Coluna da Direita (Navegação/Tópicos) --- */
+.curso-sidebar {
+    background-color: #eef7ff;
+    border-radius: 6px;
+    padding: 20px;
+    border: 1px solid #d0e9ff;
+}
+
+.curso-sidebar h3 {
+    font-size: 1.2rem;
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.modulo-item {
+    background-color: #fff;
+    border: 1px solid #d0e9ff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modulo-item:hover {
+    background-color: #f0f8ff;
+}
+
+.modulo-item.active {
+    background-color: #cce5ff;
+    font-weight: 500;
+}
+
+.modulo-item .material-icons {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .container {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+
+    .curso-sidebar {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .curso-header h1 {
+        font-size: 2rem;
+    }
+
+    .modulo-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .aula-header h3 {
+        font-size: 1rem;
+    }
 }

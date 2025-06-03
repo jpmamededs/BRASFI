@@ -1,108 +1,253 @@
-.container {
-  margin: 30px auto;
-  max-width: 1200px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Importa a fonte Inter do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Estilos globais para o corpo da página */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Cor de fundo suave */
+    color: #333;
+    line-height: 1.6;
 }
 
+/* Container principal da página */
+.container {
+    max-width: 1200px;
+    margin: 40px auto; /* Centraliza o container com margem superior/inferior */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px; /* Cantos arredondados */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para o cabeçalho da página */
 .header {
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0; /* Linha separadora */
 }
 
 .titulo {
-  font-size: 28px;
-  color: #2c3e50;
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 700;
 }
 
-.feed-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.filter-section {
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.filter-options label {
-  margin-right: 15px;
-  font-weight: 600;
-  color: #555;
-}
-
-.search-bar {
-  position: relative;
-}
-
-.search-bar input {
-  padding-right: 35px;
-}
-
-.search-bar .material-icons {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #777;
-}
-
+/* Estilos para o título da área de cursos */
 .area-titulo {
-  font-size: 24px;
-  margin: 20px 0;
-  color: #34495e;
+    font-size: 2.2rem;
+    color: #34495e;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #a0d9f5; /* Linha decorativa */
+    display: inline-block; /* Para que a linha se ajuste ao texto */
+    width: auto;
 }
 
+/* Estilos para a mensagem de alerta (quando não há cursos) */
+.alert {
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.alert-info {
+    background-color: #e0f7fa;
+    color: #00796b;
+    border: 1px solid #b2ebf2;
+}
+
+/* Grid de cursos */
 .curso-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Layout responsivo de colunas */
+    gap: 30px; /* Espaçamento entre os cards */
+    margin-top: 20px;
 }
 
+/* Card individual do curso */
 .curso-card {
-  background-color: #fff;
-  padding: 15px;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Para posicionar o botão de detalhes */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para o final */
+    min-height: 200px; /* Altura mínima para consistência */
 }
 
 .curso-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .curso-card h4 {
-  font-size: 20px;
-  color: #2c3e50;
-  margin-bottom: 10px;
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 1.3;
 }
 
 .curso-card p {
-  color: #555;
-  margin: 2px 0;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Botão de detalhes do curso */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .detalhes-btn {
-  margin-top: 10px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+    align-self: flex-end; /* Alinha o botão à direita na parte inferior do card */
+    margin-top: 20px; /* Espaçamento do conteúdo acima */
 }
 
-.detalhes-btn i {
-  font-size: 20px;
-}
-
-.alert {
-  margin-top: 20px;
-}
-
+/* Ícones do Material Design */
 .material-icons {
-  vertical-align: middle;
-  margin-right: 5px;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Tamanho padrão do ícone */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Suporte a renderização de fontes e ligaduras */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .container {
+        margin: 30px auto;
+        padding: 25px;
+    }
+
+    .titulo {
+        font-size: 2.2rem;
+    }
+
+    .area-titulo {
+        font-size: 1.8rem;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .curso-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .curso-card {
+        padding: 20px;
+    }
+
+    .curso-card h4 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column; /* Empilha o título e outros elementos do cabeçalho */
+        text-align: center;
+        gap: 15px;
+    }
+
+    .titulo {
+        font-size: 2rem;
+    }
+
+    .area-titulo {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .curso-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: 20px;
+    }
+
+    .curso-card {
+        padding: 18px;
+    }
+
+    .curso-card h4 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .titulo {
+        font-size: 1.8rem;
+    }
+
+    .area-titulo {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .curso-card p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
 }

@@ -1,4 +1,6 @@
 <div class="curso-detalhe-container">
+
+  
   <!-- Cabeçalho do curso -->
   <div class="curso-header">
     <h1>{{ curso?.titulo }}</h1>
@@ -27,17 +29,21 @@
         
         <div class="aula-content">
           <p *ngIf="aula.descricao">{{ aula.descricao }}</p>
+
+           
           
-          <!-- Conteúdo da aula -->
-          <div *ngIf="aula.isVideo && aula.urlVideo" class="video-container">
-            <iframe [src]="aula.urlVideo | safeUrl" frameborder="0" allowfullscreen></iframe>
+          <div *ngIf="aula.tipoConteudo === 'VIDEO' && aula.conteudo" class="video-container">
+            <iframe
+              [src]="getVideoEmbedUrl(aula.tipoConteudo, aula.conteudo)"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
           </div>
           
-          <div *ngIf="!aula.isVideo && aula.conteudoTexto" class="texto-container">
-            <p>{{ aula.conteudoTexto }}</p>
-          </div>
+          <div *ngIf="aula.tipoConteudo === 'TEXTO' && aula.conteudo" class="texto-container">
+            <p>{{ aula.conteudo }}</p> </div>
           
-          <!-- Materiais da aula -->
+         
           <div *ngIf="aula.materiais && aula.materiais.length > 0" class="materiais-container">
             <h4>Materiais de apoio:</h4>
             <ul>

@@ -1,6 +1,5 @@
 package br.com.brasfi.BRASFI.Model;
 
-
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -17,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Postagem {
 
+    public static final int LIMITE_PALAVRAS= 300;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,39 +34,21 @@ public class Postagem {
     private String imagemOuVideo;
     private String link;
     private boolean fixado;
-    public static final int LIMITE_PALAVRAS= 300;
+    private LocalDateTime dataCriacao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
-
-
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Comentario> comentarios;
 
-    private LocalDateTime dataCriacao;
-
+    public Postagem(){
+    }
 
     @PrePersist
     protected void onCreate() {
         dataCriacao = LocalDateTime.now();
     }
-
-    public Postagem(){
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
 }

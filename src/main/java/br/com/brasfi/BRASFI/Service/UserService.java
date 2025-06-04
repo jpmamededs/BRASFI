@@ -23,26 +23,20 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsername(username).map(user -> {
 
+            String role = "ROLE_" + (user.getRole() != null ? user.getRole().name() : "USER");
 
-        return repository.findByUsername(username)
-                .map(user -> {
+            GrantedAuthority authority = new SimpleGrantedAuthority(role);
 
-                    String role = "ROLE_" + (user.getRole() != null ? user.getRole().name() : "USER");
-
-
-
-                    GrantedAuthority authority = new SimpleGrantedAuthority(role);
-
-                    return org.springframework.security.core.userdetails.User.builder()
-                            .username(user.getUsername())
-                            .password(user.getPassword())
-                            .authorities(Collections.singletonList(authority))
-                            .build();
-                })
-                .orElseThrow(() -> {
-
-                    return new UsernameNotFoundException("Usuário não encontrado: " + username);
-                });
+            return org.springframework.security.core.userdetails.User.builder()
+                    .username(user.getUsername())
+                    .password(user.getPassword())
+                    .authorities(Collections.singletonList(authority))
+                    .build();
+        })
+        .orElseThrow(() -> {
+            return new UsernameNotFoundException("Usuário não encontrado: " + username);
+        });
     }
 }

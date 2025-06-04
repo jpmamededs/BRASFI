@@ -60,16 +60,11 @@ public class Aula {
     @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, orphanRemoval = true,fetch =FetchType.LAZY)
     private List<MaterialApoio> materiais = new ArrayList<>();
 
-
     public Aula(){};
-
-
 
     public String getTemaCompleto() {
         return this.tema == TemaAula.OUTRO ?
                 this.temaCustomizado :
                 this.tema.toString().toLowerCase();
     }
-
-
 }

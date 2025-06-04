@@ -26,8 +26,6 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-
     @GetMapping("/usuarios")
     public List<User> listarUsuarios() {
         return userRepository.findAll();
@@ -44,20 +42,13 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-
-
     @PostMapping(value = "/req/signup", consumes = "application/json")
     public ResponseEntity<User> createUser(@RequestBody @Valid UserDTO userDTO) {
 
         User user = userDTO.toUser();
 
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-
         User savedUser = userRepository.save(user);
-
-
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
@@ -79,9 +70,8 @@ public class UserController {
         user.setUsername(updatedUser.getUsername());
         user.setEmail(updatedUser.getEmail());
 
-        // 🛑 Verificando se a senha está vindo vazia
         if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
-            user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));  // 💡 Criptografando a senha
+            user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
 
         user.setBiografia(updatedUser.getBiografia());

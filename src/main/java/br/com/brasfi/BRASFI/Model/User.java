@@ -66,9 +66,7 @@ public class User implements UserDetails {
     private List<Postagem> postagens = new ArrayList<>();
 
     public User(){
-
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -96,7 +94,4 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() { return true; }
-
-
-
 }

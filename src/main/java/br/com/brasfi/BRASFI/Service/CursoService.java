@@ -2,12 +2,10 @@ package br.com.brasfi.BRASFI.Service;
 
 import br.com.brasfi.BRASFI.Model.*;
 import br.com.brasfi.BRASFI.Model.enums.AreaDoConhecimento;
-import br.com.brasfi.BRASFI.Repository.AulaRepository;
-import br.com.brasfi.BRASFI.Repository.CursoRepository;
-import br.com.brasfi.BRASFI.Repository.MaterialRepository;
-import br.com.brasfi.BRASFI.Repository.ModuloRepository;
+import br.com.brasfi.BRASFI.Repository.*;
 import br.com.brasfi.BRASFI.dto.CriarCursoDTO;
 import br.com.brasfi.BRASFI.dto.CursoResponseDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,9 @@ public class CursoService {
 
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CursoRepository cursoRepository;
 
     @Autowired
@@ -31,6 +32,24 @@ public class CursoService {
 
     @Autowired
     private MaterialRepository materialRepository;
+
+    public List<CursoResponseDTO> listarTodosCursos() {
+        List<Curso> cursos = cursoRepository.findAll();
+        return cursos.stream()
+                .map(CursoResponseDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    public CursoResponseDTO buscarCursoPorId(Long id) {
+        return cursoRepository.findById(id)
+                .map(CursoResponseDTO::fromEntity)
+                .orElseThrow(() -> new EntityNotFoundException("Curso não encontrado"));
+    }
+
+    public User buscarUsuarioAutenticado(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+    }
 
 
 

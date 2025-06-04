@@ -33,48 +33,23 @@ public class CursoController {
     @Autowired
     private CursoService cursoService;
 
-    @Autowired
-    private CursoRepository cursoRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping
     public ResponseEntity<CursoResponseDTO> criarCursoCompleto(@RequestBody @Valid CriarCursoDTO dto) {
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-
-
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
-
-        System.out.println("AUTENTICADO COMO: " + user.getUsername());
-
+        User user = cursoService.buscarUsuarioAutenticado(auth.getName());
 
         CursoResponseDTO response = cursoService.criarCursoCompleto(dto, user);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping
     public ResponseEntity<List<CursoResponseDTO>> getAllCursos() {
-        List<Curso> cursos = cursoRepository.findAll();
-        List<CursoResponseDTO> cursosDTO = cursos.stream()
-                .map(CursoResponseDTO::fromEntity)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(cursosDTO);
+        return ResponseEntity.ok(cursoService.listarTodosCursos());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CursoResponseDTO> getCursoById(@PathVariable Long id) {
-        Optional<Curso> cursoOptional = cursoRepository.findById(id);
-
-        if (cursoOptional.isPresent()) {
-            CursoResponseDTO cursoDTO = CursoResponseDTO.fromEntity(cursoOptional.get());
-            return ResponseEntity.ok(cursoDTO);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(cursoService.buscarCursoPorId(id));
     }
 }

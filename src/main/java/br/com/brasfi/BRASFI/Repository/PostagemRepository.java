@@ -14,7 +14,6 @@ import java.util.Optional;
 @Repository
 public interface PostagemRepository extends JpaRepository<Postagem,Long> {
 
-
     List<Postagem> findAllByTag(TipoPostagem tag);
 
     List<Postagem> findAllByFixadoTrue();
@@ -32,12 +31,9 @@ public interface PostagemRepository extends JpaRepository<Postagem,Long> {
             "WHERE p.id = :id")
     void atualizarPostagem(@Param("id") Long id, @Param("novaPostagem") Postagem novaPostagem);
 
-
     void deleteById(Long id);
-
 
     @Modifying
     @Query("UPDATE Postagem p SET p.fixado = :fixado WHERE p.id = :id")
     void atualizarFixado(@Param("id") Long id, @Param("fixado") boolean fixado);
-
 }

@@ -4,7 +4,6 @@ import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.User;
 import br.com.brasfi.BRASFI.Model.enums.TipoPostagem;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -36,16 +35,15 @@ public record PostagemRequestDTO(
         return new Postagem(
                 0L,
                 user.getUsername(),
-
                 tag(),
                 titulo(),
                 paragrafo(),
                 imagemOuVideo(),
                 link(),
                 fixado,
+                LocalDateTime.now(),
                 null,
-                null,
-                LocalDateTime.now()
+                null
         );
     }
 }

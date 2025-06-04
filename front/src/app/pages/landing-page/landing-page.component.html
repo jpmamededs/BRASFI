@@ -1,12 +1,12 @@
 <nav>
   <div class="holder">
-      <img [src]=imgSource alt="Feed Icon" class="feed-icon">
+        <a href="#"><img [src]=imgSource alt="Feed Icon" class="feed-icon"></a>
     <ul class="nav-links">
-      <li><a href="#">Quem somos</a></li>
-      <li><a href="#">Impacto</a></li>
-      <li><a href="#">O que falam de nós</a></li>
-      <li><a href="#">Parceiros</a></li>
-      <li><a href="#">Contato</a></li>
+      <li><a href="#quem-somos">Quem somos</a></li>
+      <li><a href="#impacto">Impacto</a></li>
+      <li><a href="#oq-falam">O que falam de nós</a></li>
+      <li><a href="#parceiros">Parceiros</a></li>
+      <li><a href="#voluntariado">Contato</a></li>
     </ul>
     <button class="login-button"><a href="/login">Entrar</a></button>
   </div>
@@ -24,9 +24,7 @@
     </div>
 </section>
 
-
-
-<section class="quem-somos">
+<section class="quem-somos" id="quem-somos">
     <div class="mini-card-wrapper">
         @for (id of cards; track $index) {
             <app-small-card
@@ -41,7 +39,7 @@
     </div>
 </section>
 
-<section class="impacto">
+<section class="impacto" id="impacto">
     <h1 class="impacto-title">Impacto</h1>
     <div class="impacto-container">
         <div class="impacto-item">
@@ -62,8 +60,7 @@
     </div>
 </section>
 
-
-<section class="oq-falam">
+<section class="oq-falam" id="oq-falam">
     <h1>O que falam de nós</h1>
 
     <div class="depoimentos-holder">
@@ -135,8 +132,7 @@
     </div>
 </section>
 
-
-<section class="parceiros">
+<section class="parceiros" id="parceiros">
     <div class="parceiros-header">
         <h1>Parceiros</h1>
     </div>
@@ -159,7 +155,7 @@
     </div>
 </section>
 
-<section class="voluntariado">
+<section class="voluntariado" id="voluntariado">
     <div class="voluntariado-content">
         <h2>Venha ser<br>voluntário da<br>BRASFI</h2>
         <button class="voluntariado-button">Faça parte</button>

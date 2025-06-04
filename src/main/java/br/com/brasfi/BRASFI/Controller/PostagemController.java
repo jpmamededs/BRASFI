@@ -1,7 +1,6 @@
 
 package br.com.brasfi.BRASFI.Controller;
 
-
 import br.com.brasfi.BRASFI.Model.Postagem;
 import br.com.brasfi.BRASFI.Model.User;
 import br.com.brasfi.BRASFI.Model.enums.Role;
@@ -13,12 +12,8 @@ import br.com.brasfi.BRASFI.dto.PostagemResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +31,6 @@ public class PostagemController {
     @Autowired
     UserRepository userRepository;
 
-
-
-
     @GetMapping("/postagens")
     public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagens() {
         List<Postagem> postagens = postagemService.findAll();
@@ -54,14 +46,8 @@ public class PostagemController {
         return ResponseEntity.ok(resposta);
     }
 
-
-
-
-
     @PostMapping("/postagens")
-
     public ResponseEntity<Postagem> criarPostagem(@RequestBody @Valid PostagemRequestDTO dto) {
-
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -71,7 +57,6 @@ public class PostagemController {
 
         Postagem postagem = dto.toPostagem(user);
 
-
         postagem.setUser(user);
 
         postagemService.criarPostagem(postagem);
@@ -79,7 +64,6 @@ public class PostagemController {
         System.out.println("AUTENTICADO COMO: " + user.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).body(postagem);
     }
-
 
     @GetMapping("/postagens/tag/{tag}")
     public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagensTag(@PathVariable TipoPostagem tag) {
@@ -95,7 +79,6 @@ public class PostagemController {
 
         return ResponseEntity.ok(resposta);
     }
-
 
     @GetMapping("/postagens/fixadas")
     public ResponseEntity<List<PostagemResponseDTO>> listarTodasPostagensFixadas() {
@@ -146,7 +129,6 @@ public class PostagemController {
         return ResponseEntity.ok("Postagem desfixada com sucesso.");
     }
 
-
     @PutMapping("/postagens/{id}")
     public ResponseEntity<Postagem> editarPostagem(@PathVariable Long id, @RequestBody @Valid PostagemRequestDTO dto) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -155,17 +137,14 @@ public class PostagemController {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 
-
         Postagem postagemExistente = postagemService.buscarPorId(id);
         if (postagemExistente == null) {
             throw new EntityNotFoundException("Postagem não encontrada");
         }
 
-
         if (!postagemExistente.getUser().getId().equals(user.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
-
 
         Postagem novaPostagem = dto.toPostagem(user);
         novaPostagem.setId(id);
@@ -175,7 +154,6 @@ public class PostagemController {
 
         return ResponseEntity.ok(novaPostagem);
     }
-
 
     @DeleteMapping("/postagens/{id}")
     public ResponseEntity<Void> deletarPostagem(@PathVariable Long id) {
@@ -198,7 +176,6 @@ public class PostagemController {
         return ResponseEntity.noContent().build();
     }
 
-
     @GetMapping("/postagens/{id}")
     public ResponseEntity<Postagem> buscarPostagemPorId(@PathVariable Long id) {
         Postagem postagem = postagemService.buscarPorId(id);
@@ -219,28 +196,4 @@ public class PostagemController {
 
         return ResponseEntity.ok(response);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

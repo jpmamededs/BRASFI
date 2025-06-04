@@ -13,11 +13,8 @@ import java.util.List;
 @Service
 public class PostagemService {
 
-    private final PostagemRepository postagemRepository;
-
-    public PostagemService(PostagemRepository postagemRepository) {
-        this.postagemRepository = postagemRepository;
-    }
+    @Autowired
+    PostagemRepository postagemRepository;
 
     public List<Postagem> findAll() {
         return postagemRepository.findAll();

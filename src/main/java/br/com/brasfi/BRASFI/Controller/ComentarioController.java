@@ -19,8 +19,6 @@ public class ComentarioController {
     @Autowired
     private ComentarioService comentarioService;
 
-
-
     @PostMapping
     public ResponseEntity<ComentarioResponseDTO> criarComentario(@RequestBody @Valid ComentarioRequestDTO dto) {
         try {

@@ -20,18 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collections;
 import java.util.List;
 
-
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private  PasswordEncoder passwordEncoder;
-
-
-
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -62,11 +58,9 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public User createUser(UserDTO userDTO) {
-
         if (userRepository.findByUsername(userDTO.username()).isPresent()) {
             throw new IllegalArgumentException("Username já existe.");
         }
-
 
         User user = userDTO.toUser();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -81,7 +75,6 @@ public class UserService implements UserDetailsService {
         User requester = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário autenticado não encontrado"));
 
-
         if (!requester.getId().equals(id) && requester.getRole() != Role.ADMIN) {
             throw new SecurityException("Usuário não tem permissão para editar este perfil.");
         }
@@ -89,14 +82,12 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 
-
         user.setUsername(updatedUserDTO.getUsername());
         user.setEmail(updatedUserDTO.getEmail());
 
         if (updatedUserDTO.getPassword() != null && !updatedUserDTO.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(updatedUserDTO.getPassword()));
         }
-
 
         user.setBiografia(updatedUserDTO.getBiografia());
         user.setLocalizacao(updatedUserDTO.getLocalizacao());
@@ -140,7 +131,6 @@ public class UserService implements UserDetailsService {
 
         User requester = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("Usuário autenticado não encontrado"));
-
 
         if (!requester.getId().equals(id) && requester.getRole() != Role.ADMIN) {
             throw new SecurityException("Usuário não tem permissão para atualizar os temas deste perfil.");

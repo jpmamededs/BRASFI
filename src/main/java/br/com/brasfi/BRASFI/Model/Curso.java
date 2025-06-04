@@ -23,7 +23,6 @@ public class Curso {
     @Column(nullable = false)
     private AreaDoConhecimento areaConhecimento;
 
-
     private String areaCustomizada;
 
     @Column(nullable = false)
@@ -31,7 +30,6 @@ public class Curso {
 
     @Column(nullable = false)
     private String duracao;
-
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     @OrderBy("ordem ASC")
@@ -41,8 +39,6 @@ public class Curso {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User autor;
-
-
 
     public String getAreaCompleta() {
         return this.areaConhecimento == AreaDoConhecimento.OUTRA ?

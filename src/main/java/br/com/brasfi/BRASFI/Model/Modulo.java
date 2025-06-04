@@ -36,6 +36,4 @@ public class Modulo {
     private List<Aula> aulas = new ArrayList<>();
 
     public Modulo(){};
-
-
 }

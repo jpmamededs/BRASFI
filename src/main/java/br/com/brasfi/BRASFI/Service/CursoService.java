@@ -1,13 +1,10 @@
 package br.com.brasfi.BRASFI.Service;
 
 import br.com.brasfi.BRASFI.Model.*;
-import br.com.brasfi.BRASFI.Model.enums.AreaDoConhecimento;
-import br.com.brasfi.BRASFI.Repository.AulaRepository;
-import br.com.brasfi.BRASFI.Repository.CursoRepository;
-import br.com.brasfi.BRASFI.Repository.MaterialRepository;
-import br.com.brasfi.BRASFI.Repository.ModuloRepository;
+import br.com.brasfi.BRASFI.Repository.*;
 import br.com.brasfi.BRASFI.dto.CriarCursoDTO;
 import br.com.brasfi.BRASFI.dto.CursoResponseDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +16,8 @@ import java.util.stream.Collectors;
 @Service
 public class CursoService {
 
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private CursoRepository cursoRepository;
@@ -32,11 +31,26 @@ public class CursoService {
     @Autowired
     private MaterialRepository materialRepository;
 
+    public List<CursoResponseDTO> listarTodosCursos() {
+        List<Curso> cursos = cursoRepository.findAll();
+        return cursos.stream()
+                .map(CursoResponseDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
 
+    public CursoResponseDTO buscarCursoPorId(Long id) {
+        return cursoRepository.findById(id)
+                .map(CursoResponseDTO::fromEntity)
+                .orElseThrow(() -> new EntityNotFoundException("Curso não encontrado"));
+    }
+
+    public User buscarUsuarioAutenticado(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+    }
 
     @Transactional
     public CursoResponseDTO criarCursoCompleto(CriarCursoDTO dto, User autor) {
-
         if (autor == null) {
             throw new IllegalArgumentException("Usuário não autenticado");
         }
@@ -45,11 +59,9 @@ public class CursoService {
             throw new IllegalArgumentException("O curso deve conter pelo menos um módulo");
         }
 
-
         Curso curso = dto.toEntity();
         curso.setAutor(autor);
         Curso cursoSalvo = cursoRepository.save(curso);
-
 
         List<Modulo> modulosParaSalvar = new ArrayList<>();
         List<Aula> aulasParaSalvar = new ArrayList<>();
@@ -75,11 +87,9 @@ public class CursoService {
             }
         });
 
-
         moduloRepository.saveAll(modulosParaSalvar);
         aulaRepository.saveAll(aulasParaSalvar);
         materialRepository.saveAll(materiaisParaSalvar);
-
 
         cursoSalvo.setModulos(modulosParaSalvar);
         modulosParaSalvar.forEach(modulo -> {
@@ -87,7 +97,6 @@ public class CursoService {
                     .filter(aula -> aula.getModulo().getId().equals(modulo.getId()))
                     .collect(Collectors.toList()));
         });
-
 
         return CursoResponseDTO.fromEntity(cursoSalvo);
     }

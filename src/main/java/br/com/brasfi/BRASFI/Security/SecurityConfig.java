@@ -30,45 +30,35 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private final UserService appUserService;
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return appUserService;
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(appUserService);
-        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 
     @Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    return http
-            .csrf(AbstractHttpConfigurer::disable)
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .httpBasic(httpBasic -> {})
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/usuarios/me").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/auth/check").authenticated()
-                    .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
-                    .anyRequest().authenticated()
-            )
-            .addFilterBefore(characterEncodingFilter(), CorsFilter.class)
-            .build();
-}
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .httpBasic(httpBasic -> {})
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/req/login", "/req/signup", "/css/**", "/js/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/usuarios/me").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/postagens").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/check").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/postagens").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/postagens/fixar/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(characterEncodingFilter(), CorsFilter.class)
+                .build();
+    }
 
 @Bean
 public CharacterEncodingFilter characterEncodingFilter() {

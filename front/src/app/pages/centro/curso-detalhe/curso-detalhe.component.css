@@ -19,10 +19,7 @@ body {
     gap: 30px;
 }
 
-/* Esconde o navbar e footer para focar no conteúdo principal (remova se necessário) */
-app-navbar, app-footer {
-    display: none;
-}
+
 
 /* --- Coluna da Esquerda (Detalhes do Curso) --- */
 .curso-detalhe-container {

@@ -1,205 +1,217 @@
-/* Importa uma fonte moderna para o projeto */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* Estilos globais */
+/* Estilos Gerais para o Corpo (opcional, mas bom para consistência) */
 body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f2f5; /* Cor de fundo suave */
-    color: #333;
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0f2f5; /* Um cinza claro para o fundo da página */
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-/* Container principal */
+/* Espaçador do cabeçalho, se app-navbar for fixo */
+.header-spacer {
+  height: 60px; /* Ajuste conforme a altura da sua app-navbar */
+}
+
+/* Estilos para o contêiner principal - Similar ao .detalhes-container anterior */
 .container {
-    max-width: 1200px;
-    margin: 40px auto; /* Centraliza e adiciona margem superior/inferior */
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px; /* Cantos arredondados */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+  max-width: 960px; /* Um pouco mais largo para a lista de cursos */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff; /* Fundo branco para o conteúdo principal */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
 }
 
-/* Título da página */
+/* Título centralizado */
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
+/* Margem no eixo Y */
 .my-4 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-    font-size: 2.5rem;
-    font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Seção do botão "Criar Novo Curso" */
+/* Botões - Adaptando o estilo dos botões da página anterior */
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Garante que links como botões não tenham sublinhado */
+  display: inline-block; /* Para que padding e margin funcionem corretamente */
+}
+
+.btn-primary {
+  background-color: #3498db; /* Azul primário */
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9; /* Azul mais escuro no hover */
+}
+
+.btn-info {
+  background-color: #000000; /* Azul claro (info) */
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #138496; /* Azul claro mais escuro no hover */
+}
+
+/* Flexbox para alinhamento de itens */
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .justify-content-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
-.mb-4 {
-    margin-bottom: 2rem;
+.align-items-center {
+  align-items: center;
 }
-
-/* Estilo para botões */
 .btn {
-    padding: 12px 25px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 8px; /* Cantos arredondados para botões */
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary {
-    background-color: #007bff;
-    color: white;
+.detalhes-btn {
+    align-self: flex-end; /* Alinha o botão à direita na parte inferior do card */
+    margin-top: 20px; /* Espaçamento do conteúdo acima */
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+/* Ícones do Material Design */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Tamanho padrão do ícone */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Suporte a renderização de fontes e ligaduras */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
-.btn-info {
-    background-color: #17a2b8;
-    color: white;
+.mb-4 {
+  margin-bottom: 1.5rem;
 }
 
-.btn-info:hover {
-    background-color: #138496;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Container de cada área de conhecimento */
+/* Contêiner da área de conhecimento */
 .area-container {
-    background-color: #fdfdfd;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 30px; /* Espaçamento entre as áreas */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px; /* Espaço entre as áreas */
+  padding: 15px;
+  background-color: #f8f9fa; /* Fundo levemente diferente para a área */
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra mais sutil */
 }
 
-/* Título da área de conhecimento */
 .area-title {
-    font-size: 2rem;
-    color: #34495e;
-    margin-top: 0;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ececec;
-    text-align: center;
+  font-size: 1.75rem; /* Um pouco menor que o h2 principal, mas ainda proeminente */
+  color: #2c3e50; /* Cor de texto mais escura para títulos */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #3498db; /* Linha azul de destaque */
+  padding-bottom: 5px;
 }
 
-/* Grid de cursos dentro de cada área */
+/* Grid para os cartões de curso */
 .curso-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Layout responsivo de colunas */
-    gap: 25px; /* Espaçamento entre os cards de curso */
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colunas em telas maiores, ou 1, 2... */
+  gap: 20px; /* Espaço entre os cartões */
 }
 
-/* Card individual do curso */
+/* Cartão individual do curso - Similar ao .comment-item, mas mais elaborado */
 .curso-card {
-    background-color: #ffffff;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+  background-color: #ffffff; /* Fundo branco para os cartões */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar o cartão */
+  overflow: hidden; /* Garante que bordas arredondadas funcionem bem com o header */
+  display: flex;
+  flex-direction: column; /* Para que o header e detalhes fiquem empilhados */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efeito hover */
 }
 
 .curso-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px); /* Leve levantamento no hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada no hover */
 }
 
-/* Cabeçalho do card do curso */
 .curso-header {
-    background-color: #f8f9fa;
-    padding: 15px 20px;
-    border-bottom: 1px solid #e9ecef;
+  background-color: #ffffff; /* Um cinza claro para o cabeçalho do cartão */
+  padding: 15px;
+  border-bottom: 1px solid #dee2e6; /* Linha divisória */
 }
 
 .curso-header h4 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: #2c3e50;
+  margin: 0;
+  font-size: 1.25rem;
+  color: #2c3e50;
 }
 
-/* Detalhes do curso */
 .curso-detalhes {
-    padding: 20px;
-    flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço restante */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Empurra o botão para baixo */
+  padding: 15px;
+  flex-grow: 1; /* Permite que o conteúdo ocupe o espaço restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empurra o botão para baixo, se houver espaço */
 }
 
 .curso-detalhes p {
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-    color: #555;
+  margin-bottom: 8px; /* Espaço entre os parágrafos de detalhes */
+  font-size: 0.95rem;
+  color: #555;
 }
 
 .curso-detalhes p strong {
-    color: #333;
+  color: #333;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .container {
-        margin: 20px auto;
-        padding: 15px;
-    }
-
-    .my-4 {
-        font-size: 2rem;
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-
-    .area-container {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-
-    .area-title {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    .curso-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas menores */
-        gap: 20px;
-    }
-
-    .curso-header h4 {
-        font-size: 1.2rem;
-    }
-
-    .curso-detalhes {
-        padding: 15px;
-    }
+/* Estilo para o botão "Ver detalhes" dentro do cartão */
+.curso-detalhes .btn-info {
+  width: 100%; /* Botão ocupa a largura total do cartão */
+  margin-top: 15px; /* Espaçamento acima do botão */
 }
+
+
 
 @media (max-width: 480px) {
     .my-4 {

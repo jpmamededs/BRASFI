@@ -5,22 +5,24 @@ import { CommonModule } from '@angular/common';
 import { SafeUrlPipe } from '../../../pipes/safe-url.pipe';
 import { FileSizePipe } from '../../../pipes/file-size.pipe';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FooterComponent } from "../../landing-page/components/footer/footer.component";
+import { NavbarComponent } from "../../landing-page/components/navbar/navbar.component";
 
 @Component({
   selector: 'app-curso-detalhe',
   templateUrl: './curso-detalhe.component.html',
   styleUrls: ['./curso-detalhe.component.css'],
-  imports:[CommonModule,SafeUrlPipe,FileSizePipe]
+  imports: [CommonModule,  FileSizePipe, FooterComponent, NavbarComponent]
 })
 export class CursoDetalheComponent implements OnInit {
   curso: any;
-  
+
   isLoading = true;
   errorMessage: string | null = null;
 
-  sanitizer: DomSanitizer = inject(DomSanitizer); 
+  sanitizer: DomSanitizer = inject(DomSanitizer);
 
-  
+
 
   constructor(
     private route: ActivatedRoute,
@@ -30,12 +32,12 @@ export class CursoDetalheComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    
+
     if (id) {
       this.carregarCurso(id);
     } else {
       this.handleError('ID do curso não encontrado na URL');
-      this.router.navigate(['/pagina-de-erro']); 
+      this.router.navigate(['/pagina-de-erro']);
     }
   }
 
@@ -55,7 +57,7 @@ export class CursoDetalheComponent implements OnInit {
           // REMOVA QUALQUER LÓGICA DE CONVERSÃO DE AULA.isVIDEO AQUI,
           // POIS ESSE CAMPO NÃO EXISTE MAIS DIRETAMENTE NO DTO DO BACKEND.
           // *******************************************************************
-          
+
           // Opcional: Para debug, você pode ainda logar o que vem do backend
           console.log('Curso carregado:', this.curso);
         },
@@ -73,18 +75,18 @@ export class CursoDetalheComponent implements OnInit {
   }
 
   voltar(): void {
-    this.router.navigate(['/centro-formacao']); 
+    this.router.navigate(['/centro-formacao']);
   }
 
    getVideoEmbedUrl(tipoConteudo: string | undefined | null, conteudo: string | undefined | null): SafeResourceUrl {
     if (!tipoConteudo || tipoConteudo !== 'VIDEO' || !conteudo) {
       // Se não for tipo VIDEO, ou conteudo estiver vazio/nulo, retorne uma URL segura vazia
-      return this.sanitizer.bypassSecurityTrustResourceUrl(''); 
+      return this.sanitizer.bypassSecurityTrustResourceUrl('');
     }
 
     // A lógica de extração do ID do YouTube permanece a mesma
     const videoIdMatch = conteudo.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/|.+\?v=))([^&?\/\s]+)/);
-    
+
     // Constrói a URL de embed padrão do YouTube
     const embedUrl = videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : '';
 
@@ -92,8 +94,8 @@ export class CursoDetalheComponent implements OnInit {
   }
 
 
-   
 
-  
+
+
 
 }

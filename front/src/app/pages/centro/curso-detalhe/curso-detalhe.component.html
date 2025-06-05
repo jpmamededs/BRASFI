@@ -1,6 +1,8 @@
+<app-navbar></app-navbar>
+
 <div class="curso-detalhe-container">
 
-  
+
   <!-- Cabeçalho do curso -->
   <div class="curso-header">
     <h1>{{ curso?.titulo }}</h1>
@@ -26,12 +28,12 @@
             <span class="badge tema">{{ aula.tema }}</span>
           </div>
         </div>
-        
+
         <div class="aula-content">
           <p *ngIf="aula.descricao">{{ aula.descricao }}</p>
 
-           
-          
+
+
           <div *ngIf="aula.tipoConteudo === 'VIDEO' && aula.conteudo" class="video-container">
             <iframe
               [src]="getVideoEmbedUrl(aula.tipoConteudo, aula.conteudo)"
@@ -39,11 +41,11 @@
               allowfullscreen>
             </iframe>
           </div>
-          
+
           <div *ngIf="aula.tipoConteudo === 'TEXTO' && aula.conteudo" class="texto-container">
             <p>{{ aula.conteudo }}</p> </div>
-          
-         
+
+
           <div *ngIf="aula.materiais && aula.materiais.length > 0" class="materiais-container">
             <h4>Materiais de apoio:</h4>
             <ul>
@@ -65,3 +67,4 @@
     <button class="btn-voltar" (click)="voltar()">Voltar para lista de cursos</button>
   </div>
 </div>
+<app-footer></app-footer>

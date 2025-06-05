@@ -24,8 +24,8 @@
       <p><strong>Duração:</strong> {{ curso.duracao }}</p>
       <p><strong>Autor:</strong> {{ curso.autor }}</p>
       <p><strong>Área:</strong> {{ curso.areaConhecimento }}</p>
-      <button class="btn btn-info" (click)="mostrarCursosDaArea(curso.areaConhecimento)">
-        Ver detalhes
+      <button class="btn btn-outline-primary detalhes-btn"(click)="mostrarCursosDaArea(curso.areaConhecimento)">
+       <i class="material-icons">arrow_forward</i>
       </button>
     </div>
   </div>

@@ -1,3 +1,4 @@
+/* Seu CSS Existente */
 .detalhes-container {
   max-width: 800px;
   margin: 20px auto;
@@ -12,8 +13,28 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* Modificação para o contêiner do vídeo */
 .video {
-  margin: 15px 0;
+  /* Remove o margin fixo, ele será tratado pelo contêiner responsivo */
+  margin: 15px 0; /* Você pode manter isso se quiser um espaçamento extra */
+
+  /* Adiciona propriedades para tornar o iframe responsivo */
+  position: relative;
+  padding-bottom: 56.25%; /* Isso define a proporção de 16:9 (altura é 56.25% da largura) */
+  height: 0; /* Zera a altura para que padding-bottom defina a altura */
+  overflow: hidden; /* Garante que nada transborde, como controles do YouTube */
+  max-width: 100%; /* Garante que o vídeo não saia do .detalhes-container */
+  background: #000; /* Fundo preto para preencher as barras, se o vídeo não for 16:9 */
+}
+
+/* Regras para o iframe dentro de .video */
+.video iframe {
+  position: absolute; /* Permite que o iframe se posicione dentro do contêiner .video */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupa 100% da largura do contêiner .video */
+  height: 100%; /* Ocupa 100% da altura do contêiner .video */
+  border: none; /* Remove a borda padrão do iframe */
 }
 
 .comment-toggle {

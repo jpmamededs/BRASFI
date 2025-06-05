@@ -16,6 +16,7 @@ public class PostagemResponseDTO {
     private String paragrafo;
     private TipoPostagem tag;
     private String imagemOuVideo;
+    private String videoLink;
     private String link;
     private boolean fixado;
     private String autor;
@@ -28,6 +29,7 @@ public class PostagemResponseDTO {
         this.paragrafo = postagem.getParagrafo();
         this.tag = postagem.getTag();
         this.imagemOuVideo = postagem.getImagemOuVideo();
+        this.videoLink = postagem.getVideoLink();
         this.link = postagem.getLink();
         this.fixado = postagem.isFixado();
         this.autor = postagem.getUser().getUsername();

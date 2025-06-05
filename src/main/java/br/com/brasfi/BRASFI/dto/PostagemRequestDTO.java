@@ -13,6 +13,7 @@ public record PostagemRequestDTO(
         @NotBlank String titulo,
         @NotBlank String paragrafo,
         String imagemOuVideo,
+        String videoLink,
         String link,
         boolean fixado
 ) {
@@ -25,6 +26,7 @@ public record PostagemRequestDTO(
                 postagem.getTitulo(),
                 postagem.getParagrafo(),
                 postagem.getImagemOuVideo(),
+                postagem.getVideoLink(),
                 postagem.getLink(),
                 postagem.isFixado()
         );
@@ -39,6 +41,7 @@ public record PostagemRequestDTO(
                 titulo(),
                 paragrafo(),
                 imagemOuVideo(),
+                videoLink(),
                 link(),
                 fixado,
                 LocalDateTime.now(),

@@ -32,6 +32,7 @@ public class Postagem {
 
     private String paragrafo;
     private String imagemOuVideo;
+    private String videoLink;
     private String link;
     private boolean fixado;
     private LocalDateTime dataCriacao;

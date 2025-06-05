@@ -30,7 +30,7 @@ public class ContentController {
 
     @GetMapping("/index")
     public String exibirPaginaIndex(Model model) {
-        model.addAttribute("postagemDTO", new PostagemRequestDTO(null, "", "", null, null, false));
+        model.addAttribute("postagemDTO", new PostagemRequestDTO(null, "", "", null,null, null, false));
         model.addAttribute("postagens", postagemRepository.findAll());
         return "index";
     }

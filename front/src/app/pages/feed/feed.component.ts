@@ -51,7 +51,7 @@ export class FeedComponent implements OnInit {
       .filter((post: any) => post.tag?.toUpperCase() === tag)
       .map((post: any) => ({
         ...post,
-        imagemOuVideo: this.getSafeUrl(post.imagemOuVideo),
+        videoLink: this.getSafeUrl(post.videoLink),
         
         dataCriacao: post.dataCriacao ? new Date(post.dataCriacao) : new Date()
       }));

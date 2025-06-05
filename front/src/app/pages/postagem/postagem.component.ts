@@ -13,6 +13,7 @@ export class PostagemComponent {
   titulo = '';
   paragrafo = '';
   imagemOuVideo = '';
+  videoLink= '';
   link = '';
   fixado = false;
   tag = 'EVENTO';  
@@ -36,6 +37,7 @@ export class PostagemComponent {
       titulo: this.titulo,
       paragrafo: this.paragrafo,
       imagemOuVideo: this.imagemOuVideo,
+      videoLink: this.videoLink,
       link: this.link,
       fixado: this.fixado,
       tag: this.tag

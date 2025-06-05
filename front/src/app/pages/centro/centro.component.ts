@@ -18,7 +18,7 @@ import { CursoFormComponent } from './curso-form/curso-form.component';
 })
 export class CentroComponent implements OnInit {
   @ViewChild(CursoFormComponent) cursoFormComponent!: CursoFormComponent;
-
+  imgSource:string="assets/images/IconCentroDeFormação.svg";
   cursos: any[] = [];
   cursoSelecionado: any = null;
   mostrarFormulario = true;

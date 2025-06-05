@@ -1,13 +1,17 @@
 <app-navbar></app-navbar>
-
-<div class="container">
-  <h1 class="text-center my-4">Gestão de Cursos</h1>
-
+<div class="titulo-centro">
+  <div class="titulo" style="display: flex;">
+    <img [src]=imgSource alt="Feed Icon" class="centro-icon">
+    <h1 class="text-center my-4">Gestão de Cursos</h1>
+    </div>
   <div class="d-flex justify-content-between mb-4">
     <button class="btn btn-primary" (click)="criarNovoCurso()">
       Criar Novo Curso
     </button>
   </div>
+  </div>
+<div class="container">
+
 
   <!-- Lista de Cursos por Área de Conhecimento -->
   <div *ngFor="let area of getAreasConhecimento()" class="area-container">
